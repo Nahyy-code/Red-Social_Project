@@ -1,0 +1,5 @@
+DATOS DEL USUARIO 
+Usuario: Leslie
+Correo: leslieCh@gmail.com
+Contraseña: 321154
+Tipo de Usuario: Estudiante

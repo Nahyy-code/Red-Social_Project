@@ -127,7 +127,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         String usuario= txtUsuario.getText().trim();
         String TipodeUsuario =null;
         //creacion de carpeta (si no hay)
-        String rutaCarpeta= "C:\\Users\\WINDOWS\\Documents\\GitHub\\Red-Social_Project\\RedSocialAcademica\\src\\main\\UsuariosRegistrados";
+        String rutaCarpeta= "src\\main\\UsuariosRegistrados";
         File CarpetaUsuarios = new File (rutaCarpeta);
         if (!CarpetaUsuarios.exists())
         {
