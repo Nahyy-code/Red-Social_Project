@@ -4,6 +4,13 @@
  */
 package Ventanas;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author WINDOWS
@@ -17,6 +24,7 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,8 +45,10 @@ public class FrmLogin extends javax.swing.JFrame {
         txtContraseña = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnMostrarC = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Inicia Sesion");
 
@@ -57,54 +67,64 @@ public class FrmLogin extends javax.swing.JFrame {
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
+        btnMostrarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/mostrar.png"))); // NOI18N
+        btnMostrarC.setBorder(null);
+        btnMostrarC.setContentAreaFilled(false);
+        btnMostrarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMostrarC.addActionListener(this::btnMostrarCActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(301, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(59, 59, 59)
                                 .addComponent(btnIniciarSesion))
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(289, 289, 289))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(304, 304, 304))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(159, 159, 159))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(0, 108, Short.MAX_VALUE))
+                        .addGap(354, 354, 354))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMostrarC)
+                        .addGap(241, 241, 241))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrarC))
                 .addGap(26, 26, 26)
                 .addComponent(btnIniciarSesion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(124, 124, 124)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(36, 36, 36))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,7 +142,46 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+    //Boton de inicio
+    
+    String usuario = txtUsuario.getText().trim();
+    String Contraseña= String.valueOf(txtContraseña.getPassword());
+    
+    if (usuario.isEmpty() || Contraseña.isEmpty())
+    {   JOptionPane.showMessageDialog(null,"Complete todos los campos");
+        return; }
+    
+    File archivo = new File("src\\main\\UsuariosRegistrados\\" +usuario+".txt");
+    if(!archivo.exists())
+    { JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+      return; }
+    
+    try {
+        BufferedReader reader = new BufferedReader(new FileReader(archivo));
+        String linea;
+        String contraseñaGuardada = "";
         
+        while ((linea =reader.readLine()) !=null )
+        {   if (linea.startsWith("Contraseña:")){
+            contraseñaGuardada=linea.replace("Contraseña: ", "").trim();
+        }
+        }
+        reader.close();
+        
+        if (contraseñaGuardada.equals(Contraseña)) {
+            jfmPanelInicio pInicio = new jfmPanelInicio();
+            pInicio.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, 
+                "Contraseña incorrecta.", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Error al leer el archivo.");
+    }
+    
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -132,6 +191,24 @@ public class FrmLogin extends javax.swing.JFrame {
         R.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnMostrarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarCActionPerformed
+        // Mostrar y Ocultar contraseña
+
+        ImageIcon MostrarCImg = new ImageIcon (getClass().getResource("/Imgs/mostrar.png"));
+        ImageIcon OcultarCImg = new ImageIcon (getClass().getResource("/Imgs/ocultar.png"));
+
+        if (btnMostrarC.isSelected()) {
+            // Mostrar contraseña
+            txtContraseña.setEchoChar((char) 0);
+            btnMostrarC.setIcon(OcultarCImg);
+        } else {
+            // Ocultar contraseña
+            txtContraseña.setEchoChar('•');
+            btnMostrarC.setIcon(MostrarCImg);
+        }
+
+    }//GEN-LAST:event_btnMostrarCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +237,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JToggleButton btnMostrarC;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

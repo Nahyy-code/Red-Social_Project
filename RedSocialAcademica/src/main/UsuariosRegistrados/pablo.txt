@@ -1,5 +1,0 @@
-DATOS DEL USUARIO 
-Usuario: pablo
-Correo: pablitogonzales@gmail.com
-Contraseña: 0000
-Tipo de Usuario: Docente
