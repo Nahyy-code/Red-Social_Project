@@ -74,7 +74,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 6, 23));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(56, 189, 248));
         jLabel7.setText("Apellido");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, 25));
@@ -87,7 +87,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         cbGenero.addActionListener(this::cbGeneroActionPerformed);
         jPanel2.add(cbGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 210, 30));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(56, 189, 248));
         jLabel2.setText("Usuario");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, 25));
@@ -99,7 +99,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
         jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 30));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(56, 189, 248));
         jLabel6.setText("Nombre");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 25));
@@ -117,7 +117,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         txtApellido.setPreferredSize(new java.awt.Dimension(90, 22));
         jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 98, 30));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(56, 189, 248));
         jLabel3.setText("Correo Electronico");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, 25));
@@ -128,7 +128,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         txtCorreo.setBorder(null);
         jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 210, 30));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(56, 189, 248));
         jLabel4.setText("Contraseña");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, 25));
@@ -140,13 +140,13 @@ public class FrmRegistro extends javax.swing.JFrame {
         txtContraseña.setBorder(null);
         jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 210, 30));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(56, 189, 248));
-        jLabel5.setText("Tipo de usuario");
+        jLabel5.setText("TIPO DE USUARIO");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 348, -1, 28));
 
-        btnRegistrarUsuario.setBackground(new java.awt.Color(26, 34, 53));
-        btnRegistrarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnRegistrarUsuario.setBackground(new java.awt.Color(37, 99, 235));
+        btnRegistrarUsuario.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         btnRegistrarUsuario.setForeground(new java.awt.Color(232, 244, 253));
         btnRegistrarUsuario.setText("Registrarse");
         btnRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -297,7 +297,7 @@ public class FrmRegistro extends javax.swing.JFrame {
             java.nio.file.Paths.get(rutaFotoSeleccionada),java.nio.file.Paths.get(carpeta + nombreArchivo),
             java.nio.file.StandardCopyOption.REPLACE_EXISTING
             );
-        } catch (Exception e ){
+        } catch (IOException e ){
             e.printStackTrace();
         }
         
@@ -367,7 +367,7 @@ public class FrmRegistro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El archivo no es una imagen válida.","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "No se pudo leer el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }

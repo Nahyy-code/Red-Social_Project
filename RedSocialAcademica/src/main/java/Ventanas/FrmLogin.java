@@ -54,23 +54,23 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 6, 23));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(56, 189, 248));
-        jLabel2.setText("Usuario");
+        jLabel2.setText("USUARIO");
 
         txtUsuario.setBackground(new java.awt.Color(26, 34, 53));
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(232, 244, 253));
         txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(56, 189, 248));
-        jLabel4.setText("Contraseña");
+        jLabel4.setText("CONTRASEÑA");
 
-        btnIniciarSesion.setBackground(new java.awt.Color(26, 34, 53));
-        btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnIniciarSesion.setBackground(new java.awt.Color(37, 99, 235));
+        btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         btnIniciarSesion.setForeground(new java.awt.Color(232, 244, 253));
-        btnIniciarSesion.setText("Iniciar Sesion");
+        btnIniciarSesion.setText("Iniciar Sesión");
         btnIniciarSesion.addActionListener(this::btnIniciarSesionActionPerformed);
 
         txtContraseña.setBackground(new java.awt.Color(26, 34, 53));
@@ -94,7 +94,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btnMostrarC.addActionListener(this::btnMostrarCActionPerformed);
 
         jLabel1.setForeground(new java.awt.Color(107, 138, 170));
-        jLabel1.setText("Inicia Sesion");
+        jLabel1.setText("Iniciar Sesión");
 
         lbLogoAcademix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/ChatGPT Image 28 jun 2026, 06_51_33 p.m. (3).png"))); // NOI18N
 
