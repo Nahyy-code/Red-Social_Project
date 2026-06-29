@@ -210,6 +210,7 @@ public class FrmLogin extends javax.swing.JFrame {
         reader.close();
         
         if (contraseñaGuardada.equals(Contraseña)) {
+            Sesion.usuarioActual = usuario;
             jfmPanelInicio pInicio = new jfmPanelInicio();
             pInicio.setVisible(true);
             dispose();

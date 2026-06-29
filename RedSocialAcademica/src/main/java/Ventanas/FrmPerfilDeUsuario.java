@@ -30,7 +30,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
     }
 
     private void cargarDatos() {
-    File archivo = new File("src\\main\\UsuariosRegistrados\\" +usuarioActual + ".txt");
+    File archivo = new File("src\\main\\UsuariosRegistrados\\" +Sesion.usuarioActual + ".txt");
 
     try {
         BufferedReader reader = new BufferedReader(new FileReader(archivo));

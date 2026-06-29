@@ -18,6 +18,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     public jfmPanelInicio() {
         initComponents();
         setLocationRelativeTo(null);
+        lbNomUsuario.setText(Sesion.usuarioActual);
     }
 
     /**
@@ -33,7 +34,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbNomUsuario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -70,13 +71,13 @@ public class jfmPanelInicio extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 6, 23));
 
-        jLabel1.setBackground(new java.awt.Color(232, 244, 253));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(232, 244, 253));
-        jLabel1.setText("Usuario");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbNomUsuario.setBackground(new java.awt.Color(232, 244, 253));
+        lbNomUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbNomUsuario.setForeground(new java.awt.Color(232, 244, 253));
+        lbNomUsuario.setText("Usuario");
+        lbNomUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                lbNomUsuarioMouseClicked(evt);
             }
         });
 
@@ -101,7 +102,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbNomUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
@@ -113,7 +114,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1))
+                        .addComponent(lbNomUsuario))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -135,14 +136,18 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Sesion.usuarioActual = "";
+       Sesion.nombreCompleto = "";
+       Sesion.tipoUsuario = "";
+        
        FrmLogin I = new FrmLogin();
        I.setVisible(true);
        dispose(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void lbNomUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNomUsuarioMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_lbNomUsuarioMouseClicked
 
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
     }//GEN-LAST:event_jLabel2MousePressed
@@ -182,10 +187,10 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lbNomUsuario;
     // End of variables declaration//GEN-END:variables
 }
