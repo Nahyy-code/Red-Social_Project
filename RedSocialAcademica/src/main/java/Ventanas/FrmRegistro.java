@@ -10,21 +10,26 @@ package Ventanas;
  * @author USER
  */
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FrmRegistro extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmRegistro.class.getName());
+    private String rutaFotoSeleccionada= "";
     /**
      * Creates new form FrmRegistro
      */
-   
     public FrmRegistro() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -39,190 +44,195 @@ public class FrmRegistro extends javax.swing.JFrame {
         gTipodeUsuario = new javax.swing.ButtonGroup();
         jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        cbGenero = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        rdEstudiante = new javax.swing.JRadioButton();
-        rdDocente = new javax.swing.JRadioButton();
-        btnRegistrarUsuario = new javax.swing.JButton();
         txtContraseña = new javax.swing.JPasswordField();
-        txtNombre = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtApellido = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        btnRegistrarUsuario = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         btnIrIniciodeSesion = new javax.swing.JButton();
         lbFotodeRegistro = new javax.swing.JLabel();
         btnSubirFoto = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        rdEstudiante = new javax.swing.JRadioButton();
+        rdDocente = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
         btnMostrarC = new javax.swing.JToggleButton();
+        lbLogoAcademix = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Crear Cuenta");
+        jPanel2.setBackground(new java.awt.Color(0, 6, 23));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(56, 189, 248));
+        jLabel7.setText("Apellido");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, 25));
+
+        cbGenero.setBackground(new java.awt.Color(26, 34, 53));
+        cbGenero.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        cbGenero.setForeground(new java.awt.Color(232, 244, 253));
+        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione su genero", "Hombre", "Mujer", "Otro" }));
+        cbGenero.setBorder(null);
+        cbGenero.addActionListener(this::cbGeneroActionPerformed);
+        jPanel2.add(cbGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 210, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(56, 189, 248));
         jLabel2.setText("Usuario");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, 25));
 
+        txtUsuario.setBackground(new java.awt.Color(26, 34, 53));
+        txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(232, 244, 253));
+        txtUsuario.setBorder(null);
+        txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
+        jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(56, 189, 248));
+        jLabel6.setText("Nombre");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 25));
+
+        txtNombre.setBackground(new java.awt.Color(26, 34, 53));
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(232, 244, 253));
+        txtNombre.setBorder(null);
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 104, 30));
+
+        txtApellido.setBackground(new java.awt.Color(26, 34, 53));
+        txtApellido.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        txtApellido.setForeground(new java.awt.Color(232, 244, 253));
+        txtApellido.setBorder(null);
+        txtApellido.setPreferredSize(new java.awt.Dimension(90, 22));
+        jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 98, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(56, 189, 248));
         jLabel3.setText("Correo Electronico");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, 25));
 
+        txtCorreo.setBackground(new java.awt.Color(26, 34, 53));
+        txtCorreo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(232, 244, 253));
+        txtCorreo.setBorder(null);
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 210, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(56, 189, 248));
         jLabel4.setText("Contraseña");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, 25));
 
+        txtContraseña.setBackground(new java.awt.Color(26, 34, 53));
+        txtContraseña.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        txtContraseña.setForeground(new java.awt.Color(232, 244, 253));
+        txtContraseña.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtContraseña.setBorder(null);
+        jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 210, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(56, 189, 248));
         jLabel5.setText("Tipo de usuario");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 348, -1, 28));
 
-        gTipodeUsuario.add(rdEstudiante);
-        rdEstudiante.setText("Estudiante");
-        rdEstudiante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        rdEstudiante.addActionListener(this::rdEstudianteActionPerformed);
-
-        gTipodeUsuario.add(rdDocente);
-        rdDocente.setText("Docente");
-        rdDocente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        rdDocente.addActionListener(this::rdDocenteActionPerformed);
-
+        btnRegistrarUsuario.setBackground(new java.awt.Color(26, 34, 53));
+        btnRegistrarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnRegistrarUsuario.setForeground(new java.awt.Color(232, 244, 253));
         btnRegistrarUsuario.setText("Registrarse");
         btnRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarUsuario.addActionListener(this::btnRegistrarUsuarioActionPerformed);
+        jPanel2.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 206, 37));
 
-        jLabel6.setText("Nombre");
-
-        txtApellido.setPreferredSize(new java.awt.Dimension(90, 22));
-
-        jLabel7.setText("Apellido");
-
+        jLabel8.setForeground(new java.awt.Color(107, 138, 170));
         jLabel8.setText("¿Tienes una cuenta?");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
 
-        btnIrIniciodeSesion.setForeground(new java.awt.Color(0, 102, 255));
+        btnIrIniciodeSesion.setForeground(new java.awt.Color(56, 189, 248));
         btnIrIniciodeSesion.setText("Inicia Sesión");
         btnIrIniciodeSesion.setContentAreaFilled(false);
         btnIrIniciodeSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIrIniciodeSesion.addActionListener(this::btnIrIniciodeSesionActionPerformed);
+        jPanel2.add(btnIrIniciodeSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, -1, 16));
 
-        lbFotodeRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/FdP_Predeterminado.png"))); // NOI18N
+        lbFotodeRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default.png"))); // NOI18N
+        jPanel2.add(lbFotodeRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 148, -1, -1));
 
-        btnSubirFoto.setText("Agregar Foto");
+        btnSubirFoto.setBackground(new java.awt.Color(26, 34, 53));
+        btnSubirFoto.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnSubirFoto.setForeground(new java.awt.Color(232, 244, 253));
+        btnSubirFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/upload (1).png"))); // NOI18N
+        btnSubirFoto.setText(" Agregar Foto");
+        btnSubirFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnSubirFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSubirFoto.addActionListener(this::btnSubirFotoActionPerformed);
+        jPanel2.add(btnSubirFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 290, 119, 38));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/trash.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(633, 290, 38, 38));
+
+        gTipodeUsuario.add(rdEstudiante);
+        rdEstudiante.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        rdEstudiante.setForeground(new java.awt.Color(232, 244, 253));
+        rdEstudiante.setText("Estudiante");
+        rdEstudiante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rdEstudiante.addActionListener(this::rdEstudianteActionPerformed);
+        jPanel2.add(rdEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 382, 100, -1));
+
+        gTipodeUsuario.add(rdDocente);
+        rdDocente.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        rdDocente.setForeground(new java.awt.Color(232, 244, 253));
+        rdDocente.setText("Docente");
+        rdDocente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rdDocente.addActionListener(this::rdDocenteActionPerformed);
+        jPanel2.add(rdDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 382, 100, -1));
+
+        jLabel1.setForeground(new java.awt.Color(107, 138, 170));
+        jLabel1.setText("Crear Cuenta");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 77, 28));
 
         btnMostrarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/mostrar.png"))); // NOI18N
         btnMostrarC.setBorder(null);
         btnMostrarC.setContentAreaFilled(false);
         btnMostrarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMostrarC.addActionListener(this::btnMostrarCActionPerformed);
+        jPanel2.add(btnMostrarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 277, -1, -1));
+
+        lbLogoAcademix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/ChatGPT Image 28 jun 2026, 06_51_33 p.m. (3).png"))); // NOI18N
+        jPanel2.add(lbLogoAcademix, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 200, 40));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(rdEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnIrIniciodeSesion))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(59, 59, 59)
-                                        .addComponent(btnRegistrarUsuario))
-                                    .addComponent(jLabel2)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(70, 70, 70)
-                                        .addComponent(jLabel7)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                                .addComponent(btnMostrarC))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(btnSubirFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(158, 158, 158)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbFotodeRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbFotodeRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSubirFoto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMostrarC))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdEstudiante)
-                    .addComponent(rdDocente))
-                .addGap(18, 18, 18)
-                .addComponent(btnRegistrarUsuario)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIrIniciodeSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(29, 29, 29))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -232,23 +242,20 @@ public class FrmRegistro extends javax.swing.JFrame {
     {
         String usuario= txtUsuario.getText().trim();
         String TipodeUsuario =null;
+        String Genero=null;
         //creacion de carpeta (si no hay)
         String rutaCarpeta= "src\\main\\UsuariosRegistrados";
         File CarpetaUsuarios = new File (rutaCarpeta);
-        if (!CarpetaUsuarios.exists())
-        {
-            CarpetaUsuarios.mkdir();
-        }
+        if (!CarpetaUsuarios.exists()) CarpetaUsuarios.mkdir();
         
-        if (rdEstudiante.isSelected())
-        {
-            TipodeUsuario="Estudiante";
-        }
-        if (rdDocente.isSelected())
-        {
-            TipodeUsuario="Docente";
-        }
+        //seleccion de rol
+        if (rdEstudiante.isSelected()) TipodeUsuario="Estudiante";
+        if (rdDocente.isSelected()) TipodeUsuario="Docente"; 
+        String GSeleccionado= cbGenero.getSelectedItem().toString();
+        Genero=GSeleccionado;
         
+        String foto = rutaFotoSeleccionada.isEmpty() ? "default_user.png" : usuario + rutaFotoSeleccionada.substring(rutaFotoSeleccionada.lastIndexOf("."));
+         
         //Creacion de usuario(archivo)
         File IdUsuario = new File(CarpetaUsuarios,usuario+ ".txt");
         try(FileWriter writer = new FileWriter(IdUsuario)){
@@ -258,9 +265,11 @@ public class FrmRegistro extends javax.swing.JFrame {
             writer.write("Apellido: "+txtApellido.getText() + "\n");
             writer.write("Correo: "+txtCorreo.getText() + "\n");
             writer.write("Contraseña: "+String.valueOf(txtContraseña.getPassword())+ "\n");
+            writer.write("Genero: "+Genero+ "\n");
             writer.write("Tipo de Usuario: "+TipodeUsuario+ "\n");
+            writer.write ("Foto: " +foto);
         
-            JOptionPane.showMessageDialog(null, "Usuario Registrado \n Redirigiendo a Iniciar Sesion");
+            JOptionPane.showMessageDialog(null, "Usuario Registrado \nVuelva a Iniciar Sesion");
             
         }catch(IOException e) {
             e.printStackTrace();
@@ -268,6 +277,26 @@ public class FrmRegistro extends javax.swing.JFrame {
         
     }
     
+    
+    private void guardarFoto(String nombreUsuario){
+        if (rutaFotoSeleccionada.isEmpty()) return;
+        
+        try {
+            String carpeta="src\\main\\resources\\Imgs_PFP\\";
+            new File(carpeta).mkdirs();
+            
+            String extension =rutaFotoSeleccionada.substring(rutaFotoSeleccionada.lastIndexOf("."));
+            String nombreArchivo = nombreUsuario + extension;
+            
+            java.nio.file.Files.copy(
+            java.nio.file.Paths.get(rutaFotoSeleccionada),java.nio.file.Paths.get(carpeta + nombreArchivo),
+            java.nio.file.StandardCopyOption.REPLACE_EXISTING
+            );
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+        
+    }
     private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
         // Verficacion de Datos
         String Usuario=txtUsuario.getText();
@@ -276,13 +305,18 @@ public class FrmRegistro extends javax.swing.JFrame {
         String Correo=txtCorreo.getText();
         String Contraseña=String.valueOf(txtContraseña.getPassword());
         
-        if (Usuario.isEmpty() || Nombre.isEmpty() || Apellido.isEmpty() || Correo.isEmpty() || Contraseña.isEmpty() || gTipodeUsuario.getSelection() == null)
+        if (Usuario.isEmpty() || Nombre.isEmpty() || Apellido.isEmpty() || Correo.isEmpty() || Contraseña.isEmpty() || gTipodeUsuario.getSelection() == null || cbGenero.getSelectedIndex() == 0)
         {
-            JOptionPane.showMessageDialog(null, "Complete los datos");
+            JOptionPane.showMessageDialog(null, "Complete los datos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
+        guardarFoto(Usuario);
         CrearUsuario();
+        
+        FrmLogin L = new FrmLogin();
+        L.setVisible(true);
+        dispose();
         
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
@@ -295,7 +329,54 @@ public class FrmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_rdDocenteActionPerformed
 
     private void btnSubirFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirFotoActionPerformed
-        // TODO add your handling code here:
+        // Subir Foto del Usuario
+        JFileChooser chooser= new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes (JPG,PNG,JPEG)", "jpg","png","jpeg");
+        
+        chooser.addChoosableFileFilter(filtro);
+        chooser.setFileFilter(filtro);
+        chooser.setAcceptAllFileFilterUsed(false);
+        
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) 
+        {
+            File archivo = chooser.getSelectedFile();
+
+        // 1 — Valida extensión
+            String nombre = archivo.getName().toLowerCase();
+            if (!nombre.endsWith(".jpg") && !nombre.endsWith(".jpeg") && !nombre.endsWith(".png")) {
+                JOptionPane.showMessageDialog(null, "Formato no permitido.\nSolo se aceptan JPG y PNG.","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+        // 2 — Validar tamaño (máximo 2 MB)
+            long tamañoMB = archivo.length() / 1024;
+            if (tamañoMB > 128) {
+                JOptionPane.showMessageDialog(null, "La imagen es muy grande.\nMáximo permitido: 128 MB.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+        // 3 — Validar que sea una imagen real (no un archivo renombrado)
+            try {
+                java.awt.image.BufferedImage img = javax.imageio.ImageIO.read(archivo);
+                if (img == null) {
+                JOptionPane.showMessageDialog(null, "El archivo no es una imagen válida.","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo leer el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+            
+            rutaFotoSeleccionada = chooser.getSelectedFile().getAbsolutePath();
+            //Previsualizacion de Foto
+            ImageIcon icon = new ImageIcon(rutaFotoSeleccionada);
+            Image imgEscalada = icon.getImage().getScaledInstance(lbFotodeRegistro.getWidth(), lbFotodeRegistro.getHeight(), Image.SCALE_SMOOTH);
+            lbFotodeRegistro.setIcon(new ImageIcon(imgEscalada));
+            
+            lbFotodeRegistro.setIcon(new ImageIcon(imgEscalada));
+            JOptionPane.showMessageDialog(null, "Foto cargada correctamente.");
+        }
+         
     }//GEN-LAST:event_btnSubirFotoActionPerformed
 
     private void btnIrIniciodeSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrIniciodeSesionActionPerformed
@@ -324,6 +405,22 @@ public class FrmRegistro extends javax.swing.JFrame {
     }
         
     }//GEN-LAST:event_btnMostrarCActionPerformed
+
+    private void cbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGeneroActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cbGeneroActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Limpiar FDP
+        rutaFotoSeleccionada="";
+        ImageIcon icon = new ImageIcon (getClass().getResource("/Imgs_S/FdP_Default.png"));
+        lbFotodeRegistro.setIcon(icon);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,7 +452,9 @@ public class FrmRegistro extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnMostrarC;
     private javax.swing.JButton btnRegistrarUsuario;
     private javax.swing.JButton btnSubirFoto;
+    private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.ButtonGroup gTipodeUsuario;
+    private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -366,7 +465,9 @@ public class FrmRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbFotodeRegistro;
+    private javax.swing.JLabel lbLogoAcademix;
     private javax.swing.JRadioButton rdDocente;
     private javax.swing.JRadioButton rdEstudiante;
     private javax.swing.JTextField txtApellido;

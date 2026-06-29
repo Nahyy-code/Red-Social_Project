@@ -1,0 +1,8 @@
+DATOS DEL USUARIO 
+Usuario: @DPlaasd
+Nombre: pablo
+Apellido: gonza
+Correo: palfoad@gmailc.om
+Contraseña: ñadaposdqq
+Tipo de Usuario: Estudiante
+Foto: DPlaasd.png

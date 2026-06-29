@@ -1,0 +1,9 @@
+DATOS DEL USUARIO 
+Usuario: @DSphinx
+Nombre: Joseph
+Apellido: Martinez
+Correo: dsphinx01010@gmail.com
+Contraseña: dsphinx1234
+Genero: Hombre
+Tipo de Usuario: Estudiante
+Foto: DSphinx.jpg
