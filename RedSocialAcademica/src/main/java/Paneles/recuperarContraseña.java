@@ -155,6 +155,7 @@ public class recuperarContraseña extends javax.swing.JPanel {
         btnMostrarNueva = new javax.swing.JToggleButton();
         btnMostrarConfirmar = new javax.swing.JToggleButton();
 
+        setBackground(new java.awt.Color(0, 6, 23));
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
 
@@ -162,33 +163,37 @@ public class recuperarContraseña extends javax.swing.JPanel {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Recuperar contraseña");
 
+        lblDesc.setForeground(new java.awt.Color(107, 138, 170));
         lblDesc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDesc.setText("<html><center>Ingresa tu correo y tu nueva contraseña<br> para recuperar el acceso a tu cuenta.</center></html>");
         lblDesc.setToolTipText("");
 
-        lblCorreo.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblCorreo.setForeground(new java.awt.Color(56, 189, 248));
         lblCorreo.setText("CORREO ELECTRÓNICO");
 
         lblErrorCorreo.setForeground(new java.awt.Color(239, 68, 68));
         lblErrorCorreo.setText("Este correo no está registrado. ");
 
+        lblNueva.setForeground(new java.awt.Color(56, 189, 248));
         lblNueva.setText("NUEVA CONTRASEÑA");
 
         lblHint.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        lblHint.setForeground(new java.awt.Color(170, 170, 170));
+        lblHint.setForeground(new java.awt.Color(107, 138, 170));
         lblHint.setText("Mínimo 8 caracteres, incluye letras y números.");
 
         btnRestablecer.setBackground(new java.awt.Color(37, 99, 235));
+        btnRestablecer.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         btnRestablecer.setText("Restablecer contraseña");
         btnRestablecer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRestablecer.addActionListener(this::btnRestablecerActionPerformed);
 
-        btnVolver.setForeground(new java.awt.Color(0, 102, 255));
+        btnVolver.setForeground(new java.awt.Color(56, 189, 248));
         btnVolver.setText("Volver al inicio de sesión");
         btnVolver.setContentAreaFilled(false);
         btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVolver.addActionListener(this::btnVolverActionPerformed);
 
+        txtCorreo.setBackground(new java.awt.Color(26, 34, 53));
         txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCorreoKeyTyped(evt);
@@ -199,6 +204,12 @@ public class recuperarContraseña extends javax.swing.JPanel {
         lblErrorContraseña.setForeground(new java.awt.Color(239, 68, 68));
         lblErrorContraseña.setText("jLabel1");
 
+        txtNueva.setBackground(new java.awt.Color(26, 34, 53));
+
+        txtConfirmar.setBackground(new java.awt.Color(26, 34, 53));
+
+        lblIcon.setBackground(new java.awt.Color(255, 255, 255));
+        lblIcon.setForeground(new java.awt.Color(153, 153, 255));
         lblIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/icons8-lock-48.png"))); // NOI18N
         lblIcon.setMaximumSize(new java.awt.Dimension(45, 45));
@@ -221,17 +232,14 @@ public class recuperarContraseña extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(366, 366, 366)
-                        .addComponent(lblIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(308, 308, 308)
-                        .addComponent(lblTitulo)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(255, 255, 255)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(lblIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(lblTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtConfirmar)
@@ -245,22 +253,20 @@ public class recuperarContraseña extends javax.swing.JPanel {
                                 .addComponent(lblErrorCorreo))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnRestablecer)
-                                .addComponent(lblHint)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblHint)
+                                .addComponent(btnVolver)
+                                .addComponent(btnRestablecer, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnMostrarNueva)
-                            .addComponent(btnMostrarConfirmar))
-                        .addContainerGap(215, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(btnMostrarConfirmar)))
+                    .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(30, 30, 30)
                 .addComponent(lblIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo)
@@ -278,21 +284,24 @@ public class recuperarContraseña extends javax.swing.JPanel {
                 .addComponent(lblNueva)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMostrarNueva))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMostrarConfirmar))
+                    .addComponent(btnMostrarNueva)
+                    .addComponent(txtNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(btnMostrarConfirmar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblErrorContraseña)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblHint)
-                .addGap(18, 18, 18)
-                .addComponent(btnRestablecer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRestablecer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVolver)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
