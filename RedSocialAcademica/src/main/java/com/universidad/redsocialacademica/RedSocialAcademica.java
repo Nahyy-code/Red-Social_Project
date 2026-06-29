@@ -4,6 +4,8 @@
 
 package com.universidad.redsocialacademica;
 
+import Ventanas.FrmLogin;
+
 /**
  *
  * @author USER
@@ -11,6 +13,7 @@ package com.universidad.redsocialacademica;
 public class RedSocialAcademica {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        FrmLogin I = new FrmLogin();
+       I.setVisible(true);
     }
 }

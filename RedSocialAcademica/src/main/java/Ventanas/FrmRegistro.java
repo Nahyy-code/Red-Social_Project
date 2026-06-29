@@ -266,7 +266,13 @@ public class FrmRegistro extends javax.swing.JFrame {
             writer.write("Contraseña: "+String.valueOf(txtContraseña.getPassword())+ "\n");
             writer.write("Genero: "+Genero+ "\n");
             writer.write("Tipo de Usuario: "+TipodeUsuario+ "\n");
-            writer.write ("Foto: " +foto);
+            writer.write ("Foto: " +foto+ "\n");
+            writer.write("Sobre mi: \n");
+            writer.write("Universidad: \n");
+            writer.write("Facultad: \n");
+            writer.write("Carrera: \n");
+            writer.write("Habilidades: \n");
+            writer.write("Colegio: \n");
         
             JOptionPane.showMessageDialog(null, "Usuario Registrado \nVuelva a Iniciar Sesion");
             
