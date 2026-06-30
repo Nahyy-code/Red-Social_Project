@@ -1,28 +1,22 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package Ventanas;
-import Paneles.PanelLogin;
-import Paneles.PanelRegistro;
-import Paneles.recuperarContraseña;
-import java.awt.CardLayout;
-
 
 /**
  *
  * @author USER
  */
-    
-
 public class FrmRecuperar extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmRecuperar.class.getName());
-    private CardLayout cardLayout;
-    private String nombre;
+
     /**
      * Creates new form FrmRecuperar
      */
     public FrmRecuperar() {
         initComponents();
-        agregarPaneles();
-        
     }
 
     /**
@@ -34,45 +28,22 @@ public class FrmRecuperar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelPrincipal = new javax.swing.JPanel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
-        setResizable(false);
-
-        panelPrincipal.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void agregarPaneles(){
-        PanelLogin panelLogin = new PanelLogin(this);
-        PanelRegistro  panelRegistro = new PanelRegistro(this);
-        recuperarContraseña panelRecuperar = new recuperarContraseña(this);
-        
-        panelPrincipal.add(panelLogin, "login");
-        panelPrincipal.add(panelRegistro, "registro");
-        panelPrincipal.add(panelRecuperar, "recuperar");
-        
-        cardLayout.show(panelPrincipal, "login");
-    }
-    
-    public void mostrarPaneles(String nombre){
-        cardLayout.show(panelPrincipal, nombre);
-    }
+
     /**
      * @param args the command line arguments
      */
@@ -99,11 +70,5 @@ public class FrmRecuperar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
-
-    public void mostrarPanel(String login) {
-        cardLayout.show(panelPrincipal, nombre);
-    }
-
 }
