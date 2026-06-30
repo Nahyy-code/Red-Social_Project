@@ -126,6 +126,7 @@ private JPanel crearTarjetaPost(File archivo) {
         btnIrPerfil = new javax.swing.JButton();
         btnCierreSesion = new javax.swing.JButton();
         btnInicio = new javax.swing.JButton();
+        btnAñadir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PLFeed = new javax.swing.JPanel();
         PLPublicar = new javax.swing.JPanel();
@@ -213,21 +214,27 @@ private JPanel crearTarjetaPost(File archivo) {
         btnInicio.setText("Inicio");
         btnInicio.addActionListener(this::btnInicioActionPerformed);
 
+        btnAñadir.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnAñadir.setText("Añadir");
+        btnAñadir.addActionListener(this::btnAñadirActionPerformed);
+
         javax.swing.GroupLayout JPBarraHorizontalLayout = new javax.swing.GroupLayout(JPBarraHorizontal);
         JPBarraHorizontal.setLayout(JPBarraHorizontalLayout);
         JPBarraHorizontalLayout.setHorizontalGroup(
             JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
                 .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnIrPerfil)
-                        .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addComponent(btnInicio)))
                     .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAñadir)
+                            .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnIrPerfil)
+                                .addComponent(btnInicio)))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         JPBarraHorizontalLayout.setVerticalGroup(
             JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +243,9 @@ private JPanel crearTarjetaPost(File archivo) {
                 .addComponent(btnInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnIrPerfil)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAñadir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
                 .addComponent(btnCierreSesion)
                 .addGap(18, 18, 18))
         );
@@ -285,8 +294,8 @@ private JPanel crearTarjetaPost(File archivo) {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(JPBarraVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,6 +358,13 @@ private JPanel crearTarjetaPost(File archivo) {
         cargarFeed();
     }//GEN-LAST:event_btnPublicarActionPerformed
 
+    private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
+        // TODO add your handling code here:
+        FrmBuscarAmigos B = new FrmBuscarAmigos();
+        B.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAñadirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -379,6 +395,7 @@ private JPanel crearTarjetaPost(File archivo) {
     private javax.swing.JPanel JPBarraVertical;
     private javax.swing.JPanel PLFeed;
     private javax.swing.JPanel PLPublicar;
+    private javax.swing.JButton btnAñadir;
     private javax.swing.JButton btnCierreSesion;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnIrPerfil;
