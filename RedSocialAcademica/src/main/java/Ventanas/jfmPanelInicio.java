@@ -32,8 +32,6 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         Image imgEscalada = icon.getImage().getScaledInstance(
         lbFotodePerfil.getWidth(), lbFotodePerfil.getHeight(), Image.SCALE_SMOOTH);
         lbFotodePerfil.setIcon(new ImageIcon(imgEscalada));
-    } else {
-        System.out.println("No existe: " + foto.getAbsolutePath());
     }
 
     }

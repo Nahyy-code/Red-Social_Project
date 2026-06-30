@@ -17,4 +17,5 @@
         <maven.compiler.release>26</maven.compiler.release>
         <exec.mainClass>com.universidad.redsocialacademica.RedSocialAcademica</exec.mainClass>
     </properties>
+    <name>EducaMix</name>
 </project>

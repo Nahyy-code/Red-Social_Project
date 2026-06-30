@@ -6,7 +6,7 @@ Correo: dsphinx01010@gmail.com
 Contraseña: dsphinx1234
 Genero: Hombre
 Tipo de Usuario: Estudiante
-Foto: DSphinx.jpg
+Foto: dsphinx.png
 Sobre mi: hey
 Universidad: Ug
 Facultad: FCMF
