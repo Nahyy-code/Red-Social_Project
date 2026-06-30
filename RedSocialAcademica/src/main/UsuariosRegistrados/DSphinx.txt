@@ -7,7 +7,8 @@ Contraseña: dsphinx1234
 Genero: Hombre
 Tipo de Usuario: Estudiante
 Foto: dsphinx.png
-Sobre mi: hey
+Sobre mi: hey soy hiper que tal bro, adasdklasjdlkasjdlkasjdasjdlasjldjaslkdasjldajsldsadsaasdas
+que tal
 Universidad: Ug
 Facultad: FCMF
 Carrera: Software

@@ -47,41 +47,32 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="190" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="LbLApellido1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="452" pref="452" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="LbLNombre6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtHabilidades" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="txtCarrera" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="LBLCARRERA" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtNombre" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="LbLNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LBLUNIVERSIDAD" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtUniversidad" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="LbLNombre4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtGenero" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="LbLNombre5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LbLApellido" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtApellido" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="txtSobreMi" min="-2" pref="259" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="txtColegio" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="LbLNombre6" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtHabilidades" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="txtCarrera" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="LBLCARRERA" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNombre" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="LbLNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="LBLUNIVERSIDAD" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtUniversidad" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="LbLNombre5" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="LbLApellido" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSobreMi" min="-2" pref="257" max="-2" attributes="0"/>
+                      <Component id="txtApellido" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="LbLApellido1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtColegio" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="81" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
@@ -102,11 +93,6 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="190" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -133,10 +119,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="LBLUNIVERSIDAD" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtUniversidad" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="txtGenero" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtUniversidad" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="LBLCARRERA" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -145,41 +128,41 @@
                           <Component id="LbLNombre6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtHabilidades" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="LbLApellido1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnCancelar" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="btnGuardar" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="LbLNombre4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="LbLApellido1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtColegio" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="LbLNombre5" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="lbFotoPreview" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtSobreMi" alignment="3" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <Component id="btnEditarFoto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="txtSobreMi" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Component id="btnQuitarFoto" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="btnQuitarFoto" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnEditarFoto" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtColegio" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
-                      <Component id="btnGuardar" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -227,17 +210,6 @@
               <Color blue="f8" green="bd" red="38" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Carrera"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LbLNombre4">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="13" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f8" green="bd" red="38" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Genero"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="LbLNombre5">
@@ -330,27 +302,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtGenero">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="35" green="22" red="1a" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtSobreMi">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="35" green="22" red="1a" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar">
@@ -446,6 +397,20 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imgs_S/FdP_Default 132x132.png"/>
             </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextArea" name="txtSobreMi">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="35" green="22" red="1a" type="rgb"/>
+            </Property>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="lineWrap" type="boolean" value="true"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="tabSize" type="int" value="5"/>
           </Properties>
         </Component>
       </SubComponents>

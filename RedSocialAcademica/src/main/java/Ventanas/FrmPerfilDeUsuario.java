@@ -54,8 +54,9 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 lbUni.setText(linea.replace("Universidad: ", "").trim());
             if (linea.startsWith("Carrera: "))
                 lbCarrera.setText(linea.replace("Carrera: ", "").trim());
-            if (linea.startsWith("Sobre mi: "))
-                lbSobreMi.setText(linea.replace("Sobre mi: ", "").trim());
+            if (linea.startsWith("Sobre mi: ")) {
+                String texto = linea.replace("Sobre mi: ", "").trim();
+                lbSobreMi.setText("<html><div style='width:250px;'>" +texto+ "</div></html>"); }
             if (linea.startsWith("Habilidades: "))
                 lbHabilidades.setText(linea.replace("Habilidades: ", "").trim());
             if (linea.startsWith("Colegio: "))
@@ -266,12 +267,15 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         lbAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 60x60.png"))); // NOI18N
 
         lbNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbNombre.setForeground(new java.awt.Color(255, 255, 255));
         lbNombre.setText("Nombre/Apellido");
 
         lbUni.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lbUni.setForeground(new java.awt.Color(255, 255, 255));
         lbUni.setText("Universidad/Facultad");
 
         lbCarrera.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lbCarrera.setForeground(new java.awt.Color(255, 255, 255));
         lbCarrera.setText("Carrera en curso/terminada");
 
         lbTipo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -333,8 +337,10 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         lbNDatos.setForeground(new java.awt.Color(56, 189, 248));
         lbNDatos.setText("Datos");
 
+        lbCorreo.setForeground(new java.awt.Color(255, 255, 255));
         lbCorreo.setText("Correo");
 
+        lbGenero.setForeground(new java.awt.Color(255, 255, 255));
         lbGenero.setText("Genero");
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
@@ -367,8 +373,10 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         lbNTrayerctoria.setForeground(new java.awt.Color(56, 189, 248));
         lbNTrayerctoria.setText("Trayectoria");
 
+        lbColegio.setForeground(new java.awt.Color(255, 255, 255));
         lbColegio.setText("Colegio");
 
+        lbUniversidad.setForeground(new java.awt.Color(255, 255, 255));
         lbUniversidad.setText("Universidad");
 
         javax.swing.GroupLayout pnlTrayectoriaLayout = new javax.swing.GroupLayout(pnlTrayectoria);
@@ -401,6 +409,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         lbNSobreMi.setForeground(new java.awt.Color(56, 189, 248));
         lbNSobreMi.setText("Sobre mi");
 
+        lbSobreMi.setForeground(new java.awt.Color(255, 255, 255));
         lbSobreMi.setText("Descripcion");
 
         javax.swing.GroupLayout pnlSobremiLayout = new javax.swing.GroupLayout(pnlSobremi);
@@ -432,6 +441,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         lbNHabilidades.setForeground(new java.awt.Color(56, 189, 248));
         lbNHabilidades.setText("Habilidades");
 
+        lbHabilidades.setForeground(new java.awt.Color(255, 255, 255));
         lbHabilidades.setText("Habilidades");
 
         javax.swing.GroupLayout pnlHabilidadesLayout = new javax.swing.GroupLayout(pnlHabilidades);
@@ -472,7 +482,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -490,7 +500,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
             pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContenidoLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(pnlCabezera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlContenidoLayout.createSequentialGroup()
@@ -516,7 +526,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addGroup(pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlHabilidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlTrayectoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 

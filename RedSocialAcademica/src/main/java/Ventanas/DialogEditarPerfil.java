@@ -16,6 +16,9 @@ import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
@@ -31,6 +34,19 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         setLocationRelativeTo(parent);
         cargarCampos();
         cargarFotoActual();
+        
+        //Limite de caracter SOBRE MI
+        txtSobreMi.getDocument().addDocumentListener(new DocumentListener() {
+        public void insertUpdate(DocumentEvent e) {
+            if (txtSobreMi.getText().length() > 136) {
+                SwingUtilities.invokeLater(() -> 
+                    txtSobreMi.setText(txtSobreMi.getText().substring(0, 136)));
+            }
+        }
+        public void removeUpdate(DocumentEvent e) {}
+        public void changedUpdate(DocumentEvent e) {}
+    });
+        
     }
 
     private void cargarCampos() {
@@ -81,7 +97,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         LbLApellido = new javax.swing.JLabel();
         LBLUNIVERSIDAD = new javax.swing.JLabel();
         LBLCARRERA = new javax.swing.JLabel();
-        LbLNombre4 = new javax.swing.JLabel();
         LbLNombre5 = new javax.swing.JLabel();
         LbLNombre6 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
@@ -90,8 +105,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         txtHabilidades = new javax.swing.JTextField();
         txtUniversidad = new javax.swing.JTextField();
         txtCarrera = new javax.swing.JTextField();
-        txtGenero = new javax.swing.JTextField();
-        txtSobreMi = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         LbLApellido1 = new javax.swing.JLabel();
         txtColegio = new javax.swing.JTextField();
@@ -99,6 +112,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnEditarFoto = new javax.swing.JButton();
         btnQuitarFoto = new javax.swing.JButton();
         lbFotoPreview = new javax.swing.JLabel();
+        txtSobreMi = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -120,10 +134,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         LBLCARRERA.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LBLCARRERA.setForeground(new java.awt.Color(56, 189, 248));
         LBLCARRERA.setText("Carrera");
-
-        LbLNombre4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        LbLNombre4.setForeground(new java.awt.Color(56, 189, 248));
-        LbLNombre4.setText("Genero");
 
         LbLNombre5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLNombre5.setForeground(new java.awt.Color(56, 189, 248));
@@ -154,13 +164,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
 
         txtCarrera.setBackground(new java.awt.Color(26, 34, 53));
         txtCarrera.setForeground(new java.awt.Color(255, 255, 255));
-
-        txtGenero.setBackground(new java.awt.Color(26, 34, 53));
-        txtGenero.setForeground(new java.awt.Color(255, 255, 255));
-
-        txtSobreMi.setBackground(new java.awt.Color(26, 34, 53));
-        txtSobreMi.setForeground(new java.awt.Color(255, 255, 255));
-        txtSobreMi.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         btnCancelar.setBackground(new java.awt.Color(37, 99, 235));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -194,39 +197,41 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
 
         lbFotoPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 132x132.png"))); // NOI18N
 
+        txtSobreMi.setBackground(new java.awt.Color(26, 34, 53));
+        txtSobreMi.setColumns(20);
+        txtSobreMi.setForeground(new java.awt.Color(255, 255, 255));
+        txtSobreMi.setLineWrap(true);
+        txtSobreMi.setRows(5);
+        txtSobreMi.setTabSize(5);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(LbLApellido1)
-                        .addGap(452, 452, 452))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LbLNombre6)
-                                    .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LBLCARRERA)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LbLNombre)
-                                    .addComponent(LBLUNIVERSIDAD)
-                                    .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(53, 53, 53)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LbLNombre4)
-                                    .addComponent(txtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LbLNombre5)
-                                    .addComponent(LbLApellido)
-                                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                    .addComponent(LbLNombre6)
+                    .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LBLCARRERA)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbLNombre)
+                    .addComponent(LBLUNIVERSIDAD)
+                    .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LbLNombre5)
+                    .addComponent(LbLApellido)
+                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbLApellido1)
+                    .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -242,10 +247,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCancelar)
                         .addGap(18, 18, 18))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,9 +268,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(LBLUNIVERSIDAD)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LBLCARRERA)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -278,31 +277,31 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                         .addComponent(LbLNombre6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LbLApellido1))
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(112, 112, 112)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LbLNombre4)
-                                .addGap(68, 68, 68)
+                                .addGap(28, 28, 28)
+                                .addComponent(LbLApellido1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(LbLNombre5))
                             .addComponent(lbFotoPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnEditarFoto)))
+                                .addGap(12, 12, 12)
+                                .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(btnQuitarFoto)))))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnQuitarFoto)
+                                    .addComponent(btnEditarFoto))))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -489,7 +488,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private javax.swing.JLabel LbLApellido;
     private javax.swing.JLabel LbLApellido1;
     private javax.swing.JLabel LbLNombre;
-    private javax.swing.JLabel LbLNombre4;
     private javax.swing.JLabel LbLNombre5;
     private javax.swing.JLabel LbLNombre6;
     private javax.swing.JButton btnCancelar;
@@ -502,10 +500,9 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtColegio;
-    private javax.swing.JTextField txtGenero;
     private javax.swing.JTextField txtHabilidades;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtSobreMi;
+    private javax.swing.JTextArea txtSobreMi;
     private javax.swing.JTextField txtUniversidad;
     // End of variables declaration//GEN-END:variables
 
