@@ -7,3 +7,9 @@ Contraseña: dsphinx1234
 Genero: Hombre
 Tipo de Usuario: Estudiante
 Foto: DSphinx.jpg
+Sobre mi: hey
+Universidad: Ug
+Facultad: FCMF
+Carrera: Software
+Habilidades: Listo
+Colegio: UEC

@@ -67,12 +67,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="LbLNombre4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtGenero" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="txtSobreMi" alignment="0" min="-2" pref="296" max="-2" attributes="0"/>
                               <Component id="LbLNombre5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="LbLApellido" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtApellido" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="txtSobreMi" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="77" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -100,11 +100,11 @@
                           <Component id="LbLNombre4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtGenero" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="LbLNombre5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="txtSobreMi" min="-2" pref="98" max="-2" attributes="0"/>
-                          <EmptySpace pref="55" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnCancelar" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                               <Component id="btnGuardar" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
@@ -127,7 +127,7 @@
                           <Component id="LbLApellido1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtColegio" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="68" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

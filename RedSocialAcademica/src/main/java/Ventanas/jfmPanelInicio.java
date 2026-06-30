@@ -4,6 +4,10 @@
  */
 package Ventanas;
 
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author WINDOWS
@@ -18,7 +22,20 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     public jfmPanelInicio() {
         initComponents();
         setLocationRelativeTo(null);
-        lbNomUsuario.setText(Sesion.usuarioActual);
+        lbNomUsuario.setText(Sesion.nombreCompleto);
+        lbTipo.setText(Sesion.tipoUsuario);
+        
+        File foto = new File("src\\main\\resources\\Imgs_PFP\\" + Sesion.fotodeperfil);
+
+    if (foto.exists()) {
+        ImageIcon icon = new ImageIcon(foto.getAbsolutePath());
+        Image imgEscalada = icon.getImage().getScaledInstance(
+        lbFotodePerfil.getWidth(), lbFotodePerfil.getHeight(), Image.SCALE_SMOOTH);
+        lbFotodePerfil.setIcon(new ImageIcon(imgEscalada));
+    } else {
+        System.out.println("No existe: " + foto.getAbsolutePath());
+    }
+
     }
 
     /**
@@ -32,11 +49,14 @@ public class jfmPanelInicio extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnIrPerfil = new javax.swing.JButton();
+        btnCierreSesion = new javax.swing.JButton();
+        btnIrPerfil1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lbNomUsuario = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        lbFotodePerfil = new javax.swing.JLabel();
+        lbTipo = new javax.swing.JLabel();
+        lbLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -46,9 +66,18 @@ public class jfmPanelInicio extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(21, 34, 68));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jButton2.setText("Perfil");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        btnIrPerfil.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnIrPerfil.setText("Perfil");
+        btnIrPerfil.addActionListener(this::btnIrPerfilActionPerformed);
+
+        btnCierreSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/leave.png"))); // NOI18N
+        btnCierreSesion.setBorderPainted(false);
+        btnCierreSesion.setContentAreaFilled(false);
+        btnCierreSesion.addActionListener(this::btnCierreSesionActionPerformed);
+
+        btnIrPerfil1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnIrPerfil1.setText("Inicio");
+        btnIrPerfil1.addActionListener(this::btnIrPerfil1ActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -56,15 +85,22 @@ public class jfmPanelInicio extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jButton2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIrPerfil)
+                    .addComponent(btnIrPerfil1))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jButton2)
-                .addContainerGap(374, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(btnIrPerfil1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnIrPerfil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 110, 420));
@@ -72,7 +108,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 6, 23));
 
         lbNomUsuario.setBackground(new java.awt.Color(232, 244, 253));
-        lbNomUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbNomUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lbNomUsuario.setForeground(new java.awt.Color(232, 244, 253));
         lbNomUsuario.setText("Usuario");
         lbNomUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,18 +117,25 @@ public class jfmPanelInicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 60x60.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbFotodePerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 60x60.png"))); // NOI18N
+        lbFotodePerfil.setText("jLabel2");
+        lbFotodePerfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel2MousePressed(evt);
+                lbFotodePerfilMousePressed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/leave.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        lbTipo.setBackground(new java.awt.Color(232, 244, 253));
+        lbTipo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbTipo.setForeground(new java.awt.Color(21, 137, 242));
+        lbTipo.setText("Tipo de Usuario");
+        lbTipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbTipoMouseClicked(evt);
+            }
+        });
+
+        lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/ChatGPT Image 28 jun 2026, 06_51_33 p.m. (3).png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -100,22 +143,27 @@ public class jfmPanelInicio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbFotodePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lbNomUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbNomUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                .addComponent(lbLogo)
+                .addGap(19, 19, 19))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbNomUsuario))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbFotodePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(lbNomUsuario)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lbTipo))))
                 .addContainerGap())
         );
 
@@ -135,7 +183,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCierreSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCierreSesionActionPerformed
        Sesion.usuarioActual = "";
        Sesion.nombreCompleto = "";
        Sesion.tipoUsuario = "";
@@ -143,21 +191,29 @@ public class jfmPanelInicio extends javax.swing.JFrame {
        FrmLogin I = new FrmLogin();
        I.setVisible(true);
        dispose(); 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCierreSesionActionPerformed
 
     private void lbNomUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNomUsuarioMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lbNomUsuarioMouseClicked
 
-    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
-    }//GEN-LAST:event_jLabel2MousePressed
+    private void lbFotodePerfilMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbFotodePerfilMousePressed
+    }//GEN-LAST:event_lbFotodePerfilMousePressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnIrPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrPerfilActionPerformed
     FrmPerfilDeUsuario Perfil = new FrmPerfilDeUsuario("DSphinx");
     Perfil.setVisible(true);
     dispose();        
        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnIrPerfilActionPerformed
+
+    private void lbTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTipoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbTipoMouseClicked
+
+    private void btnIrPerfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrPerfil1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIrPerfil1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,12 +241,15 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnCierreSesion;
+    private javax.swing.JButton btnIrPerfil;
+    private javax.swing.JButton btnIrPerfil1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lbFotodePerfil;
+    private javax.swing.JLabel lbLogo;
     private javax.swing.JLabel lbNomUsuario;
+    private javax.swing.JLabel lbTipo;
     // End of variables declaration//GEN-END:variables
 }

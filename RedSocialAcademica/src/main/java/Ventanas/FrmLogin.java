@@ -44,7 +44,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btnIniciarSesion = new javax.swing.JButton();
         txtContraseña = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnRegistro = new javax.swing.JButton();
         btnMostrarC = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         lbLogoAcademix = new javax.swing.JLabel();
@@ -54,7 +54,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 6, 23));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(56, 189, 248));
         jLabel2.setText("USUARIO");
 
@@ -63,7 +63,7 @@ public class FrmLogin extends javax.swing.JFrame {
         txtUsuario.setForeground(new java.awt.Color(232, 244, 253));
         txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(56, 189, 248));
         jLabel4.setText("CONTRASEÑA");
 
@@ -81,11 +81,11 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(107, 138, 170));
         jLabel3.setText("¿No tienes usuario?");
 
-        jButton1.setForeground(new java.awt.Color(56, 189, 248));
-        jButton1.setText("Registrate");
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnRegistro.setForeground(new java.awt.Color(56, 189, 248));
+        btnRegistro.setText("Registrate");
+        btnRegistro.setContentAreaFilled(false);
+        btnRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistro.addActionListener(this::btnRegistroActionPerformed);
 
         btnMostrarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/mostrar.png"))); // NOI18N
         btnMostrarC.setBorder(null);
@@ -116,7 +116,7 @@ public class FrmLogin extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton1)
+                            .addComponent(btnRegistro)
                             .addGap(302, 302, 302))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel2)
@@ -151,7 +151,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGap(98, 98, 98)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnRegistro))
                 .addGap(20, 20, 20))
         );
 
@@ -211,8 +211,9 @@ public class FrmLogin extends javax.swing.JFrame {
         
         if (contraseñaGuardada.equals(Contraseña)) {
             Sesion.usuarioActual = usuario;
-            jfmPanelInicio pInicio = new jfmPanelInicio();
-            pInicio.setVisible(true);
+            cargarDatosUsuarios(usuario);
+            
+            new jfmPanelInicio().setVisible(true);
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, 
@@ -226,13 +227,13 @@ public class FrmLogin extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
         // Redireccion a Crear cuenta
         FrmRegistro R = new FrmRegistro();
         
         R.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void btnMostrarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarCActionPerformed
         // Mostrar y Ocultar contraseña
@@ -252,6 +253,32 @@ public class FrmLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnMostrarCActionPerformed
 
+    private void cargarDatosUsuarios(String usuario) {
+    File archivo = new File("src\\main\\UsuariosRegistrados\\" + usuario + ".txt");
+
+    try {
+        BufferedReader reader = new BufferedReader(new FileReader(archivo));
+        String linea;
+        String nombre = "", apellido = "";
+
+        while ((linea = reader.readLine()) != null) {
+            if (linea.startsWith("Nombre: "))
+                nombre = linea.replace("Nombre: ", "").trim();
+            if (linea.startsWith("Apellido: "))
+                apellido = linea.replace("Apellido: ", "").trim();
+            if (linea.startsWith("Tipo de Usuario: "))
+                Sesion.tipoUsuario = linea.replace("Tipo de Usuario: ", "").trim();
+            if (linea.startsWith("Foto: "))
+                Sesion.fotodeperfil = linea.replace("Foto: ", "").trim();
+        }
+        reader.close();
+
+        Sesion.nombreCompleto = nombre + " " + apellido;
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
@@ -288,7 +315,7 @@ public class FrmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JToggleButton btnMostrarC;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
