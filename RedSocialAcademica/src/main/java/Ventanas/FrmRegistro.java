@@ -278,23 +278,25 @@ public class FrmRegistro extends javax.swing.JFrame {
             
         }catch(IOException e) {
             e.printStackTrace();
-        }
-        
+        }        
     }
     
-    
     private void guardarFoto(String nombreUsuario){
-        if (rutaFotoSeleccionada.isEmpty()) return;
+        if (rutaFotoSeleccionada == null || rutaFotoSeleccionada.isEmpty()) return;
         
         try {
             String carpeta="src\\main\\resources\\Imgs_PFP\\";
-            new File(carpeta).mkdirs();
+            File dir = new File(carpeta);
+            if(!dir.exists()) {
+                dir.mkdirs();
+            }
             
             String extension =rutaFotoSeleccionada.substring(rutaFotoSeleccionada.lastIndexOf("."));
             String nombreArchivo = nombreUsuario + extension;
             
             java.nio.file.Files.copy(java.nio.file.Paths.get(rutaFotoSeleccionada),java.nio.file.Paths.get(carpeta + nombreArchivo),java.nio.file.StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e ){
+            System.out.println("Error al copiar la foto de perfil.");
             e.printStackTrace();
         }
         
@@ -352,8 +354,8 @@ public class FrmRegistro extends javax.swing.JFrame {
 
         // 2 — Validar tamaño (máximo 2 MB)
             long tamañoMB = archivo.length() / 1024;
-            if (tamañoMB > 128) {
-                JOptionPane.showMessageDialog(null, "La imagen es muy grande.\nMáximo permitido: 128 MB.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (tamañoMB > 2048) {
+                JOptionPane.showMessageDialog(null, "La imagen es muy grande.\nMáximo permitido: 2 MB.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -369,16 +371,14 @@ public class FrmRegistro extends javax.swing.JFrame {
             return;
         }
             
-            rutaFotoSeleccionada = chooser.getSelectedFile().getAbsolutePath();
+            rutaFotoSeleccionada = archivo.getAbsolutePath(); chooser.getSelectedFile().getAbsolutePath();
             //Previsualizacion de Foto
             ImageIcon icon = new ImageIcon(rutaFotoSeleccionada);
-            Image imgEscalada = icon.getImage().getScaledInstance(lbFotodeRegistro.getWidth(), lbFotodeRegistro.getHeight(), Image.SCALE_SMOOTH);
+            Image imgEscalada = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
             lbFotodeRegistro.setIcon(new ImageIcon(imgEscalada));
             
-            lbFotodeRegistro.setIcon(new ImageIcon(imgEscalada));
             JOptionPane.showMessageDialog(null, "Foto cargada correctamente.");
-        }
-         
+        }         
     }//GEN-LAST:event_btnSubirFotoActionPerformed
 
     private void btnIrIniciodeSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrIniciodeSesionActionPerformed

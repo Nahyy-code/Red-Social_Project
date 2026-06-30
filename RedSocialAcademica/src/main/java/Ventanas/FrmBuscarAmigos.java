@@ -21,13 +21,19 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmBuscarAmigos.class.getName());
     private static final String RUTA_USUARIOS = "src\\main\\UsuariosRegistrados\\";
-    private static final String RUTA_FOTOS = "\\src\\main\\resources\\Imgs_PFP";
+    private static final String RUTA_FOTOS = "\\src\\main\\resources\\Imgs_PFP\\";
+    private JLabel lblSinResultados;
     /**
      * Creates new form FrmBuscarAmigos
      */
     public FrmBuscarAmigos() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        lblSinResultados = new JLabel();
+        lblSinResultados.setFont(new Font("Segoe UI", 0, 20));
+        lblSinResultados.setForeground(new Color(239,68,68));
+        lblSinResultados.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
     /**
@@ -45,7 +51,7 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         ScrollPan = new javax.swing.JScrollPane();
         pnlResultados = new javax.swing.JPanel();
-        lblSinResultados = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 6, 23));
@@ -66,13 +72,13 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
 
         pnlResultados.setBackground(new java.awt.Color(26, 34, 56));
         pnlResultados.setLayout(new javax.swing.BoxLayout(pnlResultados, javax.swing.BoxLayout.Y_AXIS));
-
-        lblSinResultados.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        lblSinResultados.setForeground(new java.awt.Color(239, 68, 68));
-        lblSinResultados.setText("No se encontraron usuarios.");
-        pnlResultados.add(lblSinResultados);
-
         ScrollPan.setViewportView(pnlResultados);
+
+        btnVolver.setBackground(new java.awt.Color(37, 99, 235));
+        btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVolver.addActionListener(this::btnVolverActionPerformed);
 
         javax.swing.GroupLayout pnlSuperiorLayout = new javax.swing.GroupLayout(pnlSuperior);
         pnlSuperior.setLayout(pnlSuperiorLayout);
@@ -86,7 +92,9 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBuscar)
-                .addGap(0, 261, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addComponent(btnVolver)
+                .addGap(39, 39, 39))
         );
         pnlSuperiorLayout.setVerticalGroup(
             pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +106,9 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
                             .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSuperiorLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(btnBuscar)))
+                            .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnVolver)
+                                .addComponent(btnBuscar))))
                     .addGroup(pnlSuperiorLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(lblTitulo)))
@@ -397,6 +407,13 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
         pnlResultados.repaint();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        jfmPanelInicio I = new jfmPanelInicio();
+        I.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -426,7 +443,7 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ScrollPan;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JLabel lblSinResultados;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlResultados;
     private javax.swing.JPanel pnlSuperior;
