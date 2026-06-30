@@ -48,6 +48,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btnMostrarC = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         lbLogoAcademix = new javax.swing.JLabel();
+        btnRecuperar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -87,7 +88,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btnRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistro.addActionListener(this::btnRegistroActionPerformed);
 
-        btnMostrarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/mostrar.png"))); // NOI18N
+        btnMostrarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-eye-24.png"))); // NOI18N
         btnMostrarC.setBorder(null);
         btnMostrarC.setContentAreaFilled(false);
         btnMostrarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -96,28 +97,22 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(107, 138, 170));
         jLabel1.setText("Iniciar Sesión");
 
-        lbLogoAcademix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/ChatGPT Image 28 jun 2026, 06_51_33 p.m. (3).png"))); // NOI18N
+        lbLogoAcademix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/LogoApp.png"))); // NOI18N
+
+        btnRecuperar.setForeground(new java.awt.Color(56, 189, 248));
+        btnRecuperar.setText("¿Olvidaste la contraseña?");
+        btnRecuperar.setContentAreaFilled(false);
+        btnRecuperar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRecuperar.addActionListener(this::btnRecuperarActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(354, 354, 354)
-                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(313, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(lbLogoAcademix)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnRegistro)
-                            .addGap(302, 302, 302))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -125,16 +120,35 @@ public class FrmLogin extends javax.swing.JFrame {
                             .addGap(277, 277, 277))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnMostrarC)
-                            .addGap(229, 229, 229)))))
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnRegistro))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRecuperar)))
+                            .addGap(302, 302, 302)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(lbLogoAcademix)))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(lbLogoAcademix, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -146,7 +160,9 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMostrarC))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -238,8 +254,8 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnMostrarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarCActionPerformed
         // Mostrar y Ocultar contraseña
 
-        ImageIcon MostrarCImg = new ImageIcon (getClass().getResource("/Imgs/mostrar.png"));
-        ImageIcon OcultarCImg = new ImageIcon (getClass().getResource("/Imgs/ocultar.png"));
+        ImageIcon MostrarCImg = new ImageIcon (getClass().getResource("/Imgs_S/icons8-eye-24.png"));
+        ImageIcon OcultarCImg = new ImageIcon (getClass().getResource("/Imgs_S/icons8-hide-24.png"));
 
         if (btnMostrarC.isSelected()) {
             // Mostrar contraseña
@@ -257,21 +273,23 @@ public class FrmLogin extends javax.swing.JFrame {
     File archivo = new File("src\\main\\UsuariosRegistrados\\" + usuario + ".txt");
 
     try {
-        BufferedReader reader = new BufferedReader(new FileReader(archivo));
-        String linea;
-        String nombre = "", apellido = "";
+        String nombre, apellido;
 
-        while ((linea = reader.readLine()) != null) {
-            if (linea.startsWith("Nombre: "))
-                nombre = linea.replace("Nombre: ", "").trim();
-            if (linea.startsWith("Apellido: "))
-                apellido = linea.replace("Apellido: ", "").trim();
-            if (linea.startsWith("Tipo de Usuario: "))
-                Sesion.tipoUsuario = linea.replace("Tipo de Usuario: ", "").trim();
-            if (linea.startsWith("Foto: "))
-                Sesion.fotodeperfil = linea.replace("Foto: ", "").trim();
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            nombre = "";
+            apellido = "";
+            while ((linea = reader.readLine()) != null) {
+                if (linea.startsWith("Nombre: "))
+                    nombre = linea.replace("Nombre: ", "").trim();
+                if (linea.startsWith("Apellido: "))
+                    apellido = linea.replace("Apellido: ", "").trim();
+                if (linea.startsWith("Tipo de Usuario: "))
+                    Sesion.tipoUsuario = linea.replace("Tipo de Usuario: ", "").trim();
+                if (linea.startsWith("Foto: "))
+                    Sesion.fotodeperfil = linea.replace("Foto: ", "").trim();
+            }
         }
-        reader.close();
 
         Sesion.nombreCompleto = nombre + " " + apellido;
 
@@ -286,6 +304,13 @@ public class FrmLogin extends javax.swing.JFrame {
     private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContraseñaActionPerformed
+
+    private void btnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperarActionPerformed
+        // TODO add your handling code here:
+        FrmRecuperar Re = new FrmRecuperar();
+        Re.setVisible(true);
+        dispose(); 
+    }//GEN-LAST:event_btnRecuperarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,6 +340,7 @@ public class FrmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JToggleButton btnMostrarC;
+    private javax.swing.JButton btnRecuperar;
     private javax.swing.JButton btnRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

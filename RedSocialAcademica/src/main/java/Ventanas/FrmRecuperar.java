@@ -31,13 +31,12 @@ public class FrmRecuperar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         /* Los campos de contraseña empiezan deshabilitados, hasta validar el correo */
-        
-        txtNueva.setEnabled(false);
-        txtConfirmar.setEnabled(false);
-        btnRestablecer.setEnabled(false);
+        correoValidado = false;
         lblErrorCorreo.setText(" ");
         lblErrorContraseña.setText(" ");
     }
+    
+    private boolean correoValidado;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,7 +78,6 @@ public class FrmRecuperar extends javax.swing.JFrame {
         lblTitulo.setText("Recuperar Contraseña");
 
         lblErrorCorreo.setForeground(new java.awt.Color(239, 68, 68));
-        lblErrorCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png"))); // NOI18N
         lblErrorCorreo.setText("Este correo no está registrado.");
 
         jLabel2.setForeground(new java.awt.Color(107, 138, 170));
@@ -101,7 +99,6 @@ public class FrmRecuperar extends javax.swing.JFrame {
         btnMostrarNueva.addActionListener(this::btnMostrarNuevaActionPerformed);
 
         lblErrorContraseña.setForeground(new java.awt.Color(239, 68, 68));
-        lblErrorContraseña.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png"))); // NOI18N
 
         lblNueva.setForeground(new java.awt.Color(56, 189, 248));
         lblNueva.setText("NUEVA CONTRASEÑA");
@@ -128,7 +125,6 @@ public class FrmRecuperar extends javax.swing.JFrame {
         txtConfirmar.setBackground(new java.awt.Color(26, 34, 53));
 
         btnContinuar.setBackground(new java.awt.Color(37, 99, 235));
-        btnContinuar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnContinuar.setText("Continuar");
         btnContinuar.setBorderPainted(false);
         btnContinuar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -300,6 +296,7 @@ public class FrmRecuperar extends javax.swing.JFrame {
         archivoUsuarioEncontrado = null;
         
         if(correo.isEmpty()){
+            lblErrorCorreo.setIcon(new ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png")));
             lblErrorCorreo.setText("Debes ingresar un correo.");
             return;
         }
@@ -354,19 +351,16 @@ public class FrmRecuperar extends javax.swing.JFrame {
         
         if(archivoUsuarioEncontrado == null){
             
+            lblErrorCorreo.setIcon(new ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png")));
             lblErrorCorreo.setText("Este correo no está registrado.");
-            txtNueva.setEnabled(false);
-            txtConfirmar.setEnabled(false);
-            btnRestablecer.setEnabled(false);
+            correoValidado = false;
             
         } else {
             
+            lblErrorCorreo.setIcon(null);
             lblErrorCorreo.setForeground(new Color(80,200,120));
             lblErrorCorreo.setText("Correo verificado. Ingrese su nueva contraseña.");
-            txtNueva.setEnabled(true);
-            txtConfirmar.setEnabled(true);
-            btnRestablecer.setEnabled(true);
-            
+            correoValidado = true;
         }
     }//GEN-LAST:event_btnContinuarActionPerformed
 
@@ -375,18 +369,21 @@ public class FrmRecuperar extends javax.swing.JFrame {
         lblErrorContraseña.setForeground(new Color(239,68,68));
         
         if(archivoUsuarioEncontrado == null) {
+            lblErrorContraseña.setIcon(new ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png")));
             lblErrorContraseña.setText("Primero valida tu correo.");
             return;
         }
         String nueva = String.valueOf(txtNueva.getPassword());
         String confirmar = String.valueOf(txtConfirmar.getPassword());
         
-        if(nueva.isEmpty() || confirmar.isEmpty()) {           
+        if(nueva.isEmpty() || confirmar.isEmpty()) {
+            lblErrorContraseña.setIcon(new ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png")));
             lblErrorContraseña.setText("Completa ambos campos de contraseña.");
             return;            
         }
         
         if(!nueva.equals(confirmar)) {
+            lblErrorContraseña.setIcon(new ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png")));
             lblErrorContraseña.setText("Las contraseñas no coinciden.");
             return;
         }
@@ -428,6 +425,7 @@ public class FrmRecuperar extends javax.swing.JFrame {
             dispose();
             
         } catch(IOException e) {
+            lblErrorContraseña.setIcon(new ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png")));
             lblErrorContraseña.setText("Error al guardar la contraseña.");
             System.out.println("Error al actualizar la contraseña: " + e.getMessage());
         }

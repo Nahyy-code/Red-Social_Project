@@ -3,6 +3,6 @@ Usuario: @DPlaasd
 Nombre: pablo
 Apellido: gonza
 Correo: palfoad@gmailc.om
-Contraseña: holahola
+Contraseña: miumiu
 Tipo de Usuario: Estudiante
 Foto: DPlaasd.png
