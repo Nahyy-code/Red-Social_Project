@@ -6,4 +6,11 @@ Correo: dsphinx01010@gmail.com
 Contraseña: dsphinx1234
 Genero: Hombre
 Tipo de Usuario: Estudiante
-Foto: DSphinx.jpg
+Foto: dsphinx.png
+Sobre mi: hey soy hiper que tal bro, adasdklasjdlkasjdlkasjdasjdlasjldjaslkdasjldajsldsadsaasdas
+que tal
+Universidad: Ug
+Facultad: FCMF
+Carrera: Software
+Habilidades: Listo
+Colegio: UEC

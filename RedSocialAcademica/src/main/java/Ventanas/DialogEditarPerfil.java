@@ -4,32 +4,55 @@
  */
 package Ventanas;
 
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author WINDOWS
  */
 public class DialogEditarPerfil extends javax.swing.JDialog {
+    private String rutaFotoSeleccionada = "";
+    private boolean quitarFoto = false;
     
-    private String usuarioActual;
-
     public DialogEditarPerfil(java.awt.Frame parent, boolean modal, String usuario) {
         super(parent, "Editar perfil", true);
         initComponents();
-        this.usuarioActual = usuario;
         setLocationRelativeTo(parent);
         cargarCampos();
+        cargarFotoActual();
+        
+        //Limite de caracter SOBRE MI
+        txtSobreMi.getDocument().addDocumentListener(new DocumentListener() {
+        public void insertUpdate(DocumentEvent e) {
+            if (txtSobreMi.getText().length() > 136) {
+                SwingUtilities.invokeLater(() -> 
+                    txtSobreMi.setText(txtSobreMi.getText().substring(0, 136)));
+            }
+        }
+        public void removeUpdate(DocumentEvent e) {}
+        public void changedUpdate(DocumentEvent e) {}
+    });
+        
     }
 
     private void cargarCampos() {
         
         //Llenando JTextField en vez de JLabel
-        File archivo = new File("src\\main\\UsuariosRegistrados\\" + usuarioActual + ".txt");
+        File archivo = new File("src\\main\\UsuariosRegistrados\\" + Sesion.usuarioActual + ".txt");
         try {
             BufferedReader reader = new BufferedReader(new FileReader(archivo));
             String linea;
@@ -50,6 +73,16 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         
     }
     
+    private void cargarFotoActual() {
+    File foto = new File("src\\main\\resources\\Imgs_PFP\\" + Sesion.fotodeperfil);
+    
+    if (foto.exists() && !Sesion.fotodeperfil.equals("default_user.png")) {
+        ImageIcon icon = new ImageIcon(foto.getAbsolutePath());
+        Image img = icon.getImage().getScaledInstance(132, 132, Image.SCALE_SMOOTH);
+        lbFotoPreview.setIcon(new ImageIcon(img));
+    }
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,7 +97,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         LbLApellido = new javax.swing.JLabel();
         LBLUNIVERSIDAD = new javax.swing.JLabel();
         LBLCARRERA = new javax.swing.JLabel();
-        LbLNombre4 = new javax.swing.JLabel();
         LbLNombre5 = new javax.swing.JLabel();
         LbLNombre6 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
@@ -73,14 +105,14 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         txtHabilidades = new javax.swing.JTextField();
         txtUniversidad = new javax.swing.JTextField();
         txtCarrera = new javax.swing.JTextField();
-        txtGenero = new javax.swing.JTextField();
-        txtSobreMi = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         LbLApellido1 = new javax.swing.JLabel();
         txtColegio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEditarFoto = new javax.swing.JButton();
+        btnQuitarFoto = new javax.swing.JButton();
+        lbFotoPreview = new javax.swing.JLabel();
+        txtSobreMi = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -103,10 +135,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         LBLCARRERA.setForeground(new java.awt.Color(56, 189, 248));
         LBLCARRERA.setText("Carrera");
 
-        LbLNombre4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        LbLNombre4.setForeground(new java.awt.Color(56, 189, 248));
-        LbLNombre4.setText("Genero");
-
         LbLNombre5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLNombre5.setForeground(new java.awt.Color(56, 189, 248));
         LbLNombre5.setText("Sobre mi");
@@ -117,27 +145,31 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
 
         btnGuardar.setBackground(new java.awt.Color(37, 99, 235));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardar.addActionListener(this::btnGuardarActionPerformed);
 
         txtNombre.setBackground(new java.awt.Color(26, 34, 53));
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
 
         txtApellido.setBackground(new java.awt.Color(26, 34, 53));
+        txtApellido.setForeground(new java.awt.Color(255, 255, 255));
 
         txtHabilidades.setBackground(new java.awt.Color(26, 34, 53));
+        txtHabilidades.setForeground(new java.awt.Color(255, 255, 255));
 
         txtUniversidad.setBackground(new java.awt.Color(26, 34, 53));
+        txtUniversidad.setForeground(new java.awt.Color(255, 255, 255));
 
         txtCarrera.setBackground(new java.awt.Color(26, 34, 53));
-
-        txtGenero.setBackground(new java.awt.Color(26, 34, 53));
-
-        txtSobreMi.setBackground(new java.awt.Color(26, 34, 53));
-        txtSobreMi.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtCarrera.setForeground(new java.awt.Color(255, 255, 255));
 
         btnCancelar.setBackground(new java.awt.Color(37, 99, 235));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
         LbLApellido1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -145,70 +177,84 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         LbLApellido1.setText("Colegio");
 
         txtColegio.setBackground(new java.awt.Color(26, 34, 53));
+        txtColegio.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/LogoApp.png"))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(37, 99, 235));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-upload-24.png"))); // NOI18N
-        jButton1.setText("Editar Foto");
+        btnEditarFoto.setBackground(new java.awt.Color(37, 99, 235));
+        btnEditarFoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEditarFoto.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-upload-24.png"))); // NOI18N
+        btnEditarFoto.setText("Editar Foto");
+        btnEditarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarFoto.addActionListener(this::btnEditarFotoActionPerformed);
 
-        jButton2.setBackground(new java.awt.Color(10, 15, 30));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-trash-24.png"))); // NOI18N
+        btnQuitarFoto.setBackground(new java.awt.Color(10, 15, 30));
+        btnQuitarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-trash-24.png"))); // NOI18N
+        btnQuitarFoto.setContentAreaFilled(false);
+        btnQuitarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnQuitarFoto.addActionListener(this::btnQuitarFotoActionPerformed);
+
+        lbFotoPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 132x132.png"))); // NOI18N
+
+        txtSobreMi.setBackground(new java.awt.Color(26, 34, 53));
+        txtSobreMi.setColumns(20);
+        txtSobreMi.setForeground(new java.awt.Color(255, 255, 255));
+        txtSobreMi.setLineWrap(true);
+        txtSobreMi.setRows(5);
+        txtSobreMi.setTabSize(5);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(LbLApellido1)
-                        .addGap(452, 452, 452))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LbLNombre6)
-                                    .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LBLCARRERA)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LbLNombre)
-                                    .addComponent(LBLUNIVERSIDAD)
-                                    .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(53, 53, 53)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LbLNombre4)
-                                    .addComponent(txtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LbLNombre5)
-                                    .addComponent(LbLApellido)
-                                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCancelar)
-                    .addComponent(jButton2))
-                .addGap(17, 17, 17))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LbLNombre6)
+                    .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LBLCARRERA)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbLNombre)
+                    .addComponent(LBLUNIVERSIDAD)
+                    .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LbLNombre5)
+                    .addComponent(LbLApellido)
+                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbLApellido1)
+                    .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnEditarFoto)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnQuitarFoto)
+                            .addGap(69, 69, 69))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lbFotoPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap()))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar)
+                        .addGap(18, 18, 18))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -220,42 +266,42 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(LBLUNIVERSIDAD)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LBLCARRERA)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(LbLNombre6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LbLNombre4)
-                                .addGap(68, 68, 68)
-                                .addComponent(LbLNombre5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LBLUNIVERSIDAD)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LBLCARRERA)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(LbLNombre6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(28, 28, 28)
                                 .addComponent(LbLApellido1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(170, 170, 170)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                                .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LbLNombre5))
+                            .addComponent(lbFotoPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnQuitarFoto)
+                                    .addComponent(btnEditarFoto))))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -273,10 +319,11 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        File archivo = new File("src\\main\\UsuariosRegistrados\\" + usuarioActual + ".txt");
+        File archivo = new File("src\\main\\UsuariosRegistrados\\" + Sesion.usuarioActual + ".txt");
 
+        String nombreFotoFinal= procesarFoto();
         try {
-            // Leer todas las líneas
+            // Leer todas las líneas del txt
             BufferedReader reader = new BufferedReader(new FileReader(archivo));
             StringBuilder contenido = new StringBuilder();
             String linea;
@@ -292,6 +339,9 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                     linea = "Habilidades: " + txtHabilidades.getText().trim();
                 else if (linea.startsWith("Colegio: "))
                     linea = "Colegio: " + txtColegio.getText().trim();
+                else if (linea.startsWith("Foto: "))
+                    linea = "Foto: " + nombreFotoFinal;
+                
 
                 contenido.append(linea).append("\n");
             }
@@ -303,16 +353,95 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
             writer.close();
 
             JOptionPane.showMessageDialog(null, "Perfil actualizado.");
-            dispose(); // cierra el dialog
+            dispose(); // cierra la ventana de editar datos
 
         } catch (IOException e) { JOptionPane.showMessageDialog(null, "Error al guardar.");
         }
     
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private String procesarFoto() {
+    String carpeta = "src\\main\\resources\\Imgs_PFP\\";
+
+    // Caso 1: presionó el trash → vuelve a default
+    if (quitarFoto) {
+        // Borra la foto física anterior si existe
+        File fotoVieja = new File(carpeta + Sesion.usuarioActual + ".png");
+        if (fotoVieja.exists()) fotoVieja.delete();
+        File fotoViejaJpg = new File(carpeta + Sesion.usuarioActual + ".jpg");
+        if (fotoViejaJpg.exists()) fotoViejaJpg.delete();
+
+        return "default_user.png";
+    }
+
+    // Caso 2: no seleccionó foto nueva → mantiene la actual
+    if (rutaFotoSeleccionada.isEmpty()) {
+        return Sesion.fotodeperfil;
+    }
+
+    // Caso 3: seleccionó una foto nueva,se la copia y reemplaza
+    try {
+        new File(carpeta).mkdirs();
+        String extension = rutaFotoSeleccionada
+            .substring(rutaFotoSeleccionada.lastIndexOf("."));
+        String nombreArchivo = Sesion.usuarioActual + extension; // mismo nombre del usuario
+
+        Files.copy(
+            Paths.get(rutaFotoSeleccionada),
+            Paths.get(carpeta + nombreArchivo),
+            StandardCopyOption.REPLACE_EXISTING // sobreescribe si ya existe
+        );
+
+        return nombreArchivo;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "default_user.png";
+    }
+}
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEditarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarFotoActionPerformed
+        //Cambiar foto
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes (JPG, PNG)", "jpg", "jpeg", "png");
+        chooser.addChoosableFileFilter(filtro);
+        chooser.setFileFilter(filtro);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+    if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        rutaFotoSeleccionada = chooser.getSelectedFile().getAbsolutePath();
+        quitarFoto = false; // no quiere quitarla
+
+        ImageIcon icon = new ImageIcon(rutaFotoSeleccionada);
+        Image img = icon.getImage().getScaledInstance(132, 132, Image.SCALE_SMOOTH);
+        lbFotoPreview.setIcon(new ImageIcon(img));
+    }
+    
+    }//GEN-LAST:event_btnEditarFotoActionPerformed
+
+    private void btnQuitarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarFotoActionPerformed
+        //Quitar foto a predeteminado
+    rutaFotoSeleccionada = "";
+    quitarFoto = true; // quiere quitarla
+
+    File fotoDefault = new File("src\\main\\resources\\Imgs_PFP\\FdP_Default 132x132.png");
+
+    if (fotoDefault.exists()) {
+        lbFotoPreview.setIcon(null); // limpiar antes
+        ImageIcon icon = new ImageIcon(fotoDefault.getAbsolutePath());
+        Image img = icon.getImage().getScaledInstance(132, 132, Image.SCALE_SMOOTH);
+        lbFotoPreview.setIcon(new ImageIcon(img));
+        lbFotoPreview.revalidate();
+        lbFotoPreview.repaint();
+    } else {
+        JOptionPane.showMessageDialog(null, "No se encontró la imagen default en: "+ fotoDefault.getAbsolutePath());
+    }
+    
+    }//GEN-LAST:event_btnQuitarFotoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,7 +468,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-            DialogEditarPerfil dialog = new DialogEditarPerfil(new javax.swing.JFrame(), true, "usuarioPrueba");
+            DialogEditarPerfil dialog = new DialogEditarPerfil(new javax.swing.JFrame(), true, Sesion.usuarioActual);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -359,22 +488,21 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private javax.swing.JLabel LbLApellido;
     private javax.swing.JLabel LbLApellido1;
     private javax.swing.JLabel LbLNombre;
-    private javax.swing.JLabel LbLNombre4;
     private javax.swing.JLabel LbLNombre5;
     private javax.swing.JLabel LbLNombre6;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEditarFoto;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnQuitarFoto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbFotoPreview;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtColegio;
-    private javax.swing.JTextField txtGenero;
     private javax.swing.JTextField txtHabilidades;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtSobreMi;
+    private javax.swing.JTextArea txtSobreMi;
     private javax.swing.JTextField txtUniversidad;
     // End of variables declaration//GEN-END:variables
 

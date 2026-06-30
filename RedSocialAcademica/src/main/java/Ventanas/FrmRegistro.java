@@ -293,10 +293,7 @@ public class FrmRegistro extends javax.swing.JFrame {
             String extension =rutaFotoSeleccionada.substring(rutaFotoSeleccionada.lastIndexOf("."));
             String nombreArchivo = nombreUsuario + extension;
             
-            java.nio.file.Files.copy(
-            java.nio.file.Paths.get(rutaFotoSeleccionada),java.nio.file.Paths.get(carpeta + nombreArchivo),
-            java.nio.file.StandardCopyOption.REPLACE_EXISTING
-            );
+            java.nio.file.Files.copy(java.nio.file.Paths.get(rutaFotoSeleccionada),java.nio.file.Paths.get(carpeta + nombreArchivo),java.nio.file.StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e ){
             e.printStackTrace();
         }
