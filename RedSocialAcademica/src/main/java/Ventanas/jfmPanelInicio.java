@@ -189,6 +189,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         btnIrPerfil = new javax.swing.JButton();
         btnCierreSesion = new javax.swing.JButton();
         btnInicio = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PLFeed = new javax.swing.JPanel();
         PLPublicar = new javax.swing.JPanel();
@@ -266,6 +267,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
 
         btnIrPerfil.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnIrPerfil.setText("Perfil");
+        btnIrPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIrPerfil.addActionListener(this::btnIrPerfilActionPerformed);
 
         btnCierreSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/Salir.png"))); // NOI18N
@@ -275,7 +277,13 @@ public class jfmPanelInicio extends javax.swing.JFrame {
 
         btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnInicio.setText("Inicio");
+        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicio.addActionListener(this::btnInicioActionPerformed);
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jButton1.setText("Amigos");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         javax.swing.GroupLayout JPBarraHorizontalLayout = new javax.swing.GroupLayout(JPBarraHorizontal);
         JPBarraHorizontal.setLayout(JPBarraHorizontalLayout);
@@ -284,14 +292,16 @@ public class jfmPanelInicio extends javax.swing.JFrame {
             .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
                 .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnIrPerfil)
-                            .addComponent(btnInicio)))
-                    .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnIrPerfil)
+                                .addComponent(btnInicio)))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         JPBarraHorizontalLayout.setVerticalGroup(
             JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +310,9 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addComponent(btnInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnIrPerfil)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                 .addComponent(btnCierreSesion)
                 .addGap(18, 18, 18))
         );
@@ -357,21 +369,20 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(JPBarraVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPBarraVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addComponent(JPBarraVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -425,6 +436,11 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         guardarPublicacion();
     }//GEN-LAST:event_btnPublicarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new FrmBuscarAmigos().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -459,6 +475,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnIrPerfil;
     private javax.swing.JButton btnPublicar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

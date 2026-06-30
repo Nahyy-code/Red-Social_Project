@@ -6,7 +6,7 @@ Correo: test@gmail.com
 Contraseña: 1111
 Genero: Hombre
 Tipo de Usuario: Estudiante
-Foto: profileDefault.png
+Foto: test.png
 Sobre mi: 
 Universidad: 
 Facultad: 

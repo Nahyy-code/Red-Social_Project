@@ -46,8 +46,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 nombre = linea.replace("Nombre: ", "").trim();
             if (linea.startsWith("Apellido: "))
                 apellido = linea.replace("Apellido: ", "").trim();
-            if (linea.startsWith("Correo: "))
-                lbCorreo.setText(linea.replace("Correo: ", "").trim());
+            
             if (linea.startsWith("Tipo de Usuario: "))
                 lbTipo.setText(linea.replace("Tipo de Usuario: ", "").trim());
             if (linea.startsWith("Universidad: "))
@@ -63,7 +62,8 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 lbColegio.setText(linea.replace("Colegio: ", "").trim());
             if (linea.startsWith("Genero: "))
                 lbGenero.setText(linea.replace("Genero: ", "").trim());
-            
+            if (linea.startsWith("Edad: "))
+                lbFNacimiento.setText(linea.replace("Edad: ", "").trim());
         }
 
         lbNombre.setText(nombre + " " + apellido);
@@ -120,8 +120,8 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         pnlDatos = new javax.swing.JPanel();
         lbNDatos = new javax.swing.JLabel();
-        lbCorreo = new javax.swing.JLabel();
         lbGenero = new javax.swing.JLabel();
+        lbFNacimiento = new javax.swing.JLabel();
         pnlTrayectoria = new javax.swing.JPanel();
         lbNTrayerctoria = new javax.swing.JLabel();
         lbColegio = new javax.swing.JLabel();
@@ -132,7 +132,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         pnlHabilidades = new javax.swing.JPanel();
         lbNHabilidades = new javax.swing.JLabel();
         lbHabilidades = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        pnlVertical = new javax.swing.JPanel();
         btnVolver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -337,11 +337,11 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         lbNDatos.setForeground(new java.awt.Color(56, 189, 248));
         lbNDatos.setText("Datos");
 
-        lbCorreo.setForeground(new java.awt.Color(255, 255, 255));
-        lbCorreo.setText("Correo");
-
         lbGenero.setForeground(new java.awt.Color(255, 255, 255));
         lbGenero.setText("Genero");
+
+        lbFNacimiento.setForeground(new java.awt.Color(255, 255, 255));
+        lbFNacimiento.setText("Fecha de Nacimiento");
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
         pnlDatos.setLayout(pnlDatosLayout);
@@ -352,8 +352,8 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(lbFNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         pnlDatosLayout.setVerticalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,7 +361,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lbNDatos)
                 .addGap(15, 15, 15)
-                .addComponent(lbCorreo)
+                .addComponent(lbFNacimiento)
                 .addGap(18, 18, 18)
                 .addComponent(lbGenero)
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -465,33 +465,35 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(21, 34, 68));
+        pnlVertical.setBackground(new java.awt.Color(21, 34, 68));
 
         btnVolver.setText("Volver");
         btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVolver.addActionListener(this::btnVolverActionPerformed);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/LogoEducamix (1).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/logo_108x36.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+        javax.swing.GroupLayout pnlVerticalLayout = new javax.swing.GroupLayout(pnlVertical);
+        pnlVertical.setLayout(pnlVerticalLayout);
+        pnlVerticalLayout.setHorizontalGroup(
+            pnlVerticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlVerticalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVerticalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVolver)
+                .addGap(22, 22, 22))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pnlVerticalLayout.setVerticalGroup(
+            pnlVerticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlVerticalLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVolver)
-                .addGap(27, 27, 27))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout pnlContenidoLayout = new javax.swing.GroupLayout(pnlContenido);
@@ -499,7 +501,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         pnlContenidoLayout.setHorizontalGroup(
             pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContenidoLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(pnlCabezera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -527,7 +529,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                     .addComponent(pnlHabilidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlTrayectoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(55, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlVertical, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(pnlContenido);
@@ -614,12 +616,11 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbAvatar;
     private javax.swing.JLabel lbCarrera;
     private javax.swing.JLabel lbColegio;
-    private javax.swing.JLabel lbCorreo;
+    private javax.swing.JLabel lbFNacimiento;
     private javax.swing.JLabel lbGenero;
     private javax.swing.JLabel lbHabilidades;
     private javax.swing.JLabel lbNDatos;
@@ -638,6 +639,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPrincipal;
     private javax.swing.JPanel pnlSobremi;
     private javax.swing.JPanel pnlTrayectoria;
+    private javax.swing.JPanel pnlVertical;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtGenero;

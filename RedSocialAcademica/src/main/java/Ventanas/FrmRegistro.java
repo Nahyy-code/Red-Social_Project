@@ -84,6 +84,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         cbGenero.setForeground(new java.awt.Color(232, 244, 253));
         cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione su genero", "Hombre", "Mujer", "Otro" }));
         cbGenero.setBorder(null);
+        cbGenero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cbGenero.addActionListener(this::cbGeneroActionPerformed);
         jPanel2.add(cbGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 210, 30));
 
@@ -165,7 +166,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         jPanel2.add(btnIrIniciodeSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, -1, 16));
 
         lbFotodeRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_PFP/profileDefault.png"))); // NOI18N
-        jPanel2.add(lbFotodeRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 100, 110));
+        jPanel2.add(lbFotodeRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 100, 100));
 
         btnSubirFoto.setBackground(new java.awt.Color(26, 34, 53));
         btnSubirFoto.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -267,6 +268,7 @@ public class FrmRegistro extends javax.swing.JFrame {
             writer.write("Genero: "+Genero+ "\n");
             writer.write("Tipo de Usuario: "+TipodeUsuario+ "\n");
             writer.write ("Foto: " +foto+ "\n");
+            writer.write("Edad: \n");
             writer.write("Sobre mi: \n");
             writer.write("Universidad: \n");
             writer.write("Facultad: \n");

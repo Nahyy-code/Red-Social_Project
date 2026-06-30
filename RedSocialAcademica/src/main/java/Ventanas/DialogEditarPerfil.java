@@ -27,7 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class DialogEditarPerfil extends javax.swing.JDialog {
     private String rutaFotoSeleccionada = "";
     private boolean quitarFoto = false;
-    
+
     public DialogEditarPerfil(java.awt.Frame parent, boolean modal, String usuario) {
         super(parent, "Editar perfil", true);
         initComponents();
@@ -46,7 +46,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         public void removeUpdate(DocumentEvent e) {}
         public void changedUpdate(DocumentEvent e) {}
     });
-        
     }
 
     private void cargarCampos() {
@@ -67,6 +66,8 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                     txtHabilidades.setText(linea.replace("Habilidades: ", "").trim());
                 if (linea.startsWith("Colegio: "))
                     txtColegio.setText(linea.replace("Colegio: ", "").trim());
+                if (linea.startsWith("Edad: "))
+                    txtEdad.setText(linea.replace("Edad: ", "").trim());
             }
             reader.close();
         } catch (IOException e) { e.printStackTrace(); }
@@ -94,15 +95,12 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         lblErrorCorreo = new javax.swing.JLabel();
-        LbLNombre = new javax.swing.JLabel();
-        LbLApellido = new javax.swing.JLabel();
         LBLUNIVERSIDAD = new javax.swing.JLabel();
         LBLCARRERA = new javax.swing.JLabel();
         LbLNombre5 = new javax.swing.JLabel();
         LbLNombre6 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
-        txtNombre = new javax.swing.JTextField();
-        txtApellido = new javax.swing.JTextField();
+        txtEdad = new javax.swing.JTextField();
         txtHabilidades = new javax.swing.JTextField();
         txtUniversidad = new javax.swing.JTextField();
         txtCarrera = new javax.swing.JTextField();
@@ -114,48 +112,33 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnQuitarFoto = new javax.swing.JButton();
         lbFotoPreview = new javax.swing.JLabel();
         txtSobreMi = new javax.swing.JTextArea();
+        LbLNombre7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(10, 15, 30));
         jPanel1.setForeground(new java.awt.Color(56, 189, 248));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblErrorCorreo.setForeground(new java.awt.Color(239, 68, 68));
         lblErrorCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png"))); // NOI18N
-        lblErrorCorreo.setText("Algunos datos pueden estar vacios y necesitan ser completados");
-        jPanel1.add(lblErrorCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 370, -1));
-
-        LbLNombre.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        LbLNombre.setForeground(new java.awt.Color(56, 189, 248));
-        LbLNombre.setText("Nombre");
-        jPanel1.add(LbLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 119, -1, -1));
-
-        LbLApellido.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        LbLApellido.setForeground(new java.awt.Color(56, 189, 248));
-        LbLApellido.setText("Apellido");
-        jPanel1.add(LbLApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 119, -1, -1));
+        lblErrorCorreo.setText("Algunos datos no son modificables en el perfil");
 
         LBLUNIVERSIDAD.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LBLUNIVERSIDAD.setForeground(new java.awt.Color(56, 189, 248));
         LBLUNIVERSIDAD.setText("Universidad");
-        jPanel1.add(LBLUNIVERSIDAD, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 195, -1, -1));
 
         LBLCARRERA.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LBLCARRERA.setForeground(new java.awt.Color(56, 189, 248));
         LBLCARRERA.setText("Carrera");
-        jPanel1.add(LBLCARRERA, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 265, -1, -1));
 
         LbLNombre5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLNombre5.setForeground(new java.awt.Color(56, 189, 248));
-        LbLNombre5.setText("Sobre mi");
-        jPanel1.add(LbLNombre5, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 281, -1, -1));
+        LbLNombre5.setText("Edad");
 
         LbLNombre6.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLNombre6.setForeground(new java.awt.Color(56, 189, 248));
         LbLNombre6.setText("Habilidades");
-        jPanel1.add(LbLNombre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 353, -1, -1));
 
         btnGuardar.setBackground(new java.awt.Color(37, 99, 235));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -163,27 +146,18 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnGuardar.setText("Guardar");
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardar.addActionListener(this::btnGuardarActionPerformed);
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 450, -1, 57));
 
-        txtNombre.setBackground(new java.awt.Color(26, 34, 53));
-        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 143, 150, 40));
-
-        txtApellido.setBackground(new java.awt.Color(26, 34, 53));
-        txtApellido.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 143, 150, 40));
+        txtEdad.setBackground(new java.awt.Color(26, 34, 53));
+        txtEdad.setForeground(new java.awt.Color(255, 255, 255));
 
         txtHabilidades.setBackground(new java.awt.Color(26, 34, 53));
         txtHabilidades.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(txtHabilidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 377, 150, 40));
 
         txtUniversidad.setBackground(new java.awt.Color(26, 34, 53));
         txtUniversidad.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(txtUniversidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 219, 150, 40));
 
         txtCarrera.setBackground(new java.awt.Color(26, 34, 53));
         txtCarrera.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(txtCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 295, 150, 40));
 
         btnCancelar.setBackground(new java.awt.Color(37, 99, 235));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -191,19 +165,15 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnCancelar.setText("Cancelar");
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 450, -1, 57));
 
         LbLApellido1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLApellido1.setForeground(new java.awt.Color(56, 189, 248));
         LbLApellido1.setText("Colegio");
-        jPanel1.add(LbLApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 195, -1, -1));
 
         txtColegio.setBackground(new java.awt.Color(26, 34, 53));
         txtColegio.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(txtColegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 219, 150, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/LogoApp.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 190, 49));
 
         btnEditarFoto.setBackground(new java.awt.Color(37, 99, 235));
         btnEditarFoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -212,17 +182,14 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnEditarFoto.setText("Editar Foto");
         btnEditarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarFoto.addActionListener(this::btnEditarFotoActionPerformed);
-        jPanel1.add(btnEditarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 311, -1, -1));
 
         btnQuitarFoto.setBackground(new java.awt.Color(10, 15, 30));
         btnQuitarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-trash-24.png"))); // NOI18N
         btnQuitarFoto.setContentAreaFilled(false);
         btnQuitarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQuitarFoto.addActionListener(this::btnQuitarFotoActionPerformed);
-        jPanel1.add(btnQuitarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 311, -1, -1));
 
         lbFotoPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 132x132.png"))); // NOI18N
-        jPanel1.add(lbFotoPreview, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 167, -1, -1));
 
         txtSobreMi.setBackground(new java.awt.Color(26, 34, 53));
         txtSobreMi.setColumns(20);
@@ -230,7 +197,106 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         txtSobreMi.setLineWrap(true);
         txtSobreMi.setRows(5);
         txtSobreMi.setTabSize(5);
-        jPanel1.add(txtSobreMi, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 311, -1, -1));
+
+        LbLNombre7.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        LbLNombre7.setForeground(new java.awt.Color(56, 189, 248));
+        LbLNombre7.setText("Sobre mi");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblErrorCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGuardar)
+                        .addGap(11, 11, 11)
+                        .addComponent(btnCancelar)
+                        .addGap(22, 22, 22))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LBLUNIVERSIDAD)
+                            .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LBLCARRERA)
+                            .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LbLNombre6)
+                            .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LbLNombre5)
+                                    .addComponent(LbLNombre7)
+                                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(129, 129, 129)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbFotoPreview)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnEditarFoto)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(btnQuitarFoto))))
+                            .addComponent(LbLApellido1)
+                            .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(69, 69, 69)
+                                    .addComponent(lbFotoPreview)
+                                    .addGap(12, 12, 12)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnEditarFoto)
+                                        .addComponent(btnQuitarFoto)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(LbLApellido1)
+                                    .addGap(2, 2, 2)
+                                    .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(LbLNombre5)
+                                    .addGap(92, 92, 92)
+                                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(76, 76, 76)
+                            .addComponent(lblErrorCorreo)
+                            .addGap(31, 31, 31))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(318, 318, 318)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(22, 22, 22)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LBLUNIVERSIDAD)
+                        .addGap(2, 2, 2)
+                        .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(LBLCARRERA)
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LbLNombre6)
+                            .addComponent(LbLNombre7))
+                        .addGap(2, 2, 2)
+                        .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,10 +335,11 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                     linea = "Colegio: " + txtColegio.getText().trim();
                 else if (linea.startsWith("Foto: "))
                     linea = "Foto: " + nombreFotoFinal;
-                
+                else if (linea.startsWith("Edad: "))
+                    linea = "Edad: " +txtEdad.getText().trim();
 
                 contenido.append(linea).append("\n");
-            }
+            }   
             reader.close();
 
             // Reescribir el archivo con los cambios
@@ -291,7 +358,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private String procesarFoto() {
     String carpeta = "src\\main\\resources\\Imgs_PFP\\";
 
-    // Caso 1: presionó el trash → vuelve a default
+    // Caso 1: presionó el trash y vuelve a default
     if (quitarFoto) {
         // Borra la foto física anterior si existe
         File fotoVieja = new File(carpeta + Sesion.usuarioActual + ".png");
@@ -302,7 +369,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         return "default_user.png";
     }
 
-    // Caso 2: no seleccionó foto nueva → mantiene la actual
+    // Caso 2: no seleccionó foto nueva, mantiene la actual
     if (rutaFotoSeleccionada.isEmpty()) {
         return Sesion.fotodeperfil;
     }
@@ -413,11 +480,10 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LBLCARRERA;
     private javax.swing.JLabel LBLUNIVERSIDAD;
-    private javax.swing.JLabel LbLApellido;
     private javax.swing.JLabel LbLApellido1;
-    private javax.swing.JLabel LbLNombre;
     private javax.swing.JLabel LbLNombre5;
     private javax.swing.JLabel LbLNombre6;
+    private javax.swing.JLabel LbLNombre7;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditarFoto;
     private javax.swing.JButton btnGuardar;
@@ -426,11 +492,10 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbFotoPreview;
     private javax.swing.JLabel lblErrorCorreo;
-    private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtColegio;
+    private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtHabilidades;
-    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtSobreMi;
     private javax.swing.JTextField txtUniversidad;
     // End of variables declaration//GEN-END:variables
