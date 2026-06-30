@@ -3,7 +3,7 @@ Usuario: @DSphinx
 Nombre: Joseph
 Apellido: Martinez
 Correo: dsphinx01010@gmail.com
-Contraseña: dsphinx1234
+Contraseña: 0000
 Genero: Hombre
 Tipo de Usuario: Estudiante
 Foto: dsphinx.png

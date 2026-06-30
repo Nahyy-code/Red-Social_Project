@@ -1,0 +1,15 @@
+DATOS DEL USUARIO 
+Usuario: @test
+Nombre: test
+Apellido: er
+Correo: test@gmail.com
+Contraseña: 1111
+Genero: Hombre
+Tipo de Usuario: Estudiante
+Foto: profileDefault.png
+Sobre mi: 
+Universidad: 
+Facultad: 
+Carrera: 
+Habilidades: 
+Colegio: 

@@ -6,10 +6,10 @@ Correo: Usuariotester@gmail.com
 Contraseña: 1234
 Genero: Otro
 Tipo de Usuario: Estudiante
-Foto: default_user.png
-Sobre mi: 
-Universidad: 
+Foto: usuarioprueba.jpg
+Sobre mi: hola
+Universidad: UG
 Facultad: 
-Carrera: 
-Habilidades: 
-Colegio: 
+Carrera: Software
+Habilidades: listo
+Colegio: UEC

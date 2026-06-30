@@ -12,6 +12,7 @@ import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.BorderFactory;
@@ -19,7 +20,10 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -35,29 +39,43 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     public jfmPanelInicio() {
         initComponents();
         setLocationRelativeTo(null);
-        cargarFeed();
-        PLFeed.setLayout(new BoxLayout(PLFeed, BoxLayout.Y_AXIS));
-        lbNomUsuario.setText(Sesion.nombreCompleto);
-        lbTipo.setText(Sesion.tipoUsuario);
         
-        File foto = new File("src\\main\\resources\\Imgs_PFP\\" + Sesion.fotodeperfil);
-
-    if (foto.exists()) {
-        ImageIcon icon = new ImageIcon(foto.getAbsolutePath());
-        Image imgEscalada = icon.getImage().getScaledInstance(
-        lbFotodePerfil.getWidth(), lbFotodePerfil.getHeight(), Image.SCALE_SMOOTH);
-        lbFotodePerfil.setIcon(new ImageIcon(imgEscalada));
-    }
+        PLFeed.setLayout(new BoxLayout(PLFeed, BoxLayout.Y_AXIS)); //Dimensiones de Feed
+        PLPublicar.setMaximumSize(new Dimension(625, 136));
+        PLPublicar.setAlignmentX(Component.LEFT_ALIGNMENT);
+                
+        File foto = new File("src\\main\\resources\\Imgs_PFP\\" + Sesion.fotodeperfil); //fdp en el inicio
+        lbNomUsuario.setText(Sesion.nombreCompleto); //Usuario en inicio
+        lbTipo.setText(Sesion.tipoUsuario); //FDP
+        if (foto.exists()) {
+            ImageIcon icon = new ImageIcon(foto.getAbsolutePath());
+            Image imgEscalada = icon.getImage().getScaledInstance(
+            lbFotodePerfil.getWidth(), lbFotodePerfil.getHeight(), Image.SCALE_SMOOTH);
+            lbFotodePerfil.setIcon(new ImageIcon(imgEscalada));
+        }
+        
+        cargarFeed();
+        SwingUtilities.invokeLater(() -> {
+        jScrollPane1.getVerticalScrollBar().setValue(0);
+        });
 
     }
 
     
     private void cargarFeed() {
     PLFeed.removeAll(); // limpia antes de recargar
-
+    PLFeed.add(PLPublicar);
+    
+    Component[] componentes = PLFeed.getComponents();
+    for (Component c : componentes) {
+        if (c != PLPublicar) {
+            PLFeed.remove(c);
+        }
+    }
+    
     File carpeta = new File("src\\main\\Publicaciones");
     if (!carpeta.exists()) carpeta.mkdirs();
-
+    
     File[] archivos = carpeta.listFiles((dir, name) -> name.endsWith(".txt"));
 
     if (archivos != null) {
@@ -73,14 +91,42 @@ public class jfmPanelInicio extends javax.swing.JFrame {
 
     PLFeed.revalidate();
     PLFeed.repaint();
+    }
+    
+    private void guardarPublicacion() {
+    String contenido = txtPublicar.getText().trim();
+
+    if (contenido.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Escribe algo antes de publicar.");
+        return;
+    }
+
+    File carpeta = new File("src\\main\\Publicaciones");
+    if (!carpeta.exists()) carpeta.mkdirs();
+
+    String nombreArchivo = Sesion.usuarioActual + "_" + System.currentTimeMillis() + ".txt";
+    File archivo = new File(carpeta, nombreArchivo);
+
+    try {
+        FileWriter writer = new FileWriter(archivo);
+        writer.write(Sesion.nombreCompleto + "\n"); // línea 1: nombre
+        writer.write(contenido + "\n");             // línea 2: contenido
+        writer.close();
+
+        txtPublicar.setText(""); // limpia el campo
+        cargarFeed();            // recarga el feed para mostrar la nueva publicación
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error al publicar.");
+    }
 }
 
-private JPanel crearTarjetaPost(File archivo) {
+    private JPanel crearTarjetaPost(File archivo) {
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     panel.setBackground(new Color(26, 34, 53));
     panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(56, 189, 248, 40)),BorderFactory.createEmptyBorder(10, 12, 10, 12)));
-    panel.setMaximumSize(new Dimension(700, 150));
     panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
     try {
@@ -89,21 +135,38 @@ private JPanel crearTarjetaPost(File archivo) {
         String contenido = reader.readLine();
         reader.close();
 
-        JLabel lblUsuario = new JLabel(usuario);
-        lblUsuario.setForeground(new Color(232, 244, 253));
-        lblUsuario.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        JLabel LBUsuario = new JLabel(usuario);
+        LBUsuario.setForeground(new Color(232, 244, 253));
+        LBUsuario.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-        JLabel lblContenido = new JLabel("<html><div style='width:600px;'>" + contenido + "</div></html>");
-        lblContenido.setForeground(new Color(107, 138, 170));
-        lblContenido.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        JTextArea txtContenido = new JTextArea(contenido);
+        txtContenido.setEditable(false);
+        txtContenido.setLineWrap(true);
+        txtContenido.setWrapStyleWord(true);
+        txtContenido.setBackground(new Color(0, 0, 0, 0));
+        txtContenido.setOpaque(false); // fondo transparente, hereda el del panel
+        txtContenido.setForeground(new Color(107, 138, 170));
+        txtContenido.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtContenido.setAlignmentX(Component.LEFT_ALIGNMENT);
+        txtContenido.setMaximumSize(new Dimension(580, Integer.MAX_VALUE));
+        txtContenido.setBorder(null);
+        txtContenido.setFocusable(false);// ← evita que se vea "seleccionable"
+        txtContenido.setHighlighter(null);
+        txtContenido.setSize(580, Short.MAX_VALUE);
+        
+        int altoNecesario = txtContenido.getPreferredSize().height;
+        txtContenido.setMaximumSize(new Dimension(580, altoNecesario));
+        txtContenido.setPreferredSize(new Dimension(580, altoNecesario));
 
-        panel.add(lblUsuario);
+        panel.add(LBUsuario);
         panel.add(Box.createVerticalStrut(4));
-        panel.add(lblContenido);
+        panel.add(txtContenido);
 
     } catch (IOException e) {
         e.printStackTrace();
     }
+    
+    panel.setMaximumSize(new Dimension(625, panel.getPreferredSize().height));
 
     return panel;
 }
@@ -129,8 +192,9 @@ private JPanel crearTarjetaPost(File archivo) {
         jScrollPane1 = new javax.swing.JScrollPane();
         PLFeed = new javax.swing.JPanel();
         PLPublicar = new javax.swing.JPanel();
-        txtPublicar = new javax.swing.JTextField();
         btnPublicar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtPublicar = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -142,7 +206,7 @@ private JPanel crearTarjetaPost(File archivo) {
         lbNomUsuario.setBackground(new java.awt.Color(232, 244, 253));
         lbNomUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lbNomUsuario.setForeground(new java.awt.Color(232, 244, 253));
-        lbNomUsuario.setText("Usuario");
+        lbNomUsuario.setText("Nombre Usuario");
         lbNomUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbNomUsuarioMouseClicked(evt);
@@ -173,9 +237,9 @@ private JPanel crearTarjetaPost(File archivo) {
         JPBarraVerticalLayout.setHorizontalGroup(
             JPBarraVerticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPBarraVerticalLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(lbFotodePerfil)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
+                .addComponent(lbFotodePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(JPBarraVerticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNomUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -219,10 +283,10 @@ private JPanel crearTarjetaPost(File archivo) {
             JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
                 .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnIrPerfil)
-                        .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
-                            .addGap(24, 24, 24)
+                    .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnIrPerfil)
                             .addComponent(btnInicio)))
                     .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
@@ -242,36 +306,46 @@ private JPanel crearTarjetaPost(File archivo) {
         );
 
         jScrollPane1.setBackground(new java.awt.Color(10, 15, 30));
+        jScrollPane1.setHorizontalScrollBar(null);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(650, 400));
 
         PLFeed.setBackground(new java.awt.Color(10, 15, 30));
         PLFeed.setLayout(new javax.swing.BoxLayout(PLFeed, javax.swing.BoxLayout.LINE_AXIS));
 
         PLPublicar.setBackground(new java.awt.Color(26, 34, 56));
 
-        txtPublicar.setBackground(new java.awt.Color(31, 44, 78));
-
         btnPublicar.setText("Publicar");
         btnPublicar.addActionListener(this::btnPublicarActionPerformed);
+
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        txtPublicar.setBackground(new java.awt.Color(31, 48, 78));
+        txtPublicar.setColumns(20);
+        txtPublicar.setForeground(new java.awt.Color(255, 255, 255));
+        txtPublicar.setLineWrap(true);
+        txtPublicar.setRows(5);
+        txtPublicar.setTabSize(5);
+        jScrollPane2.setViewportView(txtPublicar);
 
         javax.swing.GroupLayout PLPublicarLayout = new javax.swing.GroupLayout(PLPublicar);
         PLPublicar.setLayout(PLPublicarLayout);
         PLPublicarLayout.setHorizontalGroup(
             PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PLPublicarLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PLPublicarLayout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnPublicar)
-                    .addComponent(txtPublicar, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPublicar))
+                .addGap(23, 23, 23))
         );
         PLPublicarLayout.setVerticalGroup(
             PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PLPublicarLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(txtPublicar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnPublicar)
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         PLFeed.add(PLPublicar);
@@ -294,8 +368,10 @@ private JPanel crearTarjetaPost(File archivo) {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -330,7 +406,7 @@ private JPanel crearTarjetaPost(File archivo) {
     }//GEN-LAST:event_lbFotodePerfilMousePressed
 
     private void btnIrPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrPerfilActionPerformed
-    FrmPerfilDeUsuario Perfil = new FrmPerfilDeUsuario("DSphinx");
+    FrmPerfilDeUsuario Perfil = new FrmPerfilDeUsuario(Sesion.usuarioActual);
     Perfil.setVisible(true);
     dispose();        
        
@@ -346,7 +422,7 @@ private JPanel crearTarjetaPost(File archivo) {
 
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
         // Publica y carga feed
-        cargarFeed();
+        guardarPublicacion();
     }//GEN-LAST:event_btnPublicarActionPerformed
 
     /**
@@ -385,10 +461,11 @@ private JPanel crearTarjetaPost(File archivo) {
     private javax.swing.JButton btnPublicar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbFotodePerfil;
     private javax.swing.JLabel lbLogo;
     private javax.swing.JLabel lbNomUsuario;
     private javax.swing.JLabel lbTipo;
-    private javax.swing.JTextField txtPublicar;
+    private javax.swing.JTextArea txtPublicar;
     // End of variables declaration//GEN-END:variables
 }

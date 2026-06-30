@@ -93,6 +93,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        lblErrorCorreo = new javax.swing.JLabel();
         LbLNombre = new javax.swing.JLabel();
         LbLApellido = new javax.swing.JLabel();
         LBLUNIVERSIDAD = new javax.swing.JLabel();
@@ -115,33 +116,46 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         txtSobreMi = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(10, 15, 30));
         jPanel1.setForeground(new java.awt.Color(56, 189, 248));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblErrorCorreo.setForeground(new java.awt.Color(239, 68, 68));
+        lblErrorCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png"))); // NOI18N
+        lblErrorCorreo.setText("Algunos datos pueden estar vacios y necesitan ser completados");
+        jPanel1.add(lblErrorCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 370, -1));
 
         LbLNombre.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLNombre.setForeground(new java.awt.Color(56, 189, 248));
         LbLNombre.setText("Nombre");
+        jPanel1.add(LbLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 119, -1, -1));
 
         LbLApellido.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLApellido.setForeground(new java.awt.Color(56, 189, 248));
         LbLApellido.setText("Apellido");
+        jPanel1.add(LbLApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 119, -1, -1));
 
         LBLUNIVERSIDAD.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LBLUNIVERSIDAD.setForeground(new java.awt.Color(56, 189, 248));
         LBLUNIVERSIDAD.setText("Universidad");
+        jPanel1.add(LBLUNIVERSIDAD, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 195, -1, -1));
 
         LBLCARRERA.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LBLCARRERA.setForeground(new java.awt.Color(56, 189, 248));
         LBLCARRERA.setText("Carrera");
+        jPanel1.add(LBLCARRERA, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 265, -1, -1));
 
         LbLNombre5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLNombre5.setForeground(new java.awt.Color(56, 189, 248));
         LbLNombre5.setText("Sobre mi");
+        jPanel1.add(LbLNombre5, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 281, -1, -1));
 
         LbLNombre6.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLNombre6.setForeground(new java.awt.Color(56, 189, 248));
         LbLNombre6.setText("Habilidades");
+        jPanel1.add(LbLNombre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 353, -1, -1));
 
         btnGuardar.setBackground(new java.awt.Color(37, 99, 235));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -149,21 +163,27 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnGuardar.setText("Guardar");
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardar.addActionListener(this::btnGuardarActionPerformed);
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 450, -1, 57));
 
         txtNombre.setBackground(new java.awt.Color(26, 34, 53));
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 143, 150, 40));
 
         txtApellido.setBackground(new java.awt.Color(26, 34, 53));
         txtApellido.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 143, 150, 40));
 
         txtHabilidades.setBackground(new java.awt.Color(26, 34, 53));
         txtHabilidades.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(txtHabilidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 377, 150, 40));
 
         txtUniversidad.setBackground(new java.awt.Color(26, 34, 53));
         txtUniversidad.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(txtUniversidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 219, 150, 40));
 
         txtCarrera.setBackground(new java.awt.Color(26, 34, 53));
         txtCarrera.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(txtCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 295, 150, 40));
 
         btnCancelar.setBackground(new java.awt.Color(37, 99, 235));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -171,15 +191,19 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnCancelar.setText("Cancelar");
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 450, -1, 57));
 
         LbLApellido1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LbLApellido1.setForeground(new java.awt.Color(56, 189, 248));
         LbLApellido1.setText("Colegio");
+        jPanel1.add(LbLApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 195, -1, -1));
 
         txtColegio.setBackground(new java.awt.Color(26, 34, 53));
         txtColegio.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(txtColegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 219, 150, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/LogoApp.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 190, 49));
 
         btnEditarFoto.setBackground(new java.awt.Color(37, 99, 235));
         btnEditarFoto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -188,14 +212,17 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnEditarFoto.setText("Editar Foto");
         btnEditarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarFoto.addActionListener(this::btnEditarFotoActionPerformed);
+        jPanel1.add(btnEditarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 311, -1, -1));
 
         btnQuitarFoto.setBackground(new java.awt.Color(10, 15, 30));
         btnQuitarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-trash-24.png"))); // NOI18N
         btnQuitarFoto.setContentAreaFilled(false);
         btnQuitarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQuitarFoto.addActionListener(this::btnQuitarFotoActionPerformed);
+        jPanel1.add(btnQuitarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(701, 311, -1, -1));
 
         lbFotoPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 132x132.png"))); // NOI18N
+        jPanel1.add(lbFotoPreview, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 167, -1, -1));
 
         txtSobreMi.setBackground(new java.awt.Color(26, 34, 53));
         txtSobreMi.setColumns(20);
@@ -203,106 +230,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         txtSobreMi.setLineWrap(true);
         txtSobreMi.setRows(5);
         txtSobreMi.setTabSize(5);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LbLNombre6)
-                    .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LBLCARRERA)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LbLNombre)
-                    .addComponent(LBLUNIVERSIDAD)
-                    .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LbLNombre5)
-                    .addComponent(LbLApellido)
-                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LbLApellido1)
-                    .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnEditarFoto)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnQuitarFoto)
-                            .addGap(69, 69, 69))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(lbFotoPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap()))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancelar)
-                        .addGap(18, 18, 18))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LbLApellido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LbLNombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(LBLUNIVERSIDAD)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LBLCARRERA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LbLNombre6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(LbLApellido1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(LbLNombre5))
-                            .addComponent(lbFotoPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnQuitarFoto)
-                                    .addComponent(btnEditarFoto))))))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
+        jPanel1.add(txtSobreMi, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 311, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -497,6 +425,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbFotoPreview;
+    private javax.swing.JLabel lblErrorCorreo;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtColegio;

@@ -2,8 +2,8 @@
 package Ventanas;
 
 public class Sesion {
-    public static String usuarioActual = "";
-    public static String nombreCompleto = "";
-    public static String tipoUsuario = "";
+    public static String usuarioActual = "test";
+    public static String nombreCompleto = "tester";
+    public static String tipoUsuario = "tester";
     public static String fotodeperfil="";
 }
