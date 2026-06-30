@@ -3,6 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Ventanas;
+import javax.swing.ImageIcon;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import java.awt.Color;
 
 /**
  *
@@ -11,12 +20,23 @@ package Ventanas;
 public class FrmRecuperar extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmRecuperar.class.getName());
+    private static final String CARPETA_USUARIOS = "src\\main\\UsuariosRegistrados\\";
+    private File archivoUsuarioEncontrado = null;
 
     /**
      * Creates new form FrmRecuperar
      */
     public FrmRecuperar() {
         initComponents();
+        setLocationRelativeTo(null);
+        
+        /* Los campos de contraseña empiezan deshabilitados, hasta validar el correo */
+        
+        txtNueva.setEnabled(false);
+        txtConfirmar.setEnabled(false);
+        btnRestablecer.setEnabled(false);
+        lblErrorCorreo.setText(" ");
+        lblErrorContraseña.setText(" ");
     }
 
     /**
@@ -28,22 +48,399 @@ public class FrmRecuperar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        lblErrorCorreo = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblCorreo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        txtCorreo = new javax.swing.JTextField();
+        btnMostrarNueva = new javax.swing.JToggleButton();
+        lblErrorContraseña = new javax.swing.JLabel();
+        lblNueva = new javax.swing.JLabel();
+        txtNueva = new javax.swing.JPasswordField();
+        btnMostrarConfirmar = new javax.swing.JToggleButton();
+        btnRestablecer = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        txtConfirmar = new javax.swing.JPasswordField();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnContinuar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(10, 15, 30));
+
+        jPanel3.setBackground(new java.awt.Color(10, 15, 30));
+
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(56, 189, 248));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Recuperar Contraseña");
+
+        lblErrorCorreo.setForeground(new java.awt.Color(239, 68, 68));
+        lblErrorCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png"))); // NOI18N
+        lblErrorCorreo.setText("Este correo no está registrado.");
+
+        jLabel2.setForeground(new java.awt.Color(107, 138, 170));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("<html><center>Ingresa tu correo y tu nueva contraseña<br>para recuperar el acceso a tu cuenta.</center></html>");
+
+        lblCorreo.setForeground(new java.awt.Color(56, 189, 248));
+        lblCorreo.setText("CORREO ELECTRÓNICO");
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-lock-48.png"))); // NOI18N
+
+        txtCorreo.setBackground(new java.awt.Color(26, 34, 53));
+
+        btnMostrarNueva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-eye-24.png"))); // NOI18N
+        btnMostrarNueva.setBorder(null);
+        btnMostrarNueva.setContentAreaFilled(false);
+        btnMostrarNueva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMostrarNueva.addActionListener(this::btnMostrarNuevaActionPerformed);
+
+        lblErrorContraseña.setForeground(new java.awt.Color(239, 68, 68));
+        lblErrorContraseña.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png"))); // NOI18N
+
+        lblNueva.setForeground(new java.awt.Color(56, 189, 248));
+        lblNueva.setText("NUEVA CONTRASEÑA");
+
+        txtNueva.setBackground(new java.awt.Color(26, 34, 53));
+
+        btnMostrarConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-eye-24.png"))); // NOI18N
+        btnMostrarConfirmar.setBorder(null);
+        btnMostrarConfirmar.setContentAreaFilled(false);
+        btnMostrarConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMostrarConfirmar.addActionListener(this::btnMostrarConfirmarActionPerformed);
+
+        btnRestablecer.setBackground(new java.awt.Color(37, 99, 235));
+        btnRestablecer.setText("Restablecer contraseña");
+        btnRestablecer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRestablecer.addActionListener(this::btnRestablecerActionPerformed);
+
+        btnVolver.setForeground(new java.awt.Color(0, 102, 255));
+        btnVolver.setText("Volver a Iniciar Sesión");
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVolver.addActionListener(this::btnVolverActionPerformed);
+
+        txtConfirmar.setBackground(new java.awt.Color(26, 34, 53));
+
+        btnContinuar.setBackground(new java.awt.Color(37, 99, 235));
+        btnContinuar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnContinuar.setText("Continuar");
+        btnContinuar.setBorderPainted(false);
+        btnContinuar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnContinuar.addActionListener(this::btnContinuarActionPerformed);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(127, 198, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCorreo)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblErrorCorreo)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(lblTitulo)))))
+                        .addGap(273, 273, 273))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(txtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnMostrarConfirmar))
+                                        .addComponent(lblErrorContraseña)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(txtNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnMostrarNueva))
+                                        .addComponent(lblNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(btnVolver))
+                                            .addComponent(btnRestablecer))
+                                        .addGap(80, 80, 80)))
+                                .addGap(42, 42, 42)))
+                        .addGap(188, 188, 188))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnContinuar)
+                        .addGap(343, 343, 343))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(365, 365, 365))))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 400, Short.MAX_VALUE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 400, Short.MAX_VALUE)))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCorreo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblErrorCorreo)
+                .addGap(18, 18, 18)
+                .addComponent(btnContinuar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblNueva)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMostrarNueva))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnMostrarConfirmar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblErrorContraseña)
+                .addGap(19, 19, 19)
+                .addComponent(btnRestablecer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVolver)
+                .addGap(38, 38, 38))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 142, Short.MAX_VALUE)))
+        );
+
+        jPanel1.setBackground(new java.awt.Color(10, 15, 30));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnMostrarNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarNuevaActionPerformed
+        // TODO add your handling code here:
+        ImageIcon mostrar = new ImageIcon(getClass().getResource("/Imgs_S/icons8-eye-24.png"));
+        ImageIcon ocultar = new ImageIcon(getClass().getResource("/Imgs_S/icons8-hide-24.png"));
+        if(btnMostrarNueva.isSelected()) {
+            txtNueva.setEchoChar((char)0);
+            btnMostrarNueva.setIcon(ocultar);
+        } else {
+            txtNueva.setEchoChar('•');
+            btnMostrarNueva.setIcon(mostrar);
+        }
+    }//GEN-LAST:event_btnMostrarNuevaActionPerformed
+
+    private void btnMostrarConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarConfirmarActionPerformed
+        // TODO add your handling code here:
+        ImageIcon mostrar = new ImageIcon(getClass().getResource("/Imgs_S/icons8-eye-24.png"));
+        ImageIcon ocultar = new ImageIcon(getClass().getResource("/Imgs_S/icons8-hide-24.png"));
+        if(btnMostrarConfirmar.isSelected()) {
+            txtConfirmar.setEchoChar((char)0);
+            btnMostrarConfirmar.setIcon(ocultar);
+        } else {
+            txtConfirmar.setEchoChar('•');
+            btnMostrarConfirmar.setIcon(mostrar);
+        }
+    }//GEN-LAST:event_btnMostrarConfirmarActionPerformed
+
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        // TODO add your handling code here:
+        String correo = txtCorreo.getText().trim();
+        lblErrorCorreo.setForeground(new Color(239,68,68));
+        archivoUsuarioEncontrado = null;
+        
+        if(correo.isEmpty()){
+            lblErrorCorreo.setText("Debes ingresar un correo.");
+            return;
+        }
+        
+        File carpetaUsuarios = new File(CARPETA_USUARIOS);
+        
+        if(!carpetaUsuarios.exists()) {
+            lblErrorCorreo.setText("No hay usuarios registrados todavía.");
+            return;
+        }
+        
+        /* 1. Traemos TODOS los archivos de la carpeta */
+        File[] archivos = carpetaUsuarios.listFiles();
+        
+        /* 2. Recorremos cada archivo uno x uno con un for*/
+        if(archivos != null){
+            for (File archivo : archivos) {
+                
+                /* Saltará lo que no sea .txt */
+                if(!archivo.getName().endsWith(".txt")){
+                    continue;
+                }
+                
+                /* 3. Abrir el archivo para leerlo x línea */
+                try{
+                    
+                    try (BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
+                        String linea = lector.readLine();
+                        
+                        while(linea != null){
+                            /* 4. Si la línea empieza con "Correo: ", la compara */
+                            
+                            if(linea.startsWith("Correo: ")){
+                                
+                                /* Quitamos "Correo: " para quedarnos con el correo registrado */
+                                String correoArchivo = linea.replace("Correo: ", "").trim();
+                                
+                                if(correoArchivo.equalsIgnoreCase(correo)){
+                                    archivoUsuarioEncontrado = archivo;
+                                }
+                            }
+                            
+                            linea = lector.readLine();
+                        }
+                    }
+                    
+                } catch (IOException e){
+                    System.out.println("No se puede leer el archivo: " + archivo.getName());
+                }
+            }
+        }
+        
+        if(archivoUsuarioEncontrado == null){
+            
+            lblErrorCorreo.setText("Este correo no está registrado.");
+            txtNueva.setEnabled(false);
+            txtConfirmar.setEnabled(false);
+            btnRestablecer.setEnabled(false);
+            
+        } else {
+            
+            lblErrorCorreo.setForeground(new Color(80,200,120));
+            lblErrorCorreo.setText("Correo verificado. Ingrese su nueva contraseña.");
+            txtNueva.setEnabled(true);
+            txtConfirmar.setEnabled(true);
+            btnRestablecer.setEnabled(true);
+            
+        }
+    }//GEN-LAST:event_btnContinuarActionPerformed
+
+    private void btnRestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestablecerActionPerformed
+        // TODO add your handling code here:
+        lblErrorContraseña.setForeground(new Color(239,68,68));
+        
+        if(archivoUsuarioEncontrado == null) {
+            lblErrorContraseña.setText("Primero valida tu correo.");
+            return;
+        }
+        String nueva = String.valueOf(txtNueva.getPassword());
+        String confirmar = String.valueOf(txtConfirmar.getPassword());
+        
+        if(nueva.isEmpty() || confirmar.isEmpty()) {           
+            lblErrorContraseña.setText("Completa ambos campos de contraseña.");
+            return;            
+        }
+        
+        if(!nueva.equals(confirmar)) {
+            lblErrorContraseña.setText("Las contraseñas no coinciden.");
+            return;
+        }
+        
+        try {
+            
+             /* 1. Leemos todas las líneas del archivo y las guardamos en una lista */
+             ArrayList<String> lineas = new ArrayList<>();
+             
+            try (BufferedReader lector = new BufferedReader(new FileReader(archivoUsuarioEncontrado))) {
+                String linea = lector.readLine();
+                
+                while(linea != null) {
+                    lineas.add(linea);
+                    linea = lector.readLine();
+                }                              
+            }
+            
+            /* 2. Buscamos la línea de la contraseña y la reemplazamos */
+            
+            for (int i = 0; i < lineas.size(); i++) {
+                if(lineas.get(i).startsWith("Contraseña: ")) {
+                    lineas.set(i, "Contraseña: " + nueva);
+                }
+            }
+            
+            /* 3. Volvemos a escribir TODO el archivo con la lista ya actualizada */
+            try ( FileWriter escritor = new FileWriter(archivoUsuarioEncontrado)) {
+                for(int i = 0; i < lineas.size(); i++) {
+                    escritor.write(lineas.get(i) + "\n");
+                }
+                
+            }
+            
+            JOptionPane.showMessageDialog(this, "Tu contraseña ha sido actualizada con éxito.\nVuelve a Iniciar Sesión.");
+            
+            FrmLogin L = new FrmLogin();
+            L.setVisible(true);
+            dispose();
+            
+        } catch(IOException e) {
+            lblErrorContraseña.setText("Error al guardar la contraseña.");
+            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnRestablecerActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        FrmLogin L = new FrmLogin();
+        L.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -70,5 +467,24 @@ public class FrmRecuperar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnContinuar;
+    private javax.swing.JToggleButton btnMostrarConfirmar;
+    private javax.swing.JToggleButton btnMostrarNueva;
+    private javax.swing.JButton btnRestablecer;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblErrorContraseña;
+    private javax.swing.JLabel lblErrorCorreo;
+    private javax.swing.JLabel lblNueva;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPasswordField txtConfirmar;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JPasswordField txtNueva;
     // End of variables declaration//GEN-END:variables
 }
