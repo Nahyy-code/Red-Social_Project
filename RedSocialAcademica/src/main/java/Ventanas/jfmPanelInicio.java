@@ -149,8 +149,7 @@ private JPanel crearTarjetaPost(File archivo) {
             }
         });
 
-        lbFotodePerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 60x60.png"))); // NOI18N
-        lbFotodePerfil.setText("jLabel2");
+        lbFotodePerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/iconUser48.png"))); // NOI18N
         lbFotodePerfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lbFotodePerfilMousePressed(evt);
@@ -174,9 +173,9 @@ private JPanel crearTarjetaPost(File archivo) {
         JPBarraVerticalLayout.setHorizontalGroup(
             JPBarraVerticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPBarraVerticalLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(lbFotodePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(47, 47, 47)
+                .addComponent(lbFotodePerfil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JPBarraVerticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNomUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,7 +204,7 @@ private JPanel crearTarjetaPost(File archivo) {
         btnIrPerfil.setText("Perfil");
         btnIrPerfil.addActionListener(this::btnIrPerfilActionPerformed);
 
-        btnCierreSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/leave.png"))); // NOI18N
+        btnCierreSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/Salir.png"))); // NOI18N
         btnCierreSesion.setBorderPainted(false);
         btnCierreSesion.setContentAreaFilled(false);
         btnCierreSesion.addActionListener(this::btnCierreSesionActionPerformed);
@@ -219,15 +218,15 @@ private JPanel crearTarjetaPost(File archivo) {
         JPBarraHorizontalLayout.setHorizontalGroup(
             JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
-                .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnIrPerfil)
-                    .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
-                            .addGap(28, 28, 28)
-                            .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnIrPerfil)
                         .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
                             .addGap(24, 24, 24)
-                            .addComponent(btnInicio))))
+                            .addComponent(btnInicio)))
+                    .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         JPBarraHorizontalLayout.setVerticalGroup(
@@ -237,9 +236,9 @@ private JPanel crearTarjetaPost(File archivo) {
                 .addComponent(btnInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnIrPerfil)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
-                .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addComponent(btnCierreSesion)
+                .addGap(18, 18, 18))
         );
 
         jScrollPane1.setBackground(new java.awt.Color(10, 15, 30));

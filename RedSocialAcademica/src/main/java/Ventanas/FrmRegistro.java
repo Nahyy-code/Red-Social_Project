@@ -61,7 +61,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         btnIrIniciodeSesion = new javax.swing.JButton();
         lbFotodeRegistro = new javax.swing.JLabel();
         btnSubirFoto = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         rdEstudiante = new javax.swing.JRadioButton();
         rdDocente = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
@@ -71,7 +71,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel2.setBackground(new java.awt.Color(0, 6, 23));
+        jPanel2.setBackground(new java.awt.Color(10, 15, 30));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -164,23 +164,23 @@ public class FrmRegistro extends javax.swing.JFrame {
         btnIrIniciodeSesion.addActionListener(this::btnIrIniciodeSesionActionPerformed);
         jPanel2.add(btnIrIniciodeSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, -1, 16));
 
-        lbFotodeRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default.png"))); // NOI18N
-        jPanel2.add(lbFotodeRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 148, -1, -1));
+        lbFotodeRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_PFP/profileDefault.png"))); // NOI18N
+        jPanel2.add(lbFotodeRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 100, 110));
 
         btnSubirFoto.setBackground(new java.awt.Color(26, 34, 53));
         btnSubirFoto.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnSubirFoto.setForeground(new java.awt.Color(232, 244, 253));
-        btnSubirFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/upload (1).png"))); // NOI18N
+        btnSubirFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-upload-24.png"))); // NOI18N
         btnSubirFoto.setText(" Agregar Foto");
         btnSubirFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnSubirFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSubirFoto.addActionListener(this::btnSubirFotoActionPerformed);
         jPanel2.add(btnSubirFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 290, 119, 38));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/trash.png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(633, 290, 38, 38));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-trash-24.png"))); // NOI18N
+        btnEliminar.setContentAreaFilled(false);
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
+        jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, 30, 38));
 
         gTipodeUsuario.add(rdEstudiante);
         rdEstudiante.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -202,14 +202,14 @@ public class FrmRegistro extends javax.swing.JFrame {
         jLabel1.setText("Crear Cuenta");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 77, 28));
 
-        btnMostrarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/mostrar.png"))); // NOI18N
+        btnMostrarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-eye-24.png"))); // NOI18N
         btnMostrarC.setBorder(null);
         btnMostrarC.setContentAreaFilled(false);
         btnMostrarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMostrarC.addActionListener(this::btnMostrarCActionPerformed);
         jPanel2.add(btnMostrarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 277, -1, -1));
 
-        lbLogoAcademix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/ChatGPT Image 28 jun 2026, 06_51_33 p.m. (3).png"))); // NOI18N
+        lbLogoAcademix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/LogoApp.png"))); // NOI18N
         jPanel2.add(lbLogoAcademix, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 200, 40));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -241,7 +241,7 @@ public class FrmRegistro extends javax.swing.JFrame {
     {
         String usuario= txtUsuario.getText().trim();
         String TipodeUsuario =null;
-        String Genero=null;
+        String Genero= null;
         //creacion de carpeta (si no hay)
         String rutaCarpeta= "src\\main\\UsuariosRegistrados";
         File CarpetaUsuarios = new File (rutaCarpeta);
@@ -253,7 +253,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         String GSeleccionado= cbGenero.getSelectedItem().toString();
         Genero=GSeleccionado;
         
-        String foto = rutaFotoSeleccionada.isEmpty() ? "default_user.png" : usuario + rutaFotoSeleccionada.substring(rutaFotoSeleccionada.lastIndexOf("."));
+        String foto = rutaFotoSeleccionada.isEmpty() ? "profileDefault.png" : usuario + rutaFotoSeleccionada.substring(rutaFotoSeleccionada.lastIndexOf("."));
          
         //Creacion de usuario(archivo)
         File IdUsuario = new File(CarpetaUsuarios,usuario+ ".txt");
@@ -392,8 +392,8 @@ public class FrmRegistro extends javax.swing.JFrame {
     private void btnMostrarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarCActionPerformed
         // Mostrar y Ocultar contraseña
         
-        ImageIcon MostrarCImg = new ImageIcon (getClass().getResource("/Imgs/mostrar.png"));
-        ImageIcon OcultarCImg = new ImageIcon (getClass().getResource("/Imgs/ocultar.png"));
+        ImageIcon MostrarCImg = new ImageIcon (getClass().getResource("/Imgs_S/icons8-eye-24.png"));
+        ImageIcon OcultarCImg = new ImageIcon (getClass().getResource("/Imgs_S/icons8-hide-24.png"));
         
         
         if (btnMostrarC.isSelected()) {
@@ -413,12 +413,12 @@ public class FrmRegistro extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cbGeneroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // Limpiar FDP
         rutaFotoSeleccionada="";
-        ImageIcon icon = new ImageIcon (getClass().getResource("/Imgs_S/FdP_Default.png"));
+        ImageIcon icon = new ImageIcon (getClass().getResource("/Imgs_PFP/profileDefault.png"));
         lbFotodeRegistro.setIcon(icon);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
@@ -450,13 +450,13 @@ public class FrmRegistro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnIrIniciodeSesion;
     private javax.swing.JToggleButton btnMostrarC;
     private javax.swing.JButton btnRegistrarUsuario;
     private javax.swing.JButton btnSubirFoto;
     private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.ButtonGroup gTipodeUsuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

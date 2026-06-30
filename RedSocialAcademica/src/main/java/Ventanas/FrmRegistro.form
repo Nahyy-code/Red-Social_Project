@@ -58,7 +58,7 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="17" green="6" red="0" type="rgb"/>
+              <Color blue="1e" green="f" red="a" type="rgb"/>
             </Property>
           </Properties>
 
@@ -370,12 +370,12 @@
             <Component class="javax.swing.JLabel" name="lbFotodeRegistro">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imgs_S/FdP_Default.png"/>
+                  <Image iconType="3" name="/Imgs_PFP/profileDefault.png"/>
                 </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="521" y="148" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="520" y="160" width="100" height="110"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -391,7 +391,7 @@
                   <Color blue="fd" green="f4" red="e8" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imgs_S/upload (1).png"/>
+                  <Image iconType="3" name="/Imgs_S/icons8-upload-24.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value=" Agregar Foto"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -412,19 +412,19 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnEliminar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imgs_S/trash.png"/>
+                  <Image iconType="3" name="/Imgs_S/icons8-trash-24.png"/>
                 </Property>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="633" y="290" width="38" height="38"/>
+                  <AbsoluteConstraints x="630" y="290" width="30" height="38"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -494,7 +494,7 @@
             <Component class="javax.swing.JToggleButton" name="btnMostrarC">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imgs/mostrar.png"/>
+                  <Image iconType="3" name="/Imgs_S/icons8-eye-24.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -516,7 +516,7 @@
             <Component class="javax.swing.JLabel" name="lbLogoAcademix">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imgs_S/ChatGPT Image 28 jun 2026, 06_51_33 p.m. (3).png"/>
+                  <Image iconType="3" name="/Imgs_S/LogoApp.png"/>
                 </Property>
               </Properties>
               <Constraints>

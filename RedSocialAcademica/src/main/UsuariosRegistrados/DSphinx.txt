@@ -14,3 +14,4 @@ Facultad: FCMF
 Carrera: Software
 Habilidades: Listo
 Colegio: UEC
+Amigos: DPlaasd
