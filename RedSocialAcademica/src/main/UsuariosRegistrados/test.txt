@@ -14,3 +14,4 @@ Carrera:
 Habilidades: 
 Colegio: 
 Amigos: DSphinx
+rol: Gratuito

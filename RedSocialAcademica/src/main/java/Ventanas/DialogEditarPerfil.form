@@ -89,7 +89,7 @@
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="LBLUNIVERSIDAD" min="-2" max="-2" attributes="0"/>
@@ -98,12 +98,9 @@
                               <Component id="txtCarrera" pref="150" max="32767" attributes="0"/>
                               <Component id="LbLNombre6" min="-2" max="-2" attributes="0"/>
                               <Component id="txtHabilidades" pref="150" max="32767" attributes="0"/>
-                              <Component id="txtRol" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="LbLApellido1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtColegio" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -112,22 +109,29 @@
                                       <Component id="LbLNombre5" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtEdad" min="-2" pref="150" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="LbLApellido1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtColegio" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="btnEditarFoto" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbFotoPreview" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnQuitarFoto" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="txtRol" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="btnQuitarFoto" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="lblError" min="-2" pref="370" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="95" max="32767" attributes="0"/>
+                  <EmptySpace pref="89" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -137,29 +141,26 @@
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="49" max="-2" attributes="0"/>
                   <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                  <Component id="lbFotoPreview" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="btnEditarFoto" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnQuitarFoto" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="LbLApellido1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                                  <Component id="txtColegio" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="LbLNombre5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                          <Component id="txtRol" min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="lbFotoPreview" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="btnEditarFoto" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnQuitarFoto" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="LbLApellido1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                          <Component id="txtColegio" min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="LbLNombre5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="LBLUNIVERSIDAD" min="-2" max="-2" attributes="0"/>
@@ -179,13 +180,11 @@
                           </Group>
                           <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                           <Component id="txtHabilidades" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txtRol" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace pref="102" max="32767" attributes="0"/>
                   <Component id="lblError" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="101" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnPremiun" min="-2" pref="47" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -207,7 +206,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imgs_S/icons8-exclamation-mark-16.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Algunos datos no son modificables en el perfil"/>
+            <Property name="text" type="java.lang.String" value="No todos los datos son modificables en el perfil"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="LBLUNIVERSIDAD">

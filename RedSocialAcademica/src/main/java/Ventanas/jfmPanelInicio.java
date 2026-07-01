@@ -19,6 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -36,6 +37,9 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     /**
      * Creates new form jfmPanelInicio
      */
+    
+    private String rutaArchivoAdjunto = "";
+    
     public jfmPanelInicio() {
         initComponents();
         
@@ -136,17 +140,30 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     try {
         java.time.LocalDateTime ahora = java.time.LocalDateTime.now();
         String fecha = ahora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+            
+         String nombreAdjunto = "";
+        if (!rutaArchivoAdjunto.isEmpty()) {
+            File carpetaAdj = new File("src\\main\\Publicaciones\\adjuntos\\");
+            carpetaAdj.mkdirs();
+            File origen = new File(rutaArchivoAdjunto);
+            String ext = rutaArchivoAdjunto.substring(rutaArchivoAdjunto.lastIndexOf("."));
+            nombreAdjunto = Sesion.usuarioActual + "_" + System.currentTimeMillis() + ext;
+            java.nio.file.Files.copy(origen.toPath(),
+                new File(carpetaAdj, nombreAdjunto).toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+        }
         
-        try (FileWriter writer = new FileWriter(archivo)) {
+        
+            FileWriter writer = new FileWriter(archivo);
             writer.write(Sesion.nombreCompleto + "\n"); // línea 1: nombre
             writer.write(fecha + "\n");                 // linea 2: fecha
             writer.write(contenido + "\n");             // línea 3: contenido
-            writer.write(Sesion.tipoUsuario + "\n");    // linea 4: Tipo de user
-        } // línea 1: nombre
+            writer.write(Sesion.tipoUsuario + "\n");    // linea 4: Tipo de user 
+            writer.write(nombreAdjunto + "\n");         // linea 5: Archivo adjunto
+            writer.close();
 
         txtPublicar.setText(""); // limpia el campo
         cargarFeed();            // recarga el feed para mostrar la nueva publicación
-
+        lblArchivoAdjunto.setText(""); //limpia despues de tener archivo seleccionado
     } catch (IOException e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(null, "Error al publicar.");
@@ -166,6 +183,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         String fecha     = reader.readLine();
         String contenido = reader.readLine();
         String tipo      = reader.readLine();
+        String adjunto   = reader.readLine(); 
         reader.close();
 
         //Panel de publicacion
@@ -204,6 +222,8 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         txtContenido.setHighlighter(null);
         txtContenido.setSize(580, Short.MAX_VALUE);
         
+        
+        
         int altoNecesario = txtContenido.getPreferredSize().height;
         txtContenido.setMaximumSize(new Dimension(580, altoNecesario));
         txtContenido.setPreferredSize(new Dimension(580, altoNecesario));
@@ -216,7 +236,40 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         panel.add(LBFecha); 
         panel.add(Box.createVerticalStrut(4));
         panel.add(txtContenido);
+        
+        if (adjunto != null && !adjunto.isEmpty()) {
+            File archivoAdj = new File("src\\main\\Publicaciones\\adjuntos\\" + adjunto);
 
+        if (adjunto.endsWith(".jpg") || adjunto.endsWith(".jpeg") || adjunto.endsWith(".png")) {
+         // Es imagen — la muestra
+          JLabel lblImg = new JLabel();
+          ImageIcon icon = new ImageIcon(archivoAdj.getAbsolutePath());
+          Image img = icon.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH);
+          lblImg.setIcon(new ImageIcon(img));
+          lblImg.setAlignmentX(Component.LEFT_ALIGNMENT);
+          panel.add(Box.createVerticalStrut(6));
+          panel.add(lblImg);
+          } else {
+         // Es documento — muestra un link/label
+          JLabel lblAdj = new JLabel("📎 " + adjunto);
+          lblAdj.setForeground(new Color(56, 189, 248));
+          lblAdj.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+          lblAdj.setAlignmentX(Component.LEFT_ALIGNMENT);
+          lblAdj.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+          lblAdj.addMouseListener(new java.awt.event.MouseAdapter() {
+              public void mouseClicked(java.awt.event.MouseEvent e) {
+                  try {
+                       java.awt.Desktop.getDesktop().open(archivoAdj);
+                   } catch (IOException ex) {
+                      ex.printStackTrace();
+                   }
+               }
+           });
+          panel.add(Box.createVerticalStrut(6));
+          panel.add(lblAdj);
+         }
+        }
+        
     } catch (IOException e) {
         e.printStackTrace();
     }
@@ -234,6 +287,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         JPBarraVertical = new javax.swing.JPanel();
         lbNomUsuario = new javax.swing.JLabel();
@@ -251,6 +305,9 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         btnPublicar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtPublicar = new javax.swing.JTextArea();
+        btnAdjuntar = new javax.swing.JButton();
+        lblArchivoAdjunto = new javax.swing.JLabel();
+        btnBorrarArchivo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -382,6 +439,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
 
         PLPublicar.setBackground(new java.awt.Color(26, 34, 56));
 
+        btnPublicar.setForeground(new java.awt.Color(255, 255, 255));
         btnPublicar.setText("Publicar");
         btnPublicar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublicar.addActionListener(this::btnPublicarActionPerformed);
@@ -396,15 +454,32 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         txtPublicar.setTabSize(5);
         jScrollPane2.setViewportView(txtPublicar);
 
+        btnAdjuntar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdjuntar.setText("Adjuntar");
+        btnAdjuntar.addActionListener(this::btnAdjuntarActionPerformed);
+
+        lblArchivoAdjunto.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnBorrarArchivo.addActionListener(this::btnBorrarArchivoActionPerformed);
+
         javax.swing.GroupLayout PLPublicarLayout = new javax.swing.GroupLayout(PLPublicar);
         PLPublicar.setLayout(PLPublicarLayout);
         PLPublicarLayout.setHorizontalGroup(
             PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PLPublicarLayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPublicar))
+                    .addGroup(PLPublicarLayout.createSequentialGroup()
+                        .addContainerGap(48, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PLPublicarLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(btnBorrarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(lblArchivoAdjunto, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAdjuntar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPublicar)))
                 .addGap(23, 23, 23))
         );
         PLPublicarLayout.setVerticalGroup(
@@ -413,7 +488,12 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnPublicar)
+                .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnPublicar)
+                        .addComponent(btnAdjuntar)
+                        .addComponent(lblArchivoAdjunto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBorrarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -500,6 +580,33 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         new FrmBuscarAmigos().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAmigosActionPerformed
+
+    private void btnAdjuntarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdjuntarActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Imágenes y documentos", "jpg", "jpeg", "png", "pdf", "docx", "txt"));
+        chooser.setAcceptAllFileFilterUsed(false);
+
+    if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        File archivo = chooser.getSelectedFile();
+
+        // Validar tamaño máximo 5MB
+        if (archivo.length() > 5 * 1024 * 1024) {
+            JOptionPane.showMessageDialog(null, "El archivo no puede superar 5 MB.");
+            return;
+        }
+
+        rutaArchivoAdjunto = archivo.getAbsolutePath();
+        lblArchivoAdjunto.setText("📎 " + archivo.getName());
+    }
+    
+    }//GEN-LAST:event_btnAdjuntarActionPerformed
+
+    private void btnBorrarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarArchivoActionPerformed
+        // Limpiar Archivo
+        rutaArchivoAdjunto = "";
+        lblArchivoAdjunto.setText("");
+    }//GEN-LAST:event_btnBorrarArchivoActionPerformed
     
     private JPanel crearTarjetaDePublicidad(){
         JPanel panelAd = new JPanel();
@@ -558,11 +665,14 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     private javax.swing.JPanel JPBarraVertical;
     private javax.swing.JPanel PLFeed;
     private javax.swing.JPanel PLPublicar;
+    private javax.swing.JButton btnAdjuntar;
     private javax.swing.JButton btnAmigos;
+    private javax.swing.JButton btnBorrarArchivo;
     private javax.swing.JButton btnCierreSesion;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnIrPerfil;
     private javax.swing.JButton btnPublicar;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -570,6 +680,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     private javax.swing.JLabel lbLogo;
     private javax.swing.JLabel lbNomUsuario;
     private javax.swing.JLabel lbTipo;
+    private javax.swing.JLabel lblArchivoAdjunto;
     private javax.swing.JTextArea txtPublicar;
     // End of variables declaration//GEN-END:variables
 }
