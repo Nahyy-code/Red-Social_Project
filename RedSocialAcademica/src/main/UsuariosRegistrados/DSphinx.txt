@@ -6,13 +6,15 @@ Correo: dsphinx01010@gmail.com
 Contraseña: 0000
 Genero: Hombre
 Tipo de Usuario: Estudiante
-Foto: dsphinx.png
-Sobre mi: hey soy hiper que tal bro, adasdklasjdlkasjdlkasjdasjdlasjldjaslkdasjldajsldsadsaasdas
+Foto: DSphinx.png
+Sobre mi: hey soy hiper que tal bro AA
+AA
+Prueba edición xd
 que tal
-Universidad: Ug
+Universidad: Universidad de Guayaquil
 Facultad: FCMF
 Carrera: Software
-Habilidades: Listo
+Habilidades: Listo mimi
 Colegio: UEC
 Amigos: DPlaasd, test, ñlengo, usuarioprueba
-Edad: 0
+Edad: 3

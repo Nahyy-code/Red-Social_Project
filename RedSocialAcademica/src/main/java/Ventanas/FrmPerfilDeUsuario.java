@@ -24,6 +24,9 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
 
     private String usuarioActual;
     
+    private static final String RUTA_USUARIOS = "src/main/UsuariosRegistrados/";
+    private static final String RUTA_FOTOS = "src/main/resources/Imgs_PFP/";
+    
     public FrmPerfilDeUsuario(String usuario) {
         initComponents();
         this.usuarioActual = usuario;
@@ -32,12 +35,12 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
     }
 
     private void cargarDatos() {
-    File archivo = new File("src\\main\\UsuariosRegistrados\\" +Sesion.usuarioActual + ".txt");
-    File foto = new File("src\\main\\resources\\Imgs_PFP\\" +Sesion.fotodeperfil);
+        File archivo = new File(RUTA_USUARIOS +Sesion.usuarioActual + ".txt");
+        File foto = new File(RUTA_FOTOS +Sesion.fotodeperfil);
     
     //datos
-    try {
-        BufferedReader reader = new BufferedReader(new FileReader(archivo));
+    try(BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+        
         String linea;
         String nombre = "", apellido = "";
 
@@ -49,21 +52,23 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
             
             if (linea.startsWith("Tipo de Usuario: "))
                 lbTipo.setText(linea.replace("Tipo de Usuario: ", "").trim());
-            if (linea.startsWith("Universidad: "))
-                lbUni.setText(linea.replace("Universidad: ", "").trim());
+            if (linea.startsWith("Usuario: "))
+                lbUsuario.setText("Usuario: " + linea.replace("Usuario: ", "").trim());
             if (linea.startsWith("Carrera: "))
-                lbCarrera.setText(linea.replace("Carrera: ", "").trim());
+                lbCarrera.setText("Carrera: " + linea.replace("Carrera: ", "").trim());
             if (linea.startsWith("Sobre mi: ")) {
                 String texto = linea.replace("Sobre mi: ", "").trim();
                 lbSobreMi.setText("<html><div style='width:250px;'>" +texto+ "</div></html>"); }
             if (linea.startsWith("Habilidades: "))
                 lbHabilidades.setText(linea.replace("Habilidades: ", "").trim());
             if (linea.startsWith("Colegio: "))
-                lbColegio.setText(linea.replace("Colegio: ", "").trim());
+                lbColegio.setText("Colegio: " + linea.replace("Colegio: ", "").trim());
             if (linea.startsWith("Genero: "))
-                lbGenero.setText(linea.replace("Genero: ", "").trim());
+                lbGenero.setText("Genero: " + linea.replace("Genero: ", "").trim());
             if (linea.startsWith("Edad: "))
-                lbFNacimiento.setText(linea.replace("Edad: ", "").trim());
+                lbFNacimiento.setText("Edad: " + linea.replace("Edad: ", "").trim());
+            if(linea.startsWith("Universidad: "))
+                lbUniversidad.setText("Universidad: " + linea.replace("Universidad: ", "").trim());
         }
 
         lbNombre.setText(nombre + " " + apellido);
@@ -74,14 +79,11 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
     }
     //foto
     if (foto.exists()) {
-    ImageIcon icon = new ImageIcon(foto.getAbsolutePath());
-    Image imgEscalada = icon.getImage().getScaledInstance(lbAvatar.getWidth(), lbAvatar.getHeight(), Image.SCALE_SMOOTH);
-    lbAvatar.setIcon(new ImageIcon(imgEscalada));
-    }
-    
+        ImageIcon icon = new ImageIcon(foto.getAbsolutePath());
+        Image imgEscalada = icon.getImage().getScaledInstance(lbAvatar.getWidth(), lbAvatar.getHeight(), Image.SCALE_SMOOTH);
+        lbAvatar.setIcon(new ImageIcon(imgEscalada));
+    }    
 }
-
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,7 +116,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         pnlCabezera = new javax.swing.JPanel();
         lbAvatar = new javax.swing.JLabel();
         lbNombre = new javax.swing.JLabel();
-        lbUni = new javax.swing.JLabel();
+        lbUsuario = new javax.swing.JLabel();
         lbCarrera = new javax.swing.JLabel();
         lbTipo = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
@@ -264,15 +266,15 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
 
         pnlCabezera.setBackground(new java.awt.Color(26, 34, 53));
 
-        lbAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 60x60.png"))); // NOI18N
+        lbAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/iconUser48.png"))); // NOI18N
 
         lbNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbNombre.setForeground(new java.awt.Color(255, 255, 255));
         lbNombre.setText("Nombre/Apellido");
 
-        lbUni.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lbUni.setForeground(new java.awt.Color(255, 255, 255));
-        lbUni.setText("Universidad/Facultad");
+        lbUsuario.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lbUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lbUsuario.setText("Universidad/Facultad");
 
         lbCarrera.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lbCarrera.setForeground(new java.awt.Color(255, 255, 255));
@@ -302,7 +304,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                         .addComponent(lbAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addGroup(pnlCabezeraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbUni, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlCabezeraLayout.createSequentialGroup()
                                 .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -324,7 +326,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                                     .addComponent(lbNombre)
                                     .addComponent(lbTipo))
                                 .addGap(18, 18, 18)
-                                .addComponent(lbUni))
+                                .addComponent(lbUsuario))
                             .addComponent(btnEditar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbCarrera)))
@@ -561,9 +563,9 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
-    DialogEditarPerfil dialog = new DialogEditarPerfil((java.awt.Frame) SwingUtilities.getWindowAncestor(this),true,usuarioActual);
-    dialog.setVisible(true);
-    cargarDatos();
+        DialogEditarPerfil dialog = new DialogEditarPerfil((java.awt.Frame) SwingUtilities.getWindowAncestor(this),true,usuarioActual);
+        dialog.setVisible(true);
+        cargarDatos();
     
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -630,8 +632,8 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lbNombre;
     private javax.swing.JLabel lbSobreMi;
     private javax.swing.JLabel lbTipo;
-    private javax.swing.JLabel lbUni;
     private javax.swing.JLabel lbUniversidad;
+    private javax.swing.JLabel lbUsuario;
     private javax.swing.JPanel pnlCabezera;
     private javax.swing.JPanel pnlContenido;
     private javax.swing.JPanel pnlDatos;

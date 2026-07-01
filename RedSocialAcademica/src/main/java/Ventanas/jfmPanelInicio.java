@@ -320,6 +320,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         btnCierreSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/Salir.png"))); // NOI18N
         btnCierreSesion.setBorderPainted(false);
         btnCierreSesion.setContentAreaFilled(false);
+        btnCierreSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCierreSesion.addActionListener(this::btnCierreSesionActionPerformed);
 
         btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -374,6 +375,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         PLPublicar.setBackground(new java.awt.Color(26, 34, 56));
 
         btnPublicar.setText("Publicar");
+        btnPublicar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublicar.addActionListener(this::btnPublicarActionPerformed);
 
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);

@@ -5,5 +5,5 @@ Apellido: gonza
 Correo: palfoad@gmailc.om
 Contraseña: miumiu
 Tipo de Usuario: Estudiante
-Foto: DPlaasd.png
+Foto: profileDefault.png
 Amigos: DSphinx

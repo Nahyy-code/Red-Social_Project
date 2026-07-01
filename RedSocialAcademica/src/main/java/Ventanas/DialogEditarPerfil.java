@@ -16,10 +16,8 @@ import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.event.*;
 /**
  *
  * @author WINDOWS
@@ -27,33 +25,68 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class DialogEditarPerfil extends javax.swing.JDialog {
     private String rutaFotoSeleccionada = "";
     private boolean quitarFoto = false;
+    
+    /* Rutas relativas */
+    private static final String RUTA_USUARIOS = "src/main/UsuariosRegistrados/";
+    private static final String RUTA_FOTOS = "src/main/resources/Imgs_PFP/";
 
     public DialogEditarPerfil(java.awt.Frame parent, boolean modal, String usuario) {
-        super(parent, "Editar perfil", true);
+        super(parent, "Editar perfil", modal);
+        
         initComponents();
         setLocationRelativeTo(parent);
+        
         cargarCampos();
         cargarFotoActual();
         
-        //Limite de caracter SOBRE MI
-        txtSobreMi.getDocument().addDocumentListener(new DocumentListener() {
-        public void insertUpdate(DocumentEvent e) {
-            if (txtSobreMi.getText().length() > 136) {
-                SwingUtilities.invokeLater(() -> 
-                    txtSobreMi.setText(txtSobreMi.getText().substring(0, 136)));
+        /* Label de error empieza vacío, sin ícono */
+        lblError.setIcon(null);
+        lblError.setText(" ");
+        
+        /* Cada que el usuario suelta una tecla en "Sobre mi", se revisa el límite */
+        txtSobreMi.addKeyListener(new KeyAdapter() {
+            public void KeyReleased(KeyEvent evt) {
+                revisarLimiteSobreMi();
             }
+        });
+    }
+    
+    /* Revisa los caracteres de "Sobre mi".
+       Si se pasa el límite, corta el texto y muestra el aviso.
+       Si vuelve a estar por debajo del límite, quita el aviso.
+    */
+    private void revisarLimiteSobreMi() {
+        int limite = 136;
+        String texto = txtSobreMi.getText();
+        
+        /* Si el texto es más largo del límite, lo corta */
+        if(texto.length() > limite) {
+            texto = texto.substring(0, limite);
+            txtSobreMi.setText(texto);
+            txtSobreMi.setCaretPosition(texto.length());
         }
-        public void removeUpdate(DocumentEvent e) {}
-        public void changedUpdate(DocumentEvent e) {}
-    });
+        
+        /* Si llega al límite, muestra el aviso, si no, se oculta */
+        if(texto.length() >= limite) {
+            
+            lblError.setIcon(new ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png")));
+            lblError.setText("Has alcanzado el límite de " + limite + " caracteres"); 
+        } else {
+            
+            lblError.setIcon(null);
+            lblError.setText(" ");            
+        }         
     }
 
     private void cargarCampos() {
         
-        //Llenando JTextField en vez de JLabel
-        File archivo = new File("src\\main\\UsuariosRegistrados\\" + Sesion.usuarioActual + ".txt");
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+        /* Llenando JTextField en vez de JLabel */
+        File archivo = new File(RUTA_USUARIOS + Sesion.usuarioActual + ".txt");
+        if(!archivo.exists()) {
+            return;
+        }
+        
+        try(BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
                 if (linea.startsWith("Sobre mi: "))
@@ -70,14 +103,16 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                     txtEdad.setText(linea.replace("Edad: ", "").trim());
             }
             reader.close();
-        } catch (IOException e) { e.printStackTrace(); }
-        
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }        
     }
     
     private void cargarFotoActual() {
-    File foto = new File("src\\main\\resources\\Imgs_PFP\\" + Sesion.fotodeperfil);
+    File foto = new File(RUTA_FOTOS + Sesion.fotodeperfil);
     
-    if (foto.exists() && !Sesion.fotodeperfil.equals("default_user.png")) {
+    if (foto.exists() && !Sesion.fotodeperfil.equals("profileDefault.png")) {
         ImageIcon icon = new ImageIcon(foto.getAbsolutePath());
         Image img = icon.getImage().getScaledInstance(132, 132, Image.SCALE_SMOOTH);
         lbFotoPreview.setIcon(new ImageIcon(img));
@@ -94,7 +129,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblErrorCorreo = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
         LBLUNIVERSIDAD = new javax.swing.JLabel();
         LBLCARRERA = new javax.swing.JLabel();
         LbLNombre5 = new javax.swing.JLabel();
@@ -111,8 +146,9 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnEditarFoto = new javax.swing.JButton();
         btnQuitarFoto = new javax.swing.JButton();
         lbFotoPreview = new javax.swing.JLabel();
-        txtSobreMi = new javax.swing.JTextArea();
         LbLNombre7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtSobreMi = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -120,9 +156,9 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(10, 15, 30));
         jPanel1.setForeground(new java.awt.Color(56, 189, 248));
 
-        lblErrorCorreo.setForeground(new java.awt.Color(239, 68, 68));
-        lblErrorCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png"))); // NOI18N
-        lblErrorCorreo.setText("Algunos datos no son modificables en el perfil");
+        lblError.setForeground(new java.awt.Color(239, 68, 68));
+        lblError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png"))); // NOI18N
+        lblError.setText("Algunos datos no son modificables en el perfil");
 
         LBLUNIVERSIDAD.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         LBLUNIVERSIDAD.setForeground(new java.awt.Color(56, 189, 248));
@@ -189,7 +225,11 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnQuitarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQuitarFoto.addActionListener(this::btnQuitarFotoActionPerformed);
 
-        lbFotoPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/FdP_Default 132x132.png"))); // NOI18N
+        lbFotoPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_PFP/profileDefault.png"))); // NOI18N
+
+        LbLNombre7.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        LbLNombre7.setForeground(new java.awt.Color(56, 189, 248));
+        LbLNombre7.setText("Sobre mi");
 
         txtSobreMi.setBackground(new java.awt.Color(26, 34, 53));
         txtSobreMi.setColumns(20);
@@ -197,10 +237,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         txtSobreMi.setLineWrap(true);
         txtSobreMi.setRows(5);
         txtSobreMi.setTabSize(5);
-
-        LbLNombre7.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        LbLNombre7.setForeground(new java.awt.Color(56, 189, 248));
-        LbLNombre7.setText("Sobre mi");
+        jScrollPane1.setViewportView(txtSobreMi);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,7 +250,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblErrorCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGuardar)
                         .addGap(11, 11, 11)
@@ -229,22 +266,22 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                             .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LbLApellido1)
+                            .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LbLNombre5)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(LbLNombre7)
-                                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(129, 129, 129)
+                                    .addComponent(LbLNombre5)
+                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbFotoPreview)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnEditarFoto)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(btnQuitarFoto))))
-                            .addComponent(LbLApellido1)
-                            .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(btnEditarFoto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbFotoPreview, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnQuitarFoto)
+                        .addGap(95, 95, 95))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,49 +290,47 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(69, 69, 69)
-                                    .addComponent(lbFotoPreview)
-                                    .addGap(12, 12, 12)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnEditarFoto)
-                                        .addComponent(btnQuitarFoto)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(LbLApellido1)
-                                    .addGap(2, 2, 2)
-                                    .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(LbLNombre5)
-                                    .addGap(92, 92, 92)
-                                    .addComponent(txtSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(76, 76, 76)
-                            .addComponent(lblErrorCorreo)
-                            .addGap(31, 31, 31))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGap(318, 318, 318)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(22, 22, 22)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(LBLUNIVERSIDAD)
-                        .addGap(2, 2, 2)
-                        .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(LBLCARRERA)
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LbLNombre6)
-                            .addComponent(LbLNombre7))
-                        .addGap(2, 2, 2)
-                        .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(60, 60, 60)
+                        .addComponent(lbFotoPreview)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnEditarFoto)
+                            .addComponent(btnQuitarFoto))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(LbLApellido1)
+                                .addGap(2, 2, 2)
+                                .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(LbLNombre5)
+                                .addGap(90, 90, 90)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(139, 139, 139)
+                                .addComponent(lblError))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(LBLUNIVERSIDAD)
+                                .addGap(2, 2, 2)
+                                .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(LBLCARRERA)
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEdad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(LbLNombre6)
+                                    .addComponent(LbLNombre7))
+                                .addGap(2, 2, 2)
+                                .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,12 +348,12 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        File archivo = new File("src\\main\\UsuariosRegistrados\\" + Sesion.usuarioActual + ".txt");
+        File archivo = new File(RUTA_USUARIOS + Sesion.usuarioActual + ".txt");
 
         String nombreFotoFinal= procesarFoto();
-        try {
-            // Leer todas las líneas del txt
-            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+        try(BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            
+            /* Leer todas las líneas del txt */           
             StringBuilder contenido = new StringBuilder();
             String linea;
 
@@ -341,57 +376,61 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                 contenido.append(linea).append("\n");
             }   
             reader.close();
-
-            // Reescribir el archivo con los cambios
-            FileWriter writer = new FileWriter(archivo);
-            writer.write(contenido.toString());
-            writer.close();
+            
+            /* Reescribir el archivo con los cambios */
+            try (FileWriter writer = new FileWriter(archivo)) {
+                
+                writer.write(contenido.toString());
+            }
 
             JOptionPane.showMessageDialog(null, "Perfil actualizado.");
-            dispose(); // cierra la ventana de editar datos
+            dispose(); /* cierra la ventana de editar datos */
 
-        } catch (IOException e) { JOptionPane.showMessageDialog(null, "Error al guardar.");
-        }
-    
+        } catch (IOException e) {
+            
+            JOptionPane.showMessageDialog(null, "Error al guardar.");
+        }    
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private String procesarFoto() {
-    String carpeta = "src\\main\\resources\\Imgs_PFP\\";
+    String carpeta = RUTA_FOTOS;
 
-    // Caso 1: presionó el trash y vuelve a default
+    /* Caso 1: presionó el trash y vuelve a default */
     if (quitarFoto) {
-        // Borra la foto física anterior si existe
+        
+        /* Borra la foto física anterior si existe */
         File fotoVieja = new File(carpeta + Sesion.usuarioActual + ".png");
         if (fotoVieja.exists()) fotoVieja.delete();
         File fotoViejaJpg = new File(carpeta + Sesion.usuarioActual + ".jpg");
         if (fotoViejaJpg.exists()) fotoViejaJpg.delete();
 
-        return "default_user.png";
+        return "profileDefault.png";
     }
 
-    // Caso 2: no seleccionó foto nueva, mantiene la actual
+    /* Caso 2: no seleccionó foto nueva, mantiene la actual */
     if (rutaFotoSeleccionada.isEmpty()) {
         return Sesion.fotodeperfil;
     }
 
-    // Caso 3: seleccionó una foto nueva,se la copia y reemplaza
+    /* Caso 3: seleccionó una foto nueva,se la copia y reemplaza */
     try {
         new File(carpeta).mkdirs();
         String extension = rutaFotoSeleccionada
             .substring(rutaFotoSeleccionada.lastIndexOf("."));
-        String nombreArchivo = Sesion.usuarioActual + extension; // mismo nombre del usuario
+        String nombreArchivo = Sesion.usuarioActual + extension; /* mismo nombre del usuario */
 
         Files.copy(
             Paths.get(rutaFotoSeleccionada),
             Paths.get(carpeta + nombreArchivo),
-            StandardCopyOption.REPLACE_EXISTING // sobreescribe si ya existe
+            StandardCopyOption.REPLACE_EXISTING /* sobreescribe si ya existe */
         );
 
         return nombreArchivo;
 
-    } catch (Exception e) {
+    } catch (IOException e) {
+        
         e.printStackTrace();
-        return "default_user.png";
+        return "profileDefault.png";
     }
 }
     
@@ -400,42 +439,43 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarFotoActionPerformed
-        //Cambiar foto
+        
+        /* Cambiar foto */
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes (JPG, PNG)", "jpg", "jpeg", "png");
         chooser.addChoosableFileFilter(filtro);
         chooser.setFileFilter(filtro);
         chooser.setAcceptAllFileFilterUsed(false);
 
-    if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-        rutaFotoSeleccionada = chooser.getSelectedFile().getAbsolutePath();
-        quitarFoto = false; // no quiere quitarla
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            rutaFotoSeleccionada = chooser.getSelectedFile().getAbsolutePath();
+            quitarFoto = false; /* no quiere quitarla */
 
-        ImageIcon icon = new ImageIcon(rutaFotoSeleccionada);
-        Image img = icon.getImage().getScaledInstance(132, 132, Image.SCALE_SMOOTH);
-        lbFotoPreview.setIcon(new ImageIcon(img));
-    }
-    
+            ImageIcon icon = new ImageIcon(rutaFotoSeleccionada);
+            Image img = icon.getImage().getScaledInstance(132, 132, Image.SCALE_SMOOTH);
+            lbFotoPreview.setIcon(new ImageIcon(img));
+        }    
     }//GEN-LAST:event_btnEditarFotoActionPerformed
 
     private void btnQuitarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarFotoActionPerformed
-        //Quitar foto a predeteminado
-    rutaFotoSeleccionada = "";
-    quitarFoto = true; // quiere quitarla
+        
+        /* Quitar foto a predeteminado */
+        rutaFotoSeleccionada = "";
+        quitarFoto = true; /* quiere quitarla */
 
-    File fotoDefault = new File("src\\main\\resources\\Imgs_PFP\\FdP_Default 132x132.png");
+        File fotoDefault = new File(RUTA_FOTOS + "profileDefault.png");
 
-    if (fotoDefault.exists()) {
-        lbFotoPreview.setIcon(null); // limpiar antes
-        ImageIcon icon = new ImageIcon(fotoDefault.getAbsolutePath());
-        Image img = icon.getImage().getScaledInstance(132, 132, Image.SCALE_SMOOTH);
-        lbFotoPreview.setIcon(new ImageIcon(img));
-        lbFotoPreview.revalidate();
-        lbFotoPreview.repaint();
-    } else {
-        JOptionPane.showMessageDialog(null, "No se encontró la imagen default en: "+ fotoDefault.getAbsolutePath());
-    }
-    
+        if (fotoDefault.exists()) {
+            lbFotoPreview.setIcon(null); /* limpiar antes */
+            ImageIcon icon = new ImageIcon(fotoDefault.getAbsolutePath());
+            Image img = icon.getImage().getScaledInstance(132, 132, Image.SCALE_SMOOTH);
+            lbFotoPreview.setIcon(new ImageIcon(img));
+            lbFotoPreview.revalidate();
+            lbFotoPreview.repaint();
+        } else {
+            
+            JOptionPane.showMessageDialog(null, "No se encontró la imagen default en: "+ fotoDefault.getAbsolutePath());
+        }   
     }//GEN-LAST:event_btnQuitarFotoActionPerformed
 
     /**
@@ -474,9 +514,6 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
             }
         });
     } 
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LBLCARRERA;
     private javax.swing.JLabel LBLUNIVERSIDAD;
@@ -490,8 +527,9 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private javax.swing.JButton btnQuitarFoto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbFotoPreview;
-    private javax.swing.JLabel lblErrorCorreo;
+    private javax.swing.JLabel lblError;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtColegio;
     private javax.swing.JTextField txtEdad;

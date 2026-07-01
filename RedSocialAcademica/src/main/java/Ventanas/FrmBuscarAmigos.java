@@ -20,8 +20,8 @@ import javax.swing.ImageIcon;
 public class FrmBuscarAmigos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmBuscarAmigos.class.getName());
-    private static final String RUTA_USUARIOS = "src\\main\\UsuariosRegistrados\\";
-    private static final String RUTA_FOTOS = "\\src\\main\\resources\\Imgs_PFP\\";
+    private static final String RUTA_USUARIOS = "src/main/UsuariosRegistrados/";
+    private static final String RUTA_FOTOS = "src/main/resources/Imgs_PFP/";
     private JLabel lblSinResultados;
     /**
      * Creates new form FrmBuscarAmigos
@@ -59,6 +59,7 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
         pnlSuperior.setBackground(new java.awt.Color(0, 6, 23));
 
         txtBuscar.setBackground(new java.awt.Color(26, 34, 53));
+        txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
 
         btnBuscar.setBackground(new java.awt.Color(0, 6, 23));
@@ -399,8 +400,8 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
         }
         
         if(!huboResultados) {
-            lblSinResultados.setIcon(new ImageIcon(getClass().getResource("/Imgs_S/icons8-exclamation-mark-16.png")));
-            lblSinResultados.setText("No se encontraron usuarios.");
+            lblSinResultados.setIcon(new ImageIcon(getClass().getResource("/Imgs_S/iconExclamationMark-48.png")));
+            lblSinResultados.setText("NO SE ENCONTRARON USUARIOS.");
             pnlResultados.add(lblSinResultados);
             
         }
@@ -438,7 +439,6 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
         //</editor-fold>
         
         /* Create and display the form */
-        Sesion.usuarioActual = "DPlaasd";
         java.awt.EventQueue.invokeLater(() -> new FrmBuscarAmigos().setVisible(true));
     }
 
