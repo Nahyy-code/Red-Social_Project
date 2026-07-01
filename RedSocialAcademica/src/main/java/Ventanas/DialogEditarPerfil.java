@@ -149,6 +149,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         LbLNombre7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSobreMi = new javax.swing.JTextArea();
+        btnPremiun = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -239,24 +240,33 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         txtSobreMi.setTabSize(5);
         jScrollPane1.setViewportView(txtSobreMi);
 
+        btnPremiun.setBackground(new java.awt.Color(0, 51, 51));
+        btnPremiun.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPremiun.setText("VUELVETE PREMIUM");
+        btnPremiun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPremiun.addActionListener(this::btnPremiunActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnPremiun)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancelar)
+                .addGap(28, 28, 28))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuardar)
-                        .addGap(11, 11, 11)
-                        .addComponent(btnCancelar)
-                        .addGap(22, 22, 22))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LBLUNIVERSIDAD)
                             .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,13 +285,16 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                                     .addComponent(LbLNombre7)
                                     .addComponent(LbLNombre5)
                                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                                .addGap(100, 100, 100)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnEditarFoto, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lbFotoPreview, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnQuitarFoto)
-                        .addGap(95, 95, 95))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnQuitarFoto))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,41 +309,40 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnEditarFoto)
-                            .addComponent(btnQuitarFoto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22))
+                            .addComponent(btnQuitarFoto)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LbLApellido1)
+                        .addGap(2, 2, 2)
+                        .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LbLNombre5)
+                        .addGap(90, 90, 90)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(LBLUNIVERSIDAD)
+                        .addGap(2, 2, 2)
+                        .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(LBLCARRERA)
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LbLApellido1)
-                                .addGap(2, 2, 2)
-                                .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LbLNombre5)
-                                .addGap(90, 90, 90)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(139, 139, 139)
-                                .addComponent(lblError))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LBLUNIVERSIDAD)
-                                .addGap(2, 2, 2)
-                                .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(LBLCARRERA)
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEdad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(LbLNombre6)
-                                    .addComponent(LbLNombre7))
-                                .addGap(2, 2, 2)
-                                .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                            .addComponent(txtEdad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LbLNombre6)
+                            .addComponent(LbLNombre7))
+                        .addGap(2, 2, 2)
+                        .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addComponent(lblError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPremiun, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -356,6 +368,13 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
             /* Leer todas las líneas del txt */           
             StringBuilder contenido = new StringBuilder();
             String linea;
+            boolean tieneLineaRol = false;
+            contenido.append("DATOS DEL USUARIO \n");
+            while((linea = reader.readLine()) != null) {
+                if(linea.contains("DATOS DEL USUARIO")) {
+                    continue;
+                }
+            }
 
             while ((linea = reader.readLine()) != null) {
                 if (linea.startsWith("Sobre mi: "))
@@ -478,6 +497,54 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         }   
     }//GEN-LAST:event_btnQuitarFotoActionPerformed
 
+    private void btnPremiunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPremiunActionPerformed
+        // TODO add your handling code here:
+        int respuesta = JOptionPane.showConfirmDialog(
+            this,
+            "¿Deseas pagar de $2.99 para adquirir la suscripción Premium?",
+            "Pasarela de Pago Simulada",
+            JOptionPane.YES_NO_OPTION
+        );
+        
+        if(respuesta == JOptionPane.YES_OPTION) {
+            File archivo = new File(RUTA_USUARIOS + Sesion.usuarioActual + ".txt");
+            if(!archivo.exists()) {
+                return;
+            }
+            
+            try(BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+                StringBuilder contenido = new StringBuilder();
+                String linea;
+                
+                /* Leemos todo el archivo línea por línea */
+                while((linea = reader.readLine()) != null) {
+                    
+                    /* Si encuentras la línea que define el rol, se cambia aquí */
+                    if(linea.startsWith("Rol: Gratuito")) {
+                        linea = "Rol: Premium";
+                    }
+                    contenido.append(linea).append("\n");
+                }
+                reader.close();
+                
+                /* Reescribimos el archivo con la actualización */
+                try (FileWriter writer = new FileWriter(archivo)) {
+                    writer.write(contenido.toString());
+                }
+                
+                Sesion.rolSuscripción = "Premium";
+                
+                JOptionPane.showMessageDialog(this, "¡Pago con éxito!\nAhora tu rol es Premium y no verás publicidad.");
+                dispose();
+                
+            } catch(IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al procesar el pago.");
+            }
+            
+        }
+    }//GEN-LAST:event_btnPremiunActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -524,6 +591,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditarFoto;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnPremiun;
     private javax.swing.JButton btnQuitarFoto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

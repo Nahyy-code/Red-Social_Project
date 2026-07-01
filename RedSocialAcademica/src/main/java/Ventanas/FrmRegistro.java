@@ -242,18 +242,13 @@ public class FrmRegistro extends javax.swing.JFrame {
     private void CrearUsuario()
     {
         String usuario= txtUsuario.getText().trim();
-        String TipodeUsuario =null;
-        String Genero= null;
+        String TipodeUsuario = rdEstudiante.isSelected() ? "Estudiante" : "Docente"; //seleccion de rol
+        String Genero= cbGenero.getSelectedItem().toString();
+        
         //creacion de carpeta (si no hay)
         String rutaCarpeta= "src\\main\\UsuariosRegistrados";
         File CarpetaUsuarios = new File (rutaCarpeta);
         if (!CarpetaUsuarios.exists()) CarpetaUsuarios.mkdir();
-        
-        //seleccion de rol
-        if (rdEstudiante.isSelected()) TipodeUsuario="Estudiante";
-        if (rdDocente.isSelected()) TipodeUsuario="Docente"; 
-        String GSeleccionado= cbGenero.getSelectedItem().toString();
-        Genero=GSeleccionado;
         
         String foto = rutaFotoSeleccionada.isEmpty() ? "profileDefault.png" : usuario + rutaFotoSeleccionada.substring(rutaFotoSeleccionada.lastIndexOf("."));
          
@@ -276,11 +271,18 @@ public class FrmRegistro extends javax.swing.JFrame {
             writer.write("Carrera: \n");
             writer.write("Habilidades: \n");
             writer.write("Colegio: \n");
+            
+            writer.write("Rol: Gratuito\n");
+            
+            writer.close();
+            
+            guardarFoto(usuario);
         
             JOptionPane.showMessageDialog(null, "Usuario Registrado \nVuelva a Iniciar Sesion");
             
         }catch(IOException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al registrar el usuario en el sistema.");
         }        
     }
     
@@ -306,10 +308,10 @@ public class FrmRegistro extends javax.swing.JFrame {
     }
     private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
         // Verficacion de Datos
-        String Usuario=txtUsuario.getText();
-        String Nombre=txtNombre.getText();
-        String Apellido=txtApellido.getText();
-        String Correo=txtCorreo.getText();
+        String Usuario=txtUsuario.getText().trim();
+        String Nombre=txtNombre.getText().trim();
+        String Apellido=txtApellido.getText().trim();
+        String Correo=txtCorreo.getText().trim();
         String Contraseña=String.valueOf(txtContraseña.getPassword());
         
         if (Usuario.isEmpty() || Nombre.isEmpty() || Apellido.isEmpty() || Correo.isEmpty() || Contraseña.isEmpty() || gTipodeUsuario.getSelection() == null || cbGenero.getSelectedIndex() == 0)
@@ -317,8 +319,7 @@ public class FrmRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Complete los datos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        guardarFoto(Usuario);
+
         CrearUsuario();
         
         FrmLogin L = new FrmLogin();

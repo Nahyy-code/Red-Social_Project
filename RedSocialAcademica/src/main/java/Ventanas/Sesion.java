@@ -6,4 +6,5 @@ public class Sesion {
     public static String nombreCompleto = "tester";
     public static String tipoUsuario = "tester";
     public static String fotodeperfil="";
+    public static String rolSuscripción = "Gratuito";
 }
