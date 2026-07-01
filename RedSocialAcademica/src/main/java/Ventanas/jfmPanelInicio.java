@@ -64,7 +64,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         PLFeed.setLayout(new BoxLayout(PLFeed, BoxLayout.Y_AXIS)); //Dimensiones de Feed
-        PLPublicar.setMaximumSize(new Dimension(625, 136));
+        PLPublicar.setMaximumSize(new Dimension(700, 136));
         PLPublicar.setAlignmentX(Component.LEFT_ALIGNMENT);
                 
         File foto = new File("src\\main\\resources\\Imgs_PFP\\" + Sesion.fotodeperfil); //fdp en el inicio
@@ -225,8 +225,8 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         
         
         int altoNecesario = txtContenido.getPreferredSize().height;
-        txtContenido.setMaximumSize(new Dimension(580, altoNecesario));
-        txtContenido.setPreferredSize(new Dimension(580, altoNecesario));
+        txtContenido.setMaximumSize(new Dimension(700, altoNecesario));
+        txtContenido.setPreferredSize(new Dimension(700, altoNecesario));
         
         panelNombre.add(LBUsuario);
         panelNombre.add(Box.createHorizontalStrut(6));
@@ -274,7 +274,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         e.printStackTrace();
     }
     
-    panel.setMaximumSize(new Dimension(625, panel.getPreferredSize().height));
+    panel.setMaximumSize(new Dimension(700, panel.getPreferredSize().height));
 
     return panel;
 }
@@ -356,7 +356,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addGroup(JPBarraVerticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNomUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbLogo)
                 .addGap(19, 19, 19))
         );
@@ -378,7 +378,10 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         JPBarraHorizontal.setBackground(new java.awt.Color(21, 34, 68));
 
         btnIrPerfil.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnIrPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        btnIrPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/user.png"))); // NOI18N
         btnIrPerfil.setText("Perfil");
+        btnIrPerfil.setContentAreaFilled(false);
         btnIrPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIrPerfil.addActionListener(this::btnIrPerfilActionPerformed);
 
@@ -389,12 +392,18 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         btnCierreSesion.addActionListener(this::btnCierreSesionActionPerformed);
 
         btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/house-chimney (1).png"))); // NOI18N
         btnInicio.setText("Inicio");
+        btnInicio.setContentAreaFilled(false);
         btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicio.addActionListener(this::btnInicioActionPerformed);
 
         btnAmigos.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnAmigos.setForeground(new java.awt.Color(255, 255, 255));
+        btnAmigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/users.png"))); // NOI18N
         btnAmigos.setText("Amigos");
+        btnAmigos.setContentAreaFilled(false);
         btnAmigos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAmigos.addActionListener(this::btnAmigosActionPerformed);
 
@@ -408,24 +417,26 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAmigos)
-                            .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnIrPerfil)
-                                .addComponent(btnInicio)))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(btnAmigos))
+                    .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnIrPerfil))
+                    .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnInicio)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPBarraHorizontalLayout.setVerticalGroup(
             JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addComponent(btnInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnIrPerfil)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAmigos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCierreSesion)
                 .addGap(18, 18, 18))
         );
@@ -439,7 +450,10 @@ public class jfmPanelInicio extends javax.swing.JFrame {
 
         PLPublicar.setBackground(new java.awt.Color(26, 34, 56));
 
+        btnPublicar.setBackground(new java.awt.Color(79, 160, 241));
+        btnPublicar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPublicar.setForeground(new java.awt.Color(255, 255, 255));
+        btnPublicar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/pencil.png"))); // NOI18N
         btnPublicar.setText("Publicar");
         btnPublicar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublicar.addActionListener(this::btnPublicarActionPerformed);
@@ -454,47 +468,57 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         txtPublicar.setTabSize(5);
         jScrollPane2.setViewportView(txtPublicar);
 
+        btnAdjuntar.setBackground(new java.awt.Color(79, 160, 241));
+        btnAdjuntar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAdjuntar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdjuntar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/edit.png"))); // NOI18N
         btnAdjuntar.setText("Adjuntar");
         btnAdjuntar.addActionListener(this::btnAdjuntarActionPerformed);
 
         lblArchivoAdjunto.setForeground(new java.awt.Color(255, 255, 255));
 
+        btnBorrarArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-trash-24.png"))); // NOI18N
+        btnBorrarArchivo.setContentAreaFilled(false);
+        btnBorrarArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBorrarArchivo.addActionListener(this::btnBorrarArchivoActionPerformed);
 
         javax.swing.GroupLayout PLPublicarLayout = new javax.swing.GroupLayout(PLPublicar);
         PLPublicar.setLayout(PLPublicarLayout);
         PLPublicarLayout.setHorizontalGroup(
             PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PLPublicarLayout.createSequentialGroup()
+            .addGroup(PLPublicarLayout.createSequentialGroup()
                 .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PLPublicarLayout.createSequentialGroup()
-                        .addContainerGap(48, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PLPublicarLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(btnBorrarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(lblArchivoAdjunto, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(btnBorrarArchivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblArchivoAdjunto, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAdjuntar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPublicar)))
-                .addGap(23, 23, 23))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPublicar))
+                    .addGroup(PLPublicarLayout.createSequentialGroup()
+                        .addContainerGap(46, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         PLPublicarLayout.setVerticalGroup(
             PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PLPublicarLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnPublicar)
-                        .addComponent(btnAdjuntar)
-                        .addComponent(lblArchivoAdjunto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBorrarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PLPublicarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnPublicar)
+                            .addComponent(btnAdjuntar)))
+                    .addGroup(PLPublicarLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBorrarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblArchivoAdjunto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(23, 23, 23))
         );
 
         PLFeed.add(PLPublicar);
@@ -508,8 +532,9 @@ public class jfmPanelInicio extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(JPBarraVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+            .addComponent(JPBarraVertical, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,9 +542,10 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addComponent(JPBarraVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 18, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
