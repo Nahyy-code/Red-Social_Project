@@ -173,7 +173,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     private JPanel crearTarjetaPost(File archivo) {
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    panel.setBackground(new Color(26, 34, 53));
+    panel.setBackground(new Color(30, 41, 70));
     panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(56, 189, 248, 40)),BorderFactory.createEmptyBorder(10, 12, 10, 12)));
     panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -312,7 +312,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(10, 15, 30));
+        jPanel1.setBackground(new java.awt.Color(15, 23, 42));
 
         JPBarraVertical.setBackground(new java.awt.Color(0, 6, 23));
 
@@ -375,7 +375,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        JPBarraHorizontal.setBackground(new java.awt.Color(21, 34, 68));
+        JPBarraHorizontal.setBackground(new java.awt.Color(17, 30, 58));
 
         btnIrPerfil.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnIrPerfil.setForeground(new java.awt.Color(255, 255, 255));
@@ -448,7 +448,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         PLFeed.setBackground(new java.awt.Color(10, 15, 30));
         PLFeed.setLayout(new javax.swing.BoxLayout(PLFeed, javax.swing.BoxLayout.LINE_AXIS));
 
-        PLPublicar.setBackground(new java.awt.Color(26, 34, 56));
+        PLPublicar.setBackground(new java.awt.Color(30, 41, 70));
 
         btnPublicar.setBackground(new java.awt.Color(79, 160, 241));
         btnPublicar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -460,7 +460,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
 
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        txtPublicar.setBackground(new java.awt.Color(31, 48, 78));
+        txtPublicar.setBackground(new java.awt.Color(38, 55, 90));
         txtPublicar.setColumns(20);
         txtPublicar.setForeground(new java.awt.Color(255, 255, 255));
         txtPublicar.setLineWrap(true);
@@ -643,7 +643,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         BorderFactory.createEmptyBorder(12, 12, 12, 12)
     ));
         panelAd.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panelAd.setMaximumSize(new Dimension(625, 90));
+        panelAd.setMaximumSize(new Dimension(700, 90));
 
         JLabel lblTag = new JLabel("PATROCINADO");
         lblTag.setForeground(new Color(234, 179, 8));

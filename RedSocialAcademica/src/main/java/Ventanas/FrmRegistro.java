@@ -149,7 +149,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, 28));
 
         btnRegistrarUsuario.setBackground(new java.awt.Color(37, 99, 235));
-        btnRegistrarUsuario.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        btnRegistrarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnRegistrarUsuario.setForeground(new java.awt.Color(232, 244, 253));
         btnRegistrarUsuario.setText("Registrarse");
         btnRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

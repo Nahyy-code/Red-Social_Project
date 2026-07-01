@@ -41,7 +41,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="1e" green="f" red="a" type="rgb"/>
+          <Color blue="2a" green="17" red="f" type="rgb"/>
         </Property>
       </Properties>
 
@@ -175,7 +175,7 @@
         <Container class="javax.swing.JPanel" name="JPBarraHorizontal">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="44" green="22" red="15" type="rgb"/>
+              <Color blue="3a" green="1e" red="11" type="rgb"/>
             </Property>
           </Properties>
 
@@ -329,7 +329,7 @@
                 <Container class="javax.swing.JPanel" name="PLPublicar">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="38" green="22" red="1a" type="rgb"/>
+                      <Color blue="46" green="29" red="1e" type="rgb"/>
                     </Property>
                   </Properties>
 
@@ -420,7 +420,7 @@
                         <Component class="javax.swing.JTextArea" name="txtPublicar">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="4e" green="30" red="1f" type="rgb"/>
+                              <Color blue="5a" green="37" red="26" type="rgb"/>
                             </Property>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

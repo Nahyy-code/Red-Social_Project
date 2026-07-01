@@ -69,7 +69,7 @@ public class FrmRecuperar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(10, 15, 30));
 
-        jPanel3.setBackground(new java.awt.Color(10, 15, 30));
+        jPanel3.setBackground(new java.awt.Color(15, 23, 42));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(56, 189, 248));
@@ -90,6 +90,7 @@ public class FrmRecuperar extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-lock-48.png"))); // NOI18N
 
         txtCorreo.setBackground(new java.awt.Color(26, 34, 53));
+        txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
 
         btnMostrarNueva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-eye-24.png"))); // NOI18N
         btnMostrarNueva.setBorder(null);
@@ -103,6 +104,7 @@ public class FrmRecuperar extends javax.swing.JFrame {
         lblNueva.setText("NUEVA CONTRASEÑA");
 
         txtNueva.setBackground(new java.awt.Color(26, 34, 53));
+        txtNueva.setForeground(new java.awt.Color(255, 255, 255));
 
         btnMostrarConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-eye-24.png"))); // NOI18N
         btnMostrarConfirmar.setBorder(null);
@@ -111,6 +113,8 @@ public class FrmRecuperar extends javax.swing.JFrame {
         btnMostrarConfirmar.addActionListener(this::btnMostrarConfirmarActionPerformed);
 
         btnRestablecer.setBackground(new java.awt.Color(37, 99, 235));
+        btnRestablecer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRestablecer.setForeground(new java.awt.Color(255, 255, 255));
         btnRestablecer.setText("Restablecer contraseña");
         btnRestablecer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRestablecer.addActionListener(this::btnRestablecerActionPerformed);
@@ -122,8 +126,10 @@ public class FrmRecuperar extends javax.swing.JFrame {
         btnVolver.addActionListener(this::btnVolverActionPerformed);
 
         txtConfirmar.setBackground(new java.awt.Color(26, 34, 53));
+        txtConfirmar.setForeground(new java.awt.Color(255, 255, 255));
 
         btnContinuar.setBackground(new java.awt.Color(37, 99, 235));
+        btnContinuar.setForeground(new java.awt.Color(255, 255, 255));
         btnContinuar.setText("Continuar");
         btnContinuar.setBorderPainted(false);
         btnContinuar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -172,13 +178,13 @@ public class FrmRecuperar extends javax.swing.JFrame {
                                                 .addGap(6, 6, 6)
                                                 .addComponent(btnVolver))
                                             .addComponent(btnRestablecer))
-                                        .addGap(80, 80, 80))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnContinuar)
-                                .addGap(113, 113, 113))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(135, 135, 135)))
+                                        .addGap(80, 80, 80))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(btnContinuar)
+                                        .addGap(113, 113, 113))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(135, 135, 135)))))
                         .addGap(64, 64, 64))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(230, 230, 230))

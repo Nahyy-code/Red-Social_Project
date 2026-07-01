@@ -257,7 +257,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="884" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -268,13 +268,17 @@
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <Properties>
+            <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+            <Property name="verticalScrollBarPolicy" type="int" value="21"/>
+          </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Container class="javax.swing.JPanel" name="pnlContenido">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1e" green="f" red="a" type="rgb"/>
+                  <Color blue="2a" green="17" red="f" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -318,7 +322,7 @@
                               <Component id="pnlTrayectoria" max="32767" attributes="0"/>
                               <Component id="pnlHabilidades" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="82" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -327,7 +331,7 @@
                 <Container class="javax.swing.JPanel" name="pnlCabezera">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="35" green="22" red="1a" type="rgb"/>
+                      <Color blue="46" green="29" red="1e" type="rgb"/>
                     </Property>
                   </Properties>
 
@@ -484,7 +488,7 @@
                 <Container class="javax.swing.JPanel" name="pnlDatos">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="35" green="22" red="1a" type="rgb"/>
+                      <Color blue="46" green="29" red="1e" type="rgb"/>
                     </Property>
                   </Properties>
 
@@ -549,7 +553,7 @@
                 <Container class="javax.swing.JPanel" name="pnlTrayectoria">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="35" green="22" red="1a" type="rgb"/>
+                      <Color blue="46" green="29" red="1e" type="rgb"/>
                     </Property>
                   </Properties>
 
@@ -614,7 +618,7 @@
                 <Container class="javax.swing.JPanel" name="pnlSobremi">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="35" green="22" red="1a" type="rgb"/>
+                      <Color blue="46" green="29" red="1e" type="rgb"/>
                     </Property>
                   </Properties>
 
@@ -630,7 +634,7 @@
                                   </Group>
                                   <Component id="lbSobreMi" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="46" max="32767" attributes="0"/>
+                              <EmptySpace pref="61" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -671,7 +675,7 @@
                 <Container class="javax.swing.JPanel" name="pnlHabilidades">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="35" green="22" red="1a" type="rgb"/>
+                      <Color blue="46" green="29" red="1e" type="rgb"/>
                     </Property>
                   </Properties>
 
@@ -725,7 +729,7 @@
                 <Container class="javax.swing.JPanel" name="pnlVertical">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="44" green="22" red="15" type="rgb"/>
+                      <Color blue="3a" green="1e" red="11" type="rgb"/>
                     </Property>
                   </Properties>
 
@@ -740,7 +744,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -749,9 +753,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace pref="467" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -759,6 +763,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="btnVolver">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="eb" green="63" red="25" type="rgb"/>
+                        </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>

@@ -267,9 +267,12 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
 
         pnlPrincipal.setBackground(new java.awt.Color(10, 15, 30));
 
-        pnlContenido.setBackground(new java.awt.Color(10, 15, 30));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        pnlCabezera.setBackground(new java.awt.Color(26, 34, 53));
+        pnlContenido.setBackground(new java.awt.Color(15, 23, 42));
+
+        pnlCabezera.setBackground(new java.awt.Color(30, 41, 70));
 
         lbAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/iconUser48.png"))); // NOI18N
 
@@ -350,7 +353,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        pnlDatos.setBackground(new java.awt.Color(26, 34, 53));
+        pnlDatos.setBackground(new java.awt.Color(30, 41, 70));
 
         lbNDatos.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lbNDatos.setForeground(new java.awt.Color(56, 189, 248));
@@ -386,7 +389,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        pnlTrayectoria.setBackground(new java.awt.Color(26, 34, 53));
+        pnlTrayectoria.setBackground(new java.awt.Color(30, 41, 70));
 
         lbNTrayerctoria.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lbNTrayerctoria.setForeground(new java.awt.Color(56, 189, 248));
@@ -422,7 +425,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        pnlSobremi.setBackground(new java.awt.Color(26, 34, 53));
+        pnlSobremi.setBackground(new java.awt.Color(30, 41, 70));
 
         lbNSobreMi.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lbNSobreMi.setForeground(new java.awt.Color(56, 189, 248));
@@ -442,7 +445,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                         .addComponent(lbNSobreMi, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101))
                     .addComponent(lbSobreMi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         pnlSobremiLayout.setVerticalGroup(
             pnlSobremiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +457,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        pnlHabilidades.setBackground(new java.awt.Color(26, 34, 53));
+        pnlHabilidades.setBackground(new java.awt.Color(30, 41, 70));
 
         lbNHabilidades.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lbNHabilidades.setForeground(new java.awt.Color(56, 189, 248));
@@ -484,8 +487,9 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlVertical.setBackground(new java.awt.Color(21, 34, 68));
+        pnlVertical.setBackground(new java.awt.Color(17, 30, 58));
 
+        btnVolver.setBackground(new java.awt.Color(37, 99, 235));
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -504,16 +508,16 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVerticalLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVolver)
-                .addGap(22, 22, 22))
+                .addGap(23, 23, 23))
         );
         pnlVerticalLayout.setVerticalGroup(
             pnlVerticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVerticalLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 467, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVolver)
-                .addGap(19, 19, 19))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout pnlContenidoLayout = new javax.swing.GroupLayout(pnlContenido);
@@ -549,7 +553,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 .addGroup(pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlTrayectoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlHabilidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(pnlContenido);
@@ -558,7 +562,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         pnlPrincipal.setLayout(pnlPrincipalLayout);
         pnlPrincipalLayout.setHorizontalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
         );
         pnlPrincipalLayout.setVerticalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

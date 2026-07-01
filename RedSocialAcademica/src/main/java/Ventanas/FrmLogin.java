@@ -53,7 +53,7 @@ public class FrmLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel2.setBackground(new java.awt.Color(10, 15, 30));
+        jPanel2.setBackground(new java.awt.Color(15, 23, 42));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(56, 189, 248));
@@ -69,7 +69,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel4.setText("CONTRASEÑA");
 
         btnIniciarSesion.setBackground(new java.awt.Color(37, 99, 235));
-        btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnIniciarSesion.setForeground(new java.awt.Color(232, 244, 253));
         btnIniciarSesion.setText("Iniciar Sesión");
         btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
