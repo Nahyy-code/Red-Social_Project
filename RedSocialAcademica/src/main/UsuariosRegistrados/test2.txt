@@ -1,0 +1,16 @@
+DATOS DEL USUARIO 
+Usuario: @test2
+Nombre: H
+Apellido: l
+Correo: test2@gmail.com
+Contraseña: 2222
+Genero: Hombre
+Tipo de Usuario: Estudiante
+Foto: profileDefault.png
+Edad: 
+Sobre mi: 
+Universidad: 
+Facultad: 
+Carrera: 
+Habilidades: 
+Colegio: 

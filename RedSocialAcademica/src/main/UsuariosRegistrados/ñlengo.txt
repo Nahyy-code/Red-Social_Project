@@ -7,3 +7,4 @@ Contraseña: lakripi1234
 Genero: Mujer
 Tipo de Usuario: Docente
 Foto: default_user.png
+Amigos: DSphinx

@@ -38,6 +38,23 @@ public class jfmPanelInicio extends javax.swing.JFrame {
      */
     public jfmPanelInicio() {
         initComponents();
+        
+        //maximo caracteres publicacion
+        ((javax.swing.text.AbstractDocument) txtPublicar.getDocument()) .setDocumentFilter(new javax.swing.text.DocumentFilter() {
+        
+        public void insertString(FilterBypass fb, int off, String str, javax.swing.text.AttributeSet a)
+                throws javax.swing.text.BadLocationException {
+            if ((fb.getDocument().getLength() + str.length()) <= 350)
+                super.insertString(fb, off, str, a);
+        }
+        
+        public void replace(FilterBypass fb, int off, int len, String str, javax.swing.text.AttributeSet a)
+                throws javax.swing.text.BadLocationException {
+            if ((fb.getDocument().getLength() - len + str.length()) <= 350)
+                super.replace(fb, off, len, str, a);
+        }
+    });
+        
         setLocationRelativeTo(null);
         
         PLFeed.setLayout(new BoxLayout(PLFeed, BoxLayout.Y_AXIS)); //Dimensiones de Feed
@@ -58,7 +75,8 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> {
         jScrollPane1.getVerticalScrollBar().setValue(0);
         });
-
+        
+        
     }
 
     
@@ -108,9 +126,14 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     File archivo = new File(carpeta, nombreArchivo);
 
     try {
+        java.time.LocalDateTime ahora = java.time.LocalDateTime.now();
+        String fecha = ahora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        
         FileWriter writer = new FileWriter(archivo);
         writer.write(Sesion.nombreCompleto + "\n"); // línea 1: nombre
-        writer.write(contenido + "\n");             // línea 2: contenido
+        writer.write(fecha + "\n");                 // linea 2: fecha
+        writer.write(contenido + "\n");             // línea 3: contenido
+        writer.write(Sesion.tipoUsuario + "\n");    // linea 4: Tipo de user
         writer.close();
 
         txtPublicar.setText(""); // limpia el campo
@@ -132,13 +155,32 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     try {
         BufferedReader reader = new BufferedReader(new FileReader(archivo));
         String usuario = reader.readLine();
+        String fecha     = reader.readLine();
         String contenido = reader.readLine();
+        String tipo      = reader.readLine();
         reader.close();
+
+        //Panel de publicacion
+        JPanel panelNombre = new JPanel();
+        panelNombre.setLayout(new BoxLayout(panelNombre, BoxLayout.X_AXIS));
+        panelNombre.setOpaque(false);
+        panelNombre.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         JLabel LBUsuario = new JLabel(usuario);
         LBUsuario.setForeground(new Color(232, 244, 253));
         LBUsuario.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
+        JLabel LBFecha = new JLabel(fecha != null ? fecha : "");
+        LBFecha.setForeground(new Color(56, 189, 248));
+        LBFecha.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+        LBFecha.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        JLabel LBTipo = new JLabel(" " + (tipo != null ? tipo : "") + " ");
+        LBTipo.setForeground(new Color(56, 189, 248));
+        LBTipo.setBackground(new Color(56, 189, 248, 30));
+        LBTipo.setFont(new Font("Segoe UI", Font.BOLD, 9));
+        LBTipo.setOpaque(true);
+        
         JTextArea txtContenido = new JTextArea(contenido);
         txtContenido.setEditable(false);
         txtContenido.setLineWrap(true);
@@ -157,8 +199,13 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         int altoNecesario = txtContenido.getPreferredSize().height;
         txtContenido.setMaximumSize(new Dimension(580, altoNecesario));
         txtContenido.setPreferredSize(new Dimension(580, altoNecesario));
+        
+        panelNombre.add(LBUsuario);
+        panelNombre.add(Box.createHorizontalStrut(6));
+        panelNombre.add(LBTipo);
 
-        panel.add(LBUsuario);
+        panel.add(panelNombre);
+        panel.add(LBFecha); 
         panel.add(Box.createVerticalStrut(4));
         panel.add(txtContenido);
 
@@ -189,7 +236,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         btnIrPerfil = new javax.swing.JButton();
         btnCierreSesion = new javax.swing.JButton();
         btnInicio = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnAmigos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PLFeed = new javax.swing.JPanel();
         PLPublicar = new javax.swing.JPanel();
@@ -280,10 +327,10 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicio.addActionListener(this::btnInicioActionPerformed);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jButton1.setText("Amigos");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnAmigos.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnAmigos.setText("Amigos");
+        btnAmigos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAmigos.addActionListener(this::btnAmigosActionPerformed);
 
         javax.swing.GroupLayout JPBarraHorizontalLayout = new javax.swing.GroupLayout(JPBarraHorizontal);
         JPBarraHorizontal.setLayout(JPBarraHorizontalLayout);
@@ -297,7 +344,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                     .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addComponent(btnAmigos)
                             .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btnIrPerfil)
                                 .addComponent(btnInicio)))))
@@ -311,7 +358,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnIrPerfil)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnAmigos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                 .addComponent(btnCierreSesion)
                 .addGap(18, 18, 18))
@@ -434,12 +481,15 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
         // Publica y carga feed
         guardarPublicacion();
+        SwingUtilities.invokeLater(() -> {
+        jScrollPane1.getVerticalScrollBar().setValue(0);
+        });
     }//GEN-LAST:event_btnPublicarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAmigosActionPerformed
         new FrmBuscarAmigos().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAmigosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -471,11 +521,11 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     private javax.swing.JPanel JPBarraVertical;
     private javax.swing.JPanel PLFeed;
     private javax.swing.JPanel PLPublicar;
+    private javax.swing.JButton btnAmigos;
     private javax.swing.JButton btnCierreSesion;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnIrPerfil;
     private javax.swing.JButton btnPublicar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

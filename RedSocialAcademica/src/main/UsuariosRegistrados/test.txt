@@ -13,3 +13,4 @@ Facultad:
 Carrera: 
 Habilidades: 
 Colegio: 
+Amigos: DSphinx

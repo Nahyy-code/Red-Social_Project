@@ -13,3 +13,4 @@ Facultad:
 Carrera: Software
 Habilidades: listo
 Colegio: UEC
+Amigos: dsphinx

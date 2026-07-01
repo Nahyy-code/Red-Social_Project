@@ -59,6 +59,7 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
         pnlSuperior.setBackground(new java.awt.Color(0, 6, 23));
 
         txtBuscar.setBackground(new java.awt.Color(26, 34, 53));
+        txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
 
         btnBuscar.setBackground(new java.awt.Color(0, 6, 23));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/search.png"))); // NOI18N
@@ -76,6 +77,7 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
 
         btnVolver.setBackground(new java.awt.Color(37, 99, 235));
         btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVolver.addActionListener(this::btnVolverActionPerformed);

@@ -14,5 +14,5 @@ Facultad: FCMF
 Carrera: Software
 Habilidades: Listo
 Colegio: UEC
-Amigos: DPlaasd
-Edad: 15
+Amigos: DPlaasd, test, ñlengo, usuarioprueba
+Edad: 0
