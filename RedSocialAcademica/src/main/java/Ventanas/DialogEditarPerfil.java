@@ -101,6 +101,9 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                     txtColegio.setText(linea.replace("Colegio: ", "").trim());
                 if (linea.startsWith("Edad: "))
                     txtEdad.setText(linea.replace("Edad: ", "").trim());
+                if (linea.startsWith("Rol: ")) {
+                    txtRol.setText(linea.replace("Rol: ", "").trim());
+                }
             }
             reader.close();
         } catch (IOException e) {
@@ -128,6 +131,8 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        LbLNombre8 = new javax.swing.JLabel();
+        txtHabilidades1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lblError = new javax.swing.JLabel();
         LBLUNIVERSIDAD = new javax.swing.JLabel();
@@ -150,6 +155,14 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSobreMi = new javax.swing.JTextArea();
         btnPremiun = new javax.swing.JButton();
+        txtRol = new javax.swing.JLabel();
+
+        LbLNombre8.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        LbLNombre8.setForeground(new java.awt.Color(56, 189, 248));
+        LbLNombre8.setText("Habilidades");
+
+        txtHabilidades1.setBackground(new java.awt.Color(26, 34, 53));
+        txtHabilidades1.setForeground(new java.awt.Color(255, 255, 255));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -246,6 +259,10 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
         btnPremiun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPremiun.addActionListener(this::btnPremiunActionPerformed);
 
+        txtRol.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        txtRol.setForeground(new java.awt.Color(56, 189, 248));
+        txtRol.setText("Rol Actual");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -267,13 +284,14 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(LBLUNIVERSIDAD)
-                            .addComponent(txtUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUniversidad, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(LBLCARRERA)
-                            .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(LbLNombre6)
-                            .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtHabilidades, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(txtRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LbLApellido1)
@@ -302,22 +320,25 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(lbFotoPreview)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEditarFoto)
-                            .addComponent(btnQuitarFoto)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(LbLApellido1)
-                        .addGap(2, 2, 2)
-                        .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(LbLNombre5)
-                        .addGap(90, 90, 90)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(lbFotoPreview)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnEditarFoto)
+                                    .addComponent(btnQuitarFoto)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(LbLApellido1)
+                                .addGap(2, 2, 2)
+                                .addComponent(txtColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(LbLNombre5)
+                                .addGap(90, 90, 90)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(LBLUNIVERSIDAD)
                         .addGap(2, 2, 2)
@@ -333,10 +354,12 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                             .addComponent(LbLNombre6)
                             .addComponent(LbLNombre7))
                         .addGap(2, 2, 2)
-                        .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
+                        .addComponent(txtHabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtRol, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)))
                 .addComponent(lblError)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnPremiun, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -368,15 +391,15 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
             /* Leer todas las líneas del txt */           
             StringBuilder contenido = new StringBuilder();
             String linea;
-            boolean tieneLineaRol = false;
+            String rolActual = txtRol.getText().trim();
+            
             contenido.append("DATOS DEL USUARIO \n");
-            while((linea = reader.readLine()) != null) {
+       
+            while ((linea = reader.readLine()) != null) {
+                
                 if(linea.contains("DATOS DEL USUARIO")) {
                     continue;
                 }
-            }
-
-            while ((linea = reader.readLine()) != null) {
                 if (linea.startsWith("Sobre mi: "))
                     linea = "Sobre mi: " + txtSobreMi.getText().trim();
                 else if (linea.startsWith("Universidad: "))
@@ -391,10 +414,13 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                     linea = "Foto: " + nombreFotoFinal;
                 else if (linea.startsWith("Edad: "))
                     linea = "Edad: " +txtEdad.getText().trim();
-
+                
                 contenido.append(linea).append("\n");
             }   
             reader.close();
+            
+            /* Estampamos el rol de forma segura */
+            contenido.append("Rol: ").append(rolActual).append("\n");
             
             /* Reescribir el archivo con los cambios */
             try (FileWriter writer = new FileWriter(archivo)) {
@@ -515,6 +541,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
             try(BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
                 StringBuilder contenido = new StringBuilder();
                 String linea;
+                boolean tieneLineaRol = false;
                 
                 /* Leemos todo el archivo línea por línea */
                 while((linea = reader.readLine()) != null) {
@@ -522,16 +549,23 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
                     /* Si encuentras la línea que define el rol, se cambia aquí */
                     if(linea.startsWith("Rol: Gratuito")) {
                         linea = "Rol: Premium";
+                        tieneLineaRol = true;
                     }
                     contenido.append(linea).append("\n");
                 }
                 reader.close();
+                
+                /* Si por alguna razón el .txt original no tenía la linea Rol, la añade */
+                if(!tieneLineaRol) {
+                    contenido.append("Rol: Premium\n");
+                }
                 
                 /* Reescribimos el archivo con la actualización */
                 try (FileWriter writer = new FileWriter(archivo)) {
                     writer.write(contenido.toString());
                 }
                 
+                /* Actualizamos la sesión */
                 Sesion.rolSuscripción = "Premium";
                 
                 JOptionPane.showMessageDialog(this, "¡Pago con éxito!\nAhora tu rol es Premium y no verás publicidad.");
@@ -588,6 +622,7 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private javax.swing.JLabel LbLNombre5;
     private javax.swing.JLabel LbLNombre6;
     private javax.swing.JLabel LbLNombre7;
+    private javax.swing.JLabel LbLNombre8;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditarFoto;
     private javax.swing.JButton btnGuardar;
@@ -602,6 +637,8 @@ public class DialogEditarPerfil extends javax.swing.JDialog {
     private javax.swing.JTextField txtColegio;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtHabilidades;
+    private javax.swing.JTextField txtHabilidades1;
+    private javax.swing.JLabel txtRol;
     private javax.swing.JTextArea txtSobreMi;
     private javax.swing.JTextField txtUniversidad;
     // End of variables declaration//GEN-END:variables

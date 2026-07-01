@@ -42,12 +42,14 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         //maximo caracteres publicacion
         ((javax.swing.text.AbstractDocument) txtPublicar.getDocument()) .setDocumentFilter(new javax.swing.text.DocumentFilter() {
         
+        @Override
         public void insertString(FilterBypass fb, int off, String str, javax.swing.text.AttributeSet a)
                 throws javax.swing.text.BadLocationException {
             if ((fb.getDocument().getLength() + str.length()) <= 350)
                 super.insertString(fb, off, str, a);
         }
         
+        @Override
         public void replace(FilterBypass fb, int off, int len, String str, javax.swing.text.AttributeSet a)
                 throws javax.swing.text.BadLocationException {
             if ((fb.getDocument().getLength() - len + str.length()) <= 350)
@@ -74,11 +76,8 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         cargarFeed();
         SwingUtilities.invokeLater(() -> {
         jScrollPane1.getVerticalScrollBar().setValue(0);
-        });
-        
-        
+        });        
     }
-
     
     private void cargarFeed() {
     PLFeed.removeAll(); // limpia antes de recargar
@@ -99,11 +98,20 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     if (archivos != null) {
         // ordenar del más reciente al más viejo
         Arrays.sort(archivos, (a, b) -> Long.compare(b.lastModified(), a.lastModified()));
-
+        
+        int contadorPosts = 0;
+        
         for (File f : archivos) {
             JPanel tarjeta = crearTarjetaPost(f);
             PLFeed.add(tarjeta);
             PLFeed.add(Box.createVerticalStrut(10)); // espacio entre tarjetas
+        
+            contadorPosts++;
+            
+            if(!Sesion.rolSuscripción.equalsIgnoreCase("Premium") && contadorPosts == 1) {
+                PLFeed.add(crearTarjetaDePublicidad());
+                PLFeed.add(Box.createVerticalStrut(10));
+            }
         }
     }
 
@@ -129,12 +137,12 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         java.time.LocalDateTime ahora = java.time.LocalDateTime.now();
         String fecha = ahora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
         
-        FileWriter writer = new FileWriter(archivo);
-        writer.write(Sesion.nombreCompleto + "\n"); // línea 1: nombre
-        writer.write(fecha + "\n");                 // linea 2: fecha
-        writer.write(contenido + "\n");             // línea 3: contenido
-        writer.write(Sesion.tipoUsuario + "\n");    // linea 4: Tipo de user
-        writer.close();
+        try (FileWriter writer = new FileWriter(archivo)) {
+            writer.write(Sesion.nombreCompleto + "\n"); // línea 1: nombre
+            writer.write(fecha + "\n");                 // linea 2: fecha
+            writer.write(contenido + "\n");             // línea 3: contenido
+            writer.write(Sesion.tipoUsuario + "\n");    // linea 4: Tipo de user
+        } // línea 1: nombre
 
         txtPublicar.setText(""); // limpia el campo
         cargarFeed();            // recarga el feed para mostrar la nueva publicación
@@ -152,8 +160,8 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(56, 189, 248, 40)),BorderFactory.createEmptyBorder(10, 12, 10, 12)));
     panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-    try {
-        BufferedReader reader = new BufferedReader(new FileReader(archivo));
+    try(BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+        
         String usuario = reader.readLine();
         String fecha     = reader.readLine();
         String contenido = reader.readLine();
@@ -492,7 +500,34 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         new FrmBuscarAmigos().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAmigosActionPerformed
+    
+    private JPanel crearTarjetaDePublicidad(){
+        JPanel panelAd = new JPanel();
+        panelAd.setLayout(new BoxLayout(panelAd, BoxLayout.Y_AXIS));
+        panelAd.setBackground(new Color(31, 41, 55)); /* Un color un poco diferente para resaltar */
+        panelAd.setBorder(BorderFactory.createCompoundBorder(
+        BorderFactory.createLineBorder(new Color(234, 179, 8, 80), 2), /* Borde dorado de "Anuncio" */
+        BorderFactory.createEmptyBorder(12, 12, 12, 12)
+    ));
+        panelAd.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panelAd.setMaximumSize(new Dimension(625, 90));
 
+        JLabel lblTag = new JLabel("PATROCINADO");
+        lblTag.setForeground(new Color(234, 179, 8));
+        lblTag.setFont(new Font("Segoe UI", Font.BOLD, 10));
+
+        JLabel lblContenido = new JLabel("¡Pásate a Premium hoy! Navega sin anuncios y obtén una medalla exclusiva por solo $2.99.");
+        lblContenido.setForeground(new Color(209, 213, 219));
+        lblContenido.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+        
+        panelAd.add(lblTag);
+        panelAd.add(Box.createVerticalStrut(6));
+        panelAd.add(lblContenido);
+        
+        return panelAd;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

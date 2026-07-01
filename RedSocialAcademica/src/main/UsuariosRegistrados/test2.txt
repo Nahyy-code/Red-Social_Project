@@ -13,4 +13,5 @@ Universidad:
 Facultad: 
 Carrera: 
 Habilidades: 
-Colegio: 
+Colegio:
+Rol: Gratuito

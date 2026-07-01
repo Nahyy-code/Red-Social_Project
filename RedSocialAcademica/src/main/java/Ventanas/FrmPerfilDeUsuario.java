@@ -69,8 +69,12 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                 lbFNacimiento.setText("Edad: " + linea.replace("Edad: ", "").trim());
             if(linea.startsWith("Universidad: "))
                 lbUniversidad.setText("Universidad: " + linea.replace("Universidad: ", "").trim());
+            if(linea.startsWith("Rol: ")) {
+                String rol = linea.replace("Rol: ", "").trim();
+                lbRol.setText(rol);
+            }
         }
-
+        
         lbNombre.setText(nombre + " " + apellido);
         reader.close();
 
@@ -120,6 +124,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         lbCarrera = new javax.swing.JLabel();
         lbTipo = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
+        lbRol = new javax.swing.JLabel();
         pnlDatos = new javax.swing.JPanel();
         lbNDatos = new javax.swing.JLabel();
         lbGenero = new javax.swing.JLabel();
@@ -290,6 +295,10 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.addActionListener(this::btnEditarActionPerformed);
 
+        lbRol.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        lbRol.setForeground(new java.awt.Color(21, 137, 242));
+        lbRol.setText("Rol");
+
         javax.swing.GroupLayout pnlCabezeraLayout = new javax.swing.GroupLayout(pnlCabezera);
         pnlCabezera.setLayout(pnlCabezeraLayout);
         pnlCabezeraLayout.setHorizontalGroup(
@@ -303,11 +312,14 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(lbAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addGroup(pnlCabezeraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlCabezeraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlCabezeraLayout.createSequentialGroup()
+                                .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnlCabezeraLayout.createSequentialGroup()
                                 .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEditar)))
@@ -325,8 +337,13 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
                                 .addGroup(pnlCabezeraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lbNombre)
                                     .addComponent(lbTipo))
-                                .addGap(18, 18, 18)
-                                .addComponent(lbUsuario))
+                                .addGroup(pnlCabezeraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlCabezeraLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lbUsuario))
+                                    .addGroup(pnlCabezeraLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lbRol))))
                             .addComponent(btnEditar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbCarrera)))
@@ -630,6 +647,7 @@ public class FrmPerfilDeUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lbNSobreMi;
     private javax.swing.JLabel lbNTrayerctoria;
     private javax.swing.JLabel lbNombre;
+    private javax.swing.JLabel lbRol;
     private javax.swing.JLabel lbSobreMi;
     private javax.swing.JLabel lbTipo;
     private javax.swing.JLabel lbUniversidad;

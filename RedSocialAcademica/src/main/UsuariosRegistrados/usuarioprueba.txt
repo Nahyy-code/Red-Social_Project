@@ -8,9 +8,9 @@ Genero: Otro
 Tipo de Usuario: Estudiante
 Foto: usuarioprueba.jpg
 Sobre mi: hola
-Universidad: UG
-Facultad: 
+Universidad: UG 
 Carrera: Software
 Habilidades: listo
 Colegio: UEC
 Amigos: dsphinx
+Rol: Gratuito

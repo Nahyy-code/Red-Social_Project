@@ -12,9 +12,9 @@ AA
 Prueba edición xd
 que tal
 Universidad: Universidad de Guayaquil
-Facultad: FCMF
 Carrera: Software
 Habilidades: Listo mimi
 Colegio: UEC
 Amigos: DPlaasd, test, ñlengo, usuarioprueba
 Edad: 3
+Rol: Premium

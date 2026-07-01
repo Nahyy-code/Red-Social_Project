@@ -4,6 +4,15 @@ Nombre: pablo
 Apellido: gonza
 Correo: palfoad@gmailc.om
 Contraseña: miumiu
+Genero: Hombre
 Tipo de Usuario: Estudiante
 Foto: profileDefault.png
+Sobre mi: 
+Universidad: 
+Carrera: 
+Habilidades: 
+Colegio: 
+Edad: 
 Amigos: DSphinx
+Rol: Gratuito
+
