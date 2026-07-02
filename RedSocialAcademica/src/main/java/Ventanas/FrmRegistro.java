@@ -73,7 +73,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel2.setBackground(new java.awt.Color(10, 15, 30));
+        jPanel2.setBackground(new java.awt.Color(15, 23, 42));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N

@@ -7,11 +7,12 @@ Contraseña: 1111
 Genero: Hombre
 Tipo de Usuario: Estudiante
 Foto: test.png
-Sobre mi: 
-Universidad: 
+Sobre mi: Hola
+Universidad: Universidad de Guayaquil
 Facultad: 
-Carrera: 
-Habilidades: 
-Colegio: 
+Carrera: TICS
+Habilidades: Listo
+Colegio: UEC
 Amigos: DSphinx
 rol: Gratuito
+Rol: Rol Actual
