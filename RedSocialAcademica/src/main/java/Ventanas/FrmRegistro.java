@@ -67,17 +67,19 @@ public class FrmRegistro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnMostrarC = new javax.swing.JToggleButton();
         lbLogoAcademix = new javax.swing.JLabel();
+        chkPolitica = new javax.swing.JCheckBox();
+        btnPoliticas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel2.setBackground(new java.awt.Color(10, 15, 30));
+        jPanel2.setBackground(new java.awt.Color(15, 23, 42));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(56, 189, 248));
         jLabel7.setText("Apellido");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, 25));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 25));
 
         cbGenero.setBackground(new java.awt.Color(26, 34, 53));
         cbGenero.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -86,87 +88,87 @@ public class FrmRegistro extends javax.swing.JFrame {
         cbGenero.setBorder(null);
         cbGenero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cbGenero.addActionListener(this::cbGeneroActionPerformed);
-        jPanel2.add(cbGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 210, 30));
+        jPanel2.add(cbGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 210, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(56, 189, 248));
         jLabel2.setText("Usuario");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, 25));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, 25));
 
         txtUsuario.setBackground(new java.awt.Color(26, 34, 53));
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(232, 244, 253));
         txtUsuario.setBorder(null);
         txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
-        jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 30));
+        jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 210, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(56, 189, 248));
         jLabel6.setText("Nombre");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 25));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, 25));
 
         txtNombre.setBackground(new java.awt.Color(26, 34, 53));
         txtNombre.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(232, 244, 253));
         txtNombre.setBorder(null);
-        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 104, 30));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 104, 30));
 
         txtApellido.setBackground(new java.awt.Color(26, 34, 53));
         txtApellido.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         txtApellido.setForeground(new java.awt.Color(232, 244, 253));
         txtApellido.setBorder(null);
         txtApellido.setPreferredSize(new java.awt.Dimension(90, 22));
-        jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 98, 30));
+        jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 98, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(56, 189, 248));
         jLabel3.setText("Correo Electronico");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, 25));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, 25));
 
         txtCorreo.setBackground(new java.awt.Color(26, 34, 53));
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         txtCorreo.setForeground(new java.awt.Color(232, 244, 253));
         txtCorreo.setBorder(null);
-        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 210, 30));
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 210, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(56, 189, 248));
         jLabel4.setText("Contraseña");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, 25));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, 25));
 
         txtContraseña.setBackground(new java.awt.Color(26, 34, 53));
         txtContraseña.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         txtContraseña.setForeground(new java.awt.Color(232, 244, 253));
         txtContraseña.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtContraseña.setBorder(null);
-        jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 210, 30));
+        jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 210, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(56, 189, 248));
         jLabel5.setText("TIPO DE USUARIO");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 348, -1, 28));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, 28));
 
         btnRegistrarUsuario.setBackground(new java.awt.Color(37, 99, 235));
-        btnRegistrarUsuario.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        btnRegistrarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnRegistrarUsuario.setForeground(new java.awt.Color(232, 244, 253));
         btnRegistrarUsuario.setText("Registrarse");
         btnRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarUsuario.addActionListener(this::btnRegistrarUsuarioActionPerformed);
-        jPanel2.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 206, 37));
+        jPanel2.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 206, 37));
 
         jLabel8.setForeground(new java.awt.Color(107, 138, 170));
         jLabel8.setText("¿Tienes una cuenta?");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, -1, -1));
 
         btnIrIniciodeSesion.setForeground(new java.awt.Color(56, 189, 248));
         btnIrIniciodeSesion.setText("Inicia Sesión");
         btnIrIniciodeSesion.setContentAreaFilled(false);
         btnIrIniciodeSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIrIniciodeSesion.addActionListener(this::btnIrIniciodeSesionActionPerformed);
-        jPanel2.add(btnIrIniciodeSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, -1, 16));
+        jPanel2.add(btnIrIniciodeSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, 16));
 
         lbFotodeRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_PFP/profileDefault.png"))); // NOI18N
-        jPanel2.add(lbFotodeRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 100, 100));
+        jPanel2.add(lbFotodeRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, 100, 100));
 
         btnSubirFoto.setBackground(new java.awt.Color(26, 34, 53));
         btnSubirFoto.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -176,13 +178,13 @@ public class FrmRegistro extends javax.swing.JFrame {
         btnSubirFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnSubirFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSubirFoto.addActionListener(this::btnSubirFotoActionPerformed);
-        jPanel2.add(btnSubirFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 290, 119, 38));
+        jPanel2.add(btnSubirFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 130, 38));
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-trash-24.png"))); // NOI18N
         btnEliminar.setContentAreaFilled(false);
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(this::btnEliminarActionPerformed);
-        jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, 30, 38));
+        jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 310, 30, 38));
 
         gTipodeUsuario.add(rdEstudiante);
         rdEstudiante.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -190,7 +192,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         rdEstudiante.setText("Estudiante");
         rdEstudiante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rdEstudiante.addActionListener(this::rdEstudianteActionPerformed);
-        jPanel2.add(rdEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 382, 100, -1));
+        jPanel2.add(rdEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 100, -1));
 
         gTipodeUsuario.add(rdDocente);
         rdDocente.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -198,31 +200,46 @@ public class FrmRegistro extends javax.swing.JFrame {
         rdDocente.setText("Docente");
         rdDocente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rdDocente.addActionListener(this::rdDocenteActionPerformed);
-        jPanel2.add(rdDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 382, 100, -1));
+        jPanel2.add(rdDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 100, -1));
 
         jLabel1.setForeground(new java.awt.Color(107, 138, 170));
         jLabel1.setText("Crear Cuenta");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 77, 28));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 77, 28));
 
         btnMostrarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-eye-24.png"))); // NOI18N
         btnMostrarC.setBorder(null);
         btnMostrarC.setContentAreaFilled(false);
         btnMostrarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMostrarC.addActionListener(this::btnMostrarCActionPerformed);
-        jPanel2.add(btnMostrarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 277, -1, -1));
+        jPanel2.add(btnMostrarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
 
         lbLogoAcademix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/LogoApp.png"))); // NOI18N
-        jPanel2.add(lbLogoAcademix, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 200, 40));
+        jPanel2.add(lbLogoAcademix, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 200, 40));
+
+        chkPolitica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.add(chkPolitica, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 20, 30));
+
+        btnPoliticas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPoliticas.setForeground(new java.awt.Color(255, 255, 255));
+        btnPoliticas.setText("Acepto la Política de Privacidad y el tratamiento de mis datos personales.");
+        btnPoliticas.setContentAreaFilled(false);
+        btnPoliticas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPoliticas.addActionListener(this::btnPoliticasActionPerformed);
+        jPanel2.add(btnPoliticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, -1, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,6 +303,23 @@ public class FrmRegistro extends javax.swing.JFrame {
         }        
     }
     
+    private void mostrarPoliticaPrivacidad() {
+    JOptionPane.showMessageDialog(this,
+        "<html><body style='width:350px; font-family:Segoe UI; font-size:11px;'>" +
+        "<b>Tratamiento de datos personales</b><br><br>" +
+        "Para utilizar esta plataforma necesitamos almacenar y procesar " +
+        "la información que proporciones durante el registro, como tu nombre, " +
+        "correo electrónico, fotografía de perfil y publicaciones.<br><br>" +
+        "Esta información será utilizada únicamente para administrar tu cuenta " +
+        "y permitir la interacción con otros usuarios. No compartiremos tus datos " +
+        "con terceros sin tu consentimiento.<br><br>" +
+        "Al continuar, aceptas nuestra Política de Privacidad." +
+        "</body></html>",
+        "Política de Privacidad - ACADEMIX",
+        JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    
     private void guardarFoto(String nombreUsuario){
         if (rutaFotoSeleccionada == null || rutaFotoSeleccionada.isEmpty()) return;
         
@@ -319,7 +353,12 @@ public class FrmRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Complete los datos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        
+        if (!chkPolitica.isSelected()) {
+        JOptionPane.showMessageDialog(null, "Debes aceptar la Política de Privacidad para continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        return;
+        }
+        
         CrearUsuario();
         
         FrmLogin L = new FrmLogin();
@@ -428,6 +467,11 @@ public class FrmRegistro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
+    private void btnPoliticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPoliticasActionPerformed
+        //mostrar politicas de privacidad
+        mostrarPoliticaPrivacidad();
+    }//GEN-LAST:event_btnPoliticasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -457,9 +501,11 @@ public class FrmRegistro extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnIrIniciodeSesion;
     private javax.swing.JToggleButton btnMostrarC;
+    private javax.swing.JButton btnPoliticas;
     private javax.swing.JButton btnRegistrarUsuario;
     private javax.swing.JButton btnSubirFoto;
     private javax.swing.JComboBox<String> cbGenero;
+    private javax.swing.JCheckBox chkPolitica;
     private javax.swing.ButtonGroup gTipodeUsuario;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;

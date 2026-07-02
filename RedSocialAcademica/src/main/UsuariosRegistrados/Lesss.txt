@@ -1,0 +1,17 @@
+DATOS DEL USUARIO 
+Usuario: @Lesss
+Nombre: Leslie
+Apellido: Cortez
+Correo: leslie@gmail.com
+Contraseña: 1212
+Genero: Mujer
+Tipo de Usuario: Estudiante
+Foto: profileDefault.png
+Edad: 
+Sobre mi: 
+Universidad: 
+Facultad: 
+Carrera: 
+Habilidades: 
+Colegio: 
+Rol: Gratuito

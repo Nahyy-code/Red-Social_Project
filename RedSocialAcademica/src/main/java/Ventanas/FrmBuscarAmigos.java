@@ -56,7 +56,7 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 6, 23));
 
-        pnlSuperior.setBackground(new java.awt.Color(0, 6, 23));
+        pnlSuperior.setBackground(new java.awt.Color(15, 23, 42));
 
         txtBuscar.setBackground(new java.awt.Color(26, 34, 53));
         txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -68,7 +68,7 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(56, 189, 248));
         lblTitulo.setText("Buscar Amigos");
 
@@ -77,7 +77,7 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
         ScrollPan.setViewportView(pnlResultados);
 
         btnVolver.setBackground(new java.awt.Color(37, 99, 235));
-        btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        btnVolver.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -89,33 +89,30 @@ public class FrmBuscarAmigos extends javax.swing.JFrame {
             pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ScrollPan, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(pnlSuperiorLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(24, 24, 24)
                 .addComponent(lblTitulo)
-                .addGap(95, 95, 95)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(btnVolver)
-                .addGap(39, 39, 39))
+                .addGap(44, 44, 44))
         );
         pnlSuperiorLayout.setVerticalGroup(
             pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSuperiorLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnlSuperiorLayout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSuperiorLayout.createSequentialGroup()
-                            .addContainerGap()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(btnVolver)
                                 .addComponent(btnBuscar))))
-                    .addGroup(pnlSuperiorLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblTitulo)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(lblTitulo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(ScrollPan, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );

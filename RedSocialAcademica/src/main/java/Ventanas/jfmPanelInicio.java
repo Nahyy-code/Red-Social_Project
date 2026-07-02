@@ -19,6 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -36,6 +37,9 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     /**
      * Creates new form jfmPanelInicio
      */
+    
+    private String rutaArchivoAdjunto = "";
+    
     public jfmPanelInicio() {
         initComponents();
         
@@ -60,7 +64,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         PLFeed.setLayout(new BoxLayout(PLFeed, BoxLayout.Y_AXIS)); //Dimensiones de Feed
-        PLPublicar.setMaximumSize(new Dimension(625, 136));
+        PLPublicar.setMaximumSize(new Dimension(700, 136));
         PLPublicar.setAlignmentX(Component.LEFT_ALIGNMENT);
                 
         File foto = new File("src\\main\\resources\\Imgs_PFP\\" + Sesion.fotodeperfil); //fdp en el inicio
@@ -136,17 +140,30 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     try {
         java.time.LocalDateTime ahora = java.time.LocalDateTime.now();
         String fecha = ahora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+            
+         String nombreAdjunto = "";
+        if (!rutaArchivoAdjunto.isEmpty()) {
+            File carpetaAdj = new File("src\\main\\Publicaciones\\adjuntos\\");
+            carpetaAdj.mkdirs();
+            File origen = new File(rutaArchivoAdjunto);
+            String ext = rutaArchivoAdjunto.substring(rutaArchivoAdjunto.lastIndexOf("."));
+            nombreAdjunto = Sesion.usuarioActual + "_" + System.currentTimeMillis() + ext;
+            java.nio.file.Files.copy(origen.toPath(),
+                new File(carpetaAdj, nombreAdjunto).toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+        }
         
-        try (FileWriter writer = new FileWriter(archivo)) {
+        
+            FileWriter writer = new FileWriter(archivo);
             writer.write(Sesion.nombreCompleto + "\n"); // línea 1: nombre
             writer.write(fecha + "\n");                 // linea 2: fecha
             writer.write(contenido + "\n");             // línea 3: contenido
-            writer.write(Sesion.tipoUsuario + "\n");    // linea 4: Tipo de user
-        } // línea 1: nombre
+            writer.write(Sesion.tipoUsuario + "\n");    // linea 4: Tipo de user 
+            writer.write(nombreAdjunto + "\n");         // linea 5: Archivo adjunto
+            writer.close();
 
         txtPublicar.setText(""); // limpia el campo
         cargarFeed();            // recarga el feed para mostrar la nueva publicación
-
+        lblArchivoAdjunto.setText(""); //limpia despues de tener archivo seleccionado
     } catch (IOException e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(null, "Error al publicar.");
@@ -156,7 +173,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     private JPanel crearTarjetaPost(File archivo) {
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    panel.setBackground(new Color(26, 34, 53));
+    panel.setBackground(new Color(30, 41, 70));
     panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(56, 189, 248, 40)),BorderFactory.createEmptyBorder(10, 12, 10, 12)));
     panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -166,6 +183,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         String fecha     = reader.readLine();
         String contenido = reader.readLine();
         String tipo      = reader.readLine();
+        String adjunto   = reader.readLine(); 
         reader.close();
 
         //Panel de publicacion
@@ -204,9 +222,11 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         txtContenido.setHighlighter(null);
         txtContenido.setSize(580, Short.MAX_VALUE);
         
+        
+        
         int altoNecesario = txtContenido.getPreferredSize().height;
-        txtContenido.setMaximumSize(new Dimension(580, altoNecesario));
-        txtContenido.setPreferredSize(new Dimension(580, altoNecesario));
+        txtContenido.setMaximumSize(new Dimension(700, altoNecesario));
+        txtContenido.setPreferredSize(new Dimension(700, altoNecesario));
         
         panelNombre.add(LBUsuario);
         panelNombre.add(Box.createHorizontalStrut(6));
@@ -216,12 +236,45 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         panel.add(LBFecha); 
         panel.add(Box.createVerticalStrut(4));
         panel.add(txtContenido);
+        
+        if (adjunto != null && !adjunto.isEmpty()) {
+            File archivoAdj = new File("src\\main\\Publicaciones\\adjuntos\\" + adjunto);
 
+        if (adjunto.endsWith(".jpg") || adjunto.endsWith(".jpeg") || adjunto.endsWith(".png")) {
+         // Es imagen — la muestra
+          JLabel lblImg = new JLabel();
+          ImageIcon icon = new ImageIcon(archivoAdj.getAbsolutePath());
+          Image img = icon.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH);
+          lblImg.setIcon(new ImageIcon(img));
+          lblImg.setAlignmentX(Component.LEFT_ALIGNMENT);
+          panel.add(Box.createVerticalStrut(6));
+          panel.add(lblImg);
+          } else {
+         // Es documento — muestra un link/label
+          JLabel lblAdj = new JLabel("📎 " + adjunto);
+          lblAdj.setForeground(new Color(56, 189, 248));
+          lblAdj.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+          lblAdj.setAlignmentX(Component.LEFT_ALIGNMENT);
+          lblAdj.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+          lblAdj.addMouseListener(new java.awt.event.MouseAdapter() {
+              public void mouseClicked(java.awt.event.MouseEvent e) {
+                  try {
+                       java.awt.Desktop.getDesktop().open(archivoAdj);
+                   } catch (IOException ex) {
+                      ex.printStackTrace();
+                   }
+               }
+           });
+          panel.add(Box.createVerticalStrut(6));
+          panel.add(lblAdj);
+         }
+        }
+        
     } catch (IOException e) {
         e.printStackTrace();
     }
     
-    panel.setMaximumSize(new Dimension(625, panel.getPreferredSize().height));
+    panel.setMaximumSize(new Dimension(700, panel.getPreferredSize().height));
 
     return panel;
 }
@@ -234,6 +287,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         JPBarraVertical = new javax.swing.JPanel();
         lbNomUsuario = new javax.swing.JLabel();
@@ -251,11 +305,14 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         btnPublicar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtPublicar = new javax.swing.JTextArea();
+        btnAdjuntar = new javax.swing.JButton();
+        lblArchivoAdjunto = new javax.swing.JLabel();
+        btnBorrarArchivo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(10, 15, 30));
+        jPanel1.setBackground(new java.awt.Color(15, 23, 42));
 
         JPBarraVertical.setBackground(new java.awt.Color(0, 6, 23));
 
@@ -299,7 +356,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addGroup(JPBarraVerticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNomUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbLogo)
                 .addGap(19, 19, 19))
         );
@@ -318,10 +375,13 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        JPBarraHorizontal.setBackground(new java.awt.Color(21, 34, 68));
+        JPBarraHorizontal.setBackground(new java.awt.Color(17, 30, 58));
 
         btnIrPerfil.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnIrPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        btnIrPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/user.png"))); // NOI18N
         btnIrPerfil.setText("Perfil");
+        btnIrPerfil.setContentAreaFilled(false);
         btnIrPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIrPerfil.addActionListener(this::btnIrPerfilActionPerformed);
 
@@ -332,12 +392,18 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         btnCierreSesion.addActionListener(this::btnCierreSesionActionPerformed);
 
         btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/house-chimney (1).png"))); // NOI18N
         btnInicio.setText("Inicio");
+        btnInicio.setContentAreaFilled(false);
         btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicio.addActionListener(this::btnInicioActionPerformed);
 
         btnAmigos.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnAmigos.setForeground(new java.awt.Color(255, 255, 255));
+        btnAmigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/users.png"))); // NOI18N
         btnAmigos.setText("Amigos");
+        btnAmigos.setContentAreaFilled(false);
         btnAmigos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAmigos.addActionListener(this::btnAmigosActionPerformed);
 
@@ -351,24 +417,26 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(btnCierreSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAmigos)
-                            .addGroup(JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnIrPerfil)
-                                .addComponent(btnInicio)))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(btnAmigos))
+                    .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnIrPerfil))
+                    .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnInicio)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPBarraHorizontalLayout.setVerticalGroup(
             JPBarraHorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPBarraHorizontalLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addComponent(btnInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnIrPerfil)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAmigos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCierreSesion)
                 .addGap(18, 18, 18))
         );
@@ -380,15 +448,19 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         PLFeed.setBackground(new java.awt.Color(10, 15, 30));
         PLFeed.setLayout(new javax.swing.BoxLayout(PLFeed, javax.swing.BoxLayout.LINE_AXIS));
 
-        PLPublicar.setBackground(new java.awt.Color(26, 34, 56));
+        PLPublicar.setBackground(new java.awt.Color(30, 41, 70));
 
+        btnPublicar.setBackground(new java.awt.Color(79, 160, 241));
+        btnPublicar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPublicar.setForeground(new java.awt.Color(255, 255, 255));
+        btnPublicar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/pencil.png"))); // NOI18N
         btnPublicar.setText("Publicar");
         btnPublicar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublicar.addActionListener(this::btnPublicarActionPerformed);
 
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        txtPublicar.setBackground(new java.awt.Color(31, 48, 78));
+        txtPublicar.setBackground(new java.awt.Color(38, 55, 90));
         txtPublicar.setColumns(20);
         txtPublicar.setForeground(new java.awt.Color(255, 255, 255));
         txtPublicar.setLineWrap(true);
@@ -396,25 +468,57 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         txtPublicar.setTabSize(5);
         jScrollPane2.setViewportView(txtPublicar);
 
+        btnAdjuntar.setBackground(new java.awt.Color(79, 160, 241));
+        btnAdjuntar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdjuntar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdjuntar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/edit.png"))); // NOI18N
+        btnAdjuntar.setText("Adjuntar");
+        btnAdjuntar.addActionListener(this::btnAdjuntarActionPerformed);
+
+        lblArchivoAdjunto.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnBorrarArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs_S/icons8-trash-24.png"))); // NOI18N
+        btnBorrarArchivo.setContentAreaFilled(false);
+        btnBorrarArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBorrarArchivo.addActionListener(this::btnBorrarArchivoActionPerformed);
+
         javax.swing.GroupLayout PLPublicarLayout = new javax.swing.GroupLayout(PLPublicar);
         PLPublicar.setLayout(PLPublicarLayout);
         PLPublicarLayout.setHorizontalGroup(
             PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PLPublicarLayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+            .addGroup(PLPublicarLayout.createSequentialGroup()
                 .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPublicar))
-                .addGap(23, 23, 23))
+                    .addGroup(PLPublicarLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(btnBorrarArchivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblArchivoAdjunto, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAdjuntar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPublicar))
+                    .addGroup(PLPublicarLayout.createSequentialGroup()
+                        .addContainerGap(46, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         PLPublicarLayout.setVerticalGroup(
             PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PLPublicarLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPublicar)
-                .addGap(15, 15, 15))
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PLPublicarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnPublicar)
+                            .addComponent(btnAdjuntar)))
+                    .addGroup(PLPublicarLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(PLPublicarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBorrarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblArchivoAdjunto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(23, 23, 23))
         );
 
         PLFeed.add(PLPublicar);
@@ -428,8 +532,9 @@ public class jfmPanelInicio extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(JPBarraVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+            .addComponent(JPBarraVertical, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,9 +542,10 @@ public class jfmPanelInicio extends javax.swing.JFrame {
                 .addComponent(JPBarraVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(JPBarraHorizontal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 18, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -500,6 +606,33 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         new FrmBuscarAmigos().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAmigosActionPerformed
+
+    private void btnAdjuntarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdjuntarActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Imágenes y documentos", "jpg", "jpeg", "png", "pdf", "docx", "txt"));
+        chooser.setAcceptAllFileFilterUsed(false);
+
+    if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        File archivo = chooser.getSelectedFile();
+
+        // Validar tamaño máximo 5MB
+        if (archivo.length() > 5 * 1024 * 1024) {
+            JOptionPane.showMessageDialog(null, "El archivo no puede superar 5 MB.");
+            return;
+        }
+
+        rutaArchivoAdjunto = archivo.getAbsolutePath();
+        lblArchivoAdjunto.setText("📎 " + archivo.getName());
+    }
+    
+    }//GEN-LAST:event_btnAdjuntarActionPerformed
+
+    private void btnBorrarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarArchivoActionPerformed
+        // Limpiar Archivo
+        rutaArchivoAdjunto = "";
+        lblArchivoAdjunto.setText("");
+    }//GEN-LAST:event_btnBorrarArchivoActionPerformed
     
     private JPanel crearTarjetaDePublicidad(){
         JPanel panelAd = new JPanel();
@@ -510,7 +643,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         BorderFactory.createEmptyBorder(12, 12, 12, 12)
     ));
         panelAd.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panelAd.setMaximumSize(new Dimension(625, 90));
+        panelAd.setMaximumSize(new Dimension(700, 90));
 
         JLabel lblTag = new JLabel("PATROCINADO");
         lblTag.setForeground(new Color(234, 179, 8));
@@ -558,11 +691,14 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     private javax.swing.JPanel JPBarraVertical;
     private javax.swing.JPanel PLFeed;
     private javax.swing.JPanel PLPublicar;
+    private javax.swing.JButton btnAdjuntar;
     private javax.swing.JButton btnAmigos;
+    private javax.swing.JButton btnBorrarArchivo;
     private javax.swing.JButton btnCierreSesion;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnIrPerfil;
     private javax.swing.JButton btnPublicar;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -570,6 +706,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
     private javax.swing.JLabel lbLogo;
     private javax.swing.JLabel lbNomUsuario;
     private javax.swing.JLabel lbTipo;
+    private javax.swing.JLabel lblArchivoAdjunto;
     private javax.swing.JTextArea txtPublicar;
     // End of variables declaration//GEN-END:variables
 }
