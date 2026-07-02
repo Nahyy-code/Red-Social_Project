@@ -16,3 +16,5 @@ Colegio: UEC
 Amigos: DSphinx
 Edad:
 Rol: Gratuito
+Rol: Gratuito
+Rol: Gratuito

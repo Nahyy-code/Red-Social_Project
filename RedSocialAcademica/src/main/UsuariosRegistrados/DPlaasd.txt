@@ -7,12 +7,13 @@ Contraseña: miumiu
 Genero: Hombre
 Tipo de Usuario: Estudiante
 Foto: profileDefault.png
-Sobre mi: 
-Universidad: 
-Carrera: 
-Habilidades: 
-Colegio: 
-Edad: 
+Sobre mi: Aprende rápido
+Universidad: Universidad de Guayaquil
+Carrera: Software
+Habilidades: Liderar
+Colegio: MFC
+Edad: 18
 Amigos: DSphinx
 Rol: Gratuito
 
+Rol: Gratuito

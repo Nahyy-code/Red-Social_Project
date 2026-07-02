@@ -112,6 +112,7 @@ public class jfmPanelInicio extends javax.swing.JFrame {
         
             contadorPosts++;
             
+            /* Dinamica de publicidad */
             if(!Sesion.rolSuscripción.equalsIgnoreCase("Premium") && contadorPosts == 1) {
                 PLFeed.add(crearTarjetaDePublicidad());
                 PLFeed.add(Box.createVerticalStrut(10));
