@@ -1,0 +1,19 @@
+DATOS DEL USUARIO 
+Usuario: @Lelee
+Nombre: Leslie
+Apellido: Cortez
+Correo: lcortezl@gmail.com
+Contraseña: 15152
+Genero: Mujer
+Tipo de Usuario: Estudiante
+Foto: profileDefault.png
+Edad: 2
+Sobre mi: 
+Universidad: UG
+Facultad: 
+Carrera: Software
+Habilidades: 
+Colegio: 
+Rol: Gratuito
+Amigos: DSphinx
+Rol: Gratuito

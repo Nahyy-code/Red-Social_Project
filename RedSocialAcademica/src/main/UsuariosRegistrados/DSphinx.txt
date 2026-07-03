@@ -6,7 +6,7 @@ Correo: dsphinx01010@gmail.com
 Contraseña: 0000
 Genero: Hombre
 Tipo de Usuario: Estudiante
-Foto: DSphinx.png
+Foto: profileDefault.png
 Sobre mi: hey soy hiper que tal bro AA
 AA
 Prueba edición xd
@@ -15,6 +15,8 @@ Universidad: Universidad de Guayaquil
 Carrera: Software
 Habilidades: Listo mimi
 Colegio: UEC
-Amigos: DPlaasd, test, ñlengo, usuarioprueba
+Amigos: DPlaasd, test, ñlengo, usuarioprueba, Lelee
 Edad: 3
+Rol: Premium
+Rol: Premium
 Rol: Premium
